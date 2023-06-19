@@ -7,7 +7,6 @@ export default function Home() {
     <>
       <VideoPlayer />
       <div className="flex justify-center">
-        <h1>Hello World</h1>
   
       </div>
     </>
