@@ -1,14 +1,16 @@
 import Image from "next/image"
 import VideoPlayer from "./Home_Modules/VidePlayer"
+import HowItWorks from "./Home_Modules/HowItWorks"
 
 export default function Home() {
 
   return (
     <>
       <VideoPlayer />
-      <div className="flex justify-center">
-  
-      </div>
+      <HowItWorks />
+      <h1>
+        hello
+      </h1>
     </>
   )
 }
