@@ -16,7 +16,7 @@ const roboto_mono = Roboto_Mono({
 })
 
 
-const myFont = localFont({
+const sohogothicpro  = localFont({
   variable: '--font-sohogothicpro',
   src: [
     {
@@ -27,6 +27,16 @@ const myFont = localFont({
     {
       path: './fonts/SohoGothicPro-Italic.otf',
       weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/SohoGothicPro-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/SohoGothicPro-MediumIt.otf',
+      weight: '500',
       style: 'italic',
     },
     {
@@ -54,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${myFont.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sohogothicpro.variable}`}>
       <body>
         <nav>
           <Menu />
