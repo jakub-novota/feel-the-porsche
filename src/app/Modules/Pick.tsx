@@ -1,12 +1,11 @@
+"use client"
 import CarsPage from "./Cars/CarPage";
 
 
 export default function Pick() {
-
-
     return (
         <>
-            <div className="flex justify-center items-center bg-red-400">
+            <div className="flex justify-center items-center ">
                 <div className="flex flex-col text-center items-center">
                     <p className="font-sohogothicpro font-medium text-[15px] leading-[22px] tracking-[-0.02em] uppercase text-[#33B888]">
                         Our collection
@@ -18,9 +17,10 @@ export default function Pick() {
                         Consider your needs and preferences when choosing a rental car.
                         This will help you choose the best car for a comfortable and enjoyable rental experience.
                     </p>
-                    <CarsPage />
                 </div>
-
+            </div>
+            <div className="mt-[79px]">
+                <CarsPage />
             </div>
         </>
     )

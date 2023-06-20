@@ -29,7 +29,6 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                 <Image
                     fill
                     priority
-                    quality={100}
                     src={car.image}
                     alt={car.name}
                 />

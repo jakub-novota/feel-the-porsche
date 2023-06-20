@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CarCard from './CarCard';
 import carsData from '@/app/json/cars.json';
 import SwiperCore, { Navigation, Autoplay, Pagination } from 'swiper';
-import Arrow from "../Svg_Module/Arrow";
+import Arrow from "./Arrow";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
@@ -59,7 +59,7 @@ const CarsPage: React.FC = () => {
                 ))}
             </Swiper>
             <button
-                className="z-40 ml-[20px] absolute top-1/2 left-2 transform -translate-y-1/2"
+                className="z-40 absolute top-1/2 left-2 transform -translate-y-1/2"
                 onClick={showPreviousCar}
             >
                 <Arrow
@@ -71,7 +71,7 @@ const CarsPage: React.FC = () => {
                 />
             </button>
             <button
-                className="z-40 mr-[20px] absolute top-1/2 right-2 transform -translate-y-1/2"
+                className="z-40 absolute top-1/2 right-2 transform -translate-y-1/2"
                 onClick={showNextCar}
             >
                 <Arrow

@@ -92,7 +92,9 @@ export default function HowItWorks() {
                 <p className='font-sohogothicpro font-medium text-[15px] leading-[22px] tracking-[-0.05em] uppercase text-[#4E5860]'>3 easy steps</p>
                 <h1 className='font-sohogothicpro font-bold italic text-[42px] leading-[63px] tracking-[-0.05em] text-[#313131]'>How it works?</h1>
             </div>
-            <Cards />
+            <div className='pb-[123px]'>
+                <Cards />
+            </div>
         </div>
     );
 }
