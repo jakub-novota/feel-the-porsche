@@ -6,8 +6,8 @@ export default function () {
             <div className="grid grid-cols-[1fr,1fr,1fr,1fr,auto] gap-0">
                 <div className="relative pl-[57px] my-auto">
                     <h2 className=" text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Which</h2>
-                    <select className="mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
-                        <option value="" disabled selected hidden>Car model</option>
+                    <select defaultValue="default" className="mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
+                        <option value="default" disabled  hidden>Car model</option>
                         <option value="">Option 1</option>
                         <option value="">Option 2</option>
                         <option value="">Option 3</option>
@@ -17,8 +17,8 @@ export default function () {
 
                 <div className="relative px-[30px] my-auto">
                     <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Location</h2>
-                    <select className="mt-[7px]  rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
-                        <option value="" disabled selected hidden>Location</option>
+                    <select defaultValue="default" className="mt-[7px]  rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
+                        <option value="default" disabled  hidden>Location</option>
                         <option value="">Option 1</option>
                         <option value="">Option 2</option>
                         <option value="">Option 3</option>

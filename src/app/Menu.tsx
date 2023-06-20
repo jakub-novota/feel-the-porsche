@@ -6,7 +6,6 @@ import Link from "next/link"
 
 export default function Menu() {
     const pathname = usePathname()
-    const isOnCarsPage = pathname === '/cars';
     const isListPage = pathname === '/cars';
     const isFaqPage = pathname === '/cars';
     const isAboutPage = pathname === '/about-us';
