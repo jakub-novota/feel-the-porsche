@@ -7,7 +7,7 @@
       "acceleration": "8.2 seconds",
       "year": 2021,
       "capacity": 5,
-      "image": "https://example.com/honda_civic.jpg"
+      "image": "./Home/porche.png"
     },
     {
       "name": "Toyota Camry",

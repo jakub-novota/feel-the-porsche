@@ -1,7 +1,7 @@
 import Image from "next/image"
-import VideoPlayer from "./Home_Modules/VidePlayer"
-import HowItWorks from "./Home_Modules/HowItWorks"
-import Pick from './Home_Modules/Pick';
+import VideoPlayer from "./Modules/VidePlayer"
+import HowItWorks from "./Modules/HowItWorks"
+import Pick from './Modules/Pick';
 
 export default function Home() {
 
