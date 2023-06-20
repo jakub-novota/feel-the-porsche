@@ -37,7 +37,7 @@ export default function VideoPlayer(): JSX.Element {
             <video ref={videoRef} width="100%" height="100%" autoPlay muted>
                 <source src="./porsche-turbo-web.mov" type="video/mp4" />
             </video>
-            <div className="absolute bottom-0 left-0 w-full h-[236px] bg-gradient-to-b from-transparent to-white flex justify-center items-center">
+            <div className="absolute bottom-0 left-0 w-full h-[236px] bg-gradient-to-b from-transparent to-[#F2F6F8] flex justify-center items-center">
                 <Options />
             </div>
             <div style={{ position: 'absolute', bottom: '15px', right: '20px' }}>
