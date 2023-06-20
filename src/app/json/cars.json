@@ -1,53 +1,52 @@
 [
-    {
-      "name": "Honda Civic",
-      "power": "174 hp",
-      "max_speed": "205 km/h",
-      "transmission": "Automatic",
-      "acceleration": "8.2 seconds",
-      "year": 2021,
-      "capacity": 5,
-      "image": "./Home/porche.png"
-    },
-    {
-      "name": "Toyota Camry",
-      "power": "203 hp",
-      "max_speed": "210 km/h",
-      "transmission": "Automatic",
-      "acceleration": "7.9 seconds",
-      "year": 2022,
-      "capacity": 5,
-      "image": "https://example.com/toyota_camry.jpg"
-    },
-    {
-      "name": "Ford Mustang",
-      "power": "310 hp",
-      "max_speed": "250 km/h",
-      "transmission": "Manual",
-      "acceleration": "5.8 seconds",
-      "year": 2020,
-      "capacity": 4,
-      "image": "https://example.com/ford_mustang.jpg"
-    },
-    {
-      "name": "BMW 3 Series",
-      "power": "248 hp",
-      "max_speed": "250 km/h",
-      "transmission": "Automatic",
-      "acceleration": "5.6 seconds",
-      "year": 2021,
-      "capacity": 5,
-      "image": "https://example.com/bmw_3series.jpg"
-    },
-    {
-      "name": "Mercedes-Benz E-Class",
-      "power": "241 hp",
-      "max_speed": "250 km/h",
-      "transmission": "Automatic",
-      "acceleration": "6.2 seconds",
-      "year": 2022,
-      "capacity": 5,
-      "image": "https://example.com/mercedes_eclass.jpg"
-    }
-  ]
-  
+  {
+    "name": "Porsche 911 Turbo S",
+    "power": 460,
+    "max_speed": 330,
+    "transmission": "Automatic",
+    "acceleration": 2.7,
+    "year": 2022,
+    "capacity": 2,
+    "image": "/Home/porche.png"
+  },
+  {
+    "name": "Toyota Camry",
+    "power": 460,
+    "max_speed": 330,
+    "transmission": "Automatic",
+    "acceleration": 7.9,
+    "year": 2022,
+    "capacity": 5,
+    "image": "/Home/porche.png"
+  },
+  {
+    "name": "Ford Mustang",
+    "power": 310,
+    "max_speed": 250,
+    "transmission": "Manual",
+    "acceleration": 5.8,
+    "year": 2020,
+    "capacity": 4,
+    "image": "/Home/porche.png"
+  },
+  {
+    "name": "BMW 3 Series",
+    "power": 248,
+    "max_speed": 250,
+    "transmission": "Automatic",
+    "acceleration": 5.6,
+    "year": 2021,
+    "capacity": 5,
+    "image": "/Home/porche.png"
+  },
+  {
+    "name": "Mercedes-Benz E-Class",
+    "power": 241,
+    "max_speed": 250,
+    "transmission": "Automatic",
+    "acceleration": 6.2,
+    "year": 2022,
+    "capacity": 5,
+    "image": "/Home/porche.png"
+  }
+]
