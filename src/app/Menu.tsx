@@ -4,18 +4,17 @@ import { usePathname } from 'next/navigation'
 import Link from "next/link"
 
 
-
-
 export default function Menu() {
     const pathname = usePathname()
     const isOnCarsPage = pathname === '/cars';
     const isListPage = pathname === '/cars';
     const isFaqPage = pathname === '/cars';
     const isAboutPage = pathname === '/about-us';
+    const isHomePage = pathname === '/'; // Adjust the condition based on your actual homepage route
 
     return (
         <>
-            <nav className="z-50 absolute top-0 left-0 w-screen">
+            <nav className={`z-50 ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen`}>
                 <div className="w-screen mt-[18px] bg-transparent ">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
