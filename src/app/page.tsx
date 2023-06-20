@@ -1,7 +1,8 @@
 import Image from "next/image"
 import VideoPlayer from "./Modules/VidePlayer"
 import HowItWorks from "./Modules/HowItWorks"
-import Pick from './Modules/Pick';
+import PickCar from './Modules/PickCar';
+import Services from "./Modules/Services";
 
 export default function Home() {
 
@@ -11,8 +12,11 @@ export default function Home() {
       <div>
         <HowItWorks />
       </div>
-      <div className="mt-[128px]">
-        <Pick />
+      <div className="mt-[128px] mb-[126px]">
+        <PickCar />
+      </div>
+      <div className="">
+        <Services />
       </div>
     </>
   )

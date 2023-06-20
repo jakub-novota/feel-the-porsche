@@ -18,7 +18,7 @@ export default function Menu() {
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="pl-[135px]">
-                                <Link href="/">
+                                <Link href="/" >
                                     <Image
                                         width={72}
                                         height={79}

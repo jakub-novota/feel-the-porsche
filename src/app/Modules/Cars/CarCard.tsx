@@ -60,10 +60,11 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                     <p className='text-[20px] font-sohogothicpro font-bold  leading-[30px] tracking-[-0.02em] text-[#313131]'>{car.capacity} pers</p>
                 </div>
             </div>
-            <div className='flex justify-center mt-[25px]'>
+            <div className='flex justify-center mt-[49px]'>
                 <Link href={`/cars/${carId}`}>
-                    <div className='flex justify-center text-white items-center bg-[#1C6B4F] w-[165px] h-[52px]  p-[8px] rounded-[8px]'>
-                        More info
+                    <div className='flex justify-center  items-center bg-buttonmoreinfo w-[165px] h-[52px]  p-[8px] rounded-[8px]'>
+                        <p className='text-white font-sohogothicpro font-medium text-[15px] leading-[15px] tracking-[2%] uppercase'>more info</p>
+                        <p className='text-white pl-[20px]'>&rarr;</p>
                     </div>
                 </Link>
             </div>
