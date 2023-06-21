@@ -19,7 +19,7 @@ export default function Home() {
       <div className="">
         <Services />
       </div>
-      <div>
+      <div className="mt-[103px]">
         <FAQ/>
       </div>
     </>
