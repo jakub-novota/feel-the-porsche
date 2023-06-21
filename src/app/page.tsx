@@ -23,7 +23,7 @@ export default function Home() {
       <div className="mt-[103px]">
         <FAQ/>
       </div>
-      <div>
+      <div className="mt-[127px]">
         <ContactUs />
       </div>
     </>
