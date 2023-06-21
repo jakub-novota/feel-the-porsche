@@ -4,6 +4,7 @@ import HowItWorks from "./Modules/HowItWorks"
 import PickCar from './Modules/PickCar';
 import Services from "./Modules/Services";
 import FAQ from "./Modules/Faq";
+import ContactUs from './Modules/ContactUs/ContactUs';
 
 export default function Home() {
 
@@ -21,6 +22,9 @@ export default function Home() {
       </div>
       <div className="mt-[103px]">
         <FAQ/>
+      </div>
+      <div>
+        <ContactUs />
       </div>
     </>
   )
