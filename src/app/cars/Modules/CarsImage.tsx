@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from 'next/image';
 import "swiper/css";
 import SwiperCore, { Pagination } from "swiper";
-import Status from "./Status";
+import Status from "../../Modules/Svg_Module/Status";
 
 // Initialize Swiper modules
 SwiperCore.use([Pagination]);

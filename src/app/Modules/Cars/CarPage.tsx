@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CarCard from './CarCard';
 import carsData from '@/app/json/cars.json';
 import SwiperCore, { Navigation, Autoplay, Pagination } from 'swiper';
-import Arrow from "../Svg_Module/Arrow";
+import AnimatedArrow from "../Svg_Module/Arrow";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
@@ -62,25 +62,32 @@ const CarsPage: React.FC = () => {
                 className="z-40 ml-[20px] absolute top-1/2 left-2 transform -translate-y-1/2"
                 onClick={showPreviousCar}
             >
-                <Arrow
+
+                <AnimatedArrow
                     direction="left"
                     color={isFirstSlide ? "#E0E8E5" : "#33B888"}
                     circleColor={isFirstSlide ? "#E0E8E5" : "#33B888"}
+                    strokeWidth={2}
                     circleStrokeWidth={2}
-                    strokeWidth={1.5}
+                    circleFill="inherit"
+                    
                 />
+
             </button>
             <button
                 className="z-40 mr-[20px] absolute top-1/2 right-2 transform -translate-y-1/2"
                 onClick={showNextCar}
             >
-                <Arrow
+
+                <AnimatedArrow
                     direction="right"
                     color={isLastSlide ? "#E0E8E5" : "#33B888"}
                     circleColor={isLastSlide ? "#E0E8E5" : "#33B888"}
-                    circleStrokeWidth={2}
                     strokeWidth={1.5}
+                    circleStrokeWidth={2}
+                    circleFill="inherit"
                 />
+
             </button>
         </div>
     );
