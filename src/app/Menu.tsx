@@ -9,12 +9,13 @@ export default function Menu() {
     const isListPage = pathname === '/cars';
     const isCarsPage = pathname === '/cars';
     const isFaqPage = pathname === '/cars';
+    const isDetailsPage = pathname.match(/^\/cars\/\d+$/);
     const isAboutPage = pathname === '/about-us';
     const isHomePage = pathname === '/'; // Adjust the condition based on your actual homepage route
-
+    console.log(pathname)
     return (
         <>
-            <nav className={`z-50 ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen ${isCarsPage ? 'bg-gray-100' : ''}`}>
+            <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen ${isCarsPage ? 'bg-gray-100' : ''}`}>
                 <div className="w-screen pt-[18px] bg-transparent ">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
