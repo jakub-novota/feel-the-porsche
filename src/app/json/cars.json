@@ -8,7 +8,9 @@
     "acceleration": 2.7,
     "year": 2022,
     "capacity": 2,
-    "image": "/Home/porche.png"
+    "image": "/Home/porsche.png",
+    "image_cars": "/Cars/image_11.png",
+    "drive": "RWD"
   },
   {
     "id": 2,
@@ -19,7 +21,9 @@
     "acceleration": 7.9,
     "year": 2022,
     "capacity": 5,
-    "image": "/Home/porche.png"
+    "image": "/Home/porsche.png",
+    "image_cars": "/Cars/image_15.png",
+    "drive": "RWD"
   },
   {
     "id": 3,
@@ -30,7 +34,9 @@
     "acceleration": 5.8,
     "year": 2020,
     "capacity": 4,
-    "image": "/Home/porche.png"
+    "image": "/Home/porsche.png",
+    "image_cars": "/Cars/image_11.png",
+    "drive": "RWD"
   },
   {
     "id": 4,
@@ -41,7 +47,9 @@
     "acceleration": 5.6,
     "year": 2021,
     "capacity": 5,
-    "image": "/Home/porche.png"
+    "image": "/Home/porsche.png",
+    "image_cars": "/Cars/image_15.png",
+    "drive": "RWD"
   },
   {
     "id": 5,
@@ -52,6 +60,8 @@
     "acceleration": 6.2,
     "year": 2022,
     "capacity": 5,
-    "image": "/Home/porche.png"
+    "image": "/Home/porsche.png",
+    "image_cars": "/Cars/image_11.png",
+    "drive": "RWD"
   }
 ]

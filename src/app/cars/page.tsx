@@ -1,12 +1,11 @@
-import CarsPage from "./Modules/CarPage";
+import CarsFilter from "./Modules/CarsFilter";
 
 export default function Cars() {
     return (
         <>
-            <div className="flex justify-center">
-                <h1>Cars</h1>
+            <div className="bg-[#F2F6F8] h-full">
+                <CarsFilter />
             </div>
-            <CarsPage/>
         </>
     )
 

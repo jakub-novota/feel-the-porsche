@@ -7,14 +7,15 @@ import Link from "next/link"
 export default function Menu() {
     const pathname = usePathname()
     const isListPage = pathname === '/cars';
+    const isCarsPage = pathname === '/cars';
     const isFaqPage = pathname === '/cars';
     const isAboutPage = pathname === '/about-us';
     const isHomePage = pathname === '/'; // Adjust the condition based on your actual homepage route
 
     return (
         <>
-            <nav className={`z-50 ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen`}>
-                <div className="w-screen mt-[18px] bg-transparent ">
+            <nav className={`z-50 ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen ${isCarsPage ? 'bg-gray-100' : ''}`}>
+                <div className="w-screen pt-[18px] bg-transparent ">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
                             <div className="pl-[135px]">
@@ -27,7 +28,7 @@ export default function Menu() {
                                     />
                                 </Link>
                             </div>
-                            <div className={`ml-[70px] space-x-[40px] font-medium text-[16px] leading-[16px] tracking-[-0.05em] ${isHomePage  ? 'text-white' : 'text-black'}`}>
+                            <div className={`ml-[70px] space-x-[40px] font-medium text-[16px] leading-[16px] tracking-[-0.05em] ${isHomePage ? 'text-white' : 'text-black'}`}>
                                 <Link href="/">Home</Link>
                                 <Link href="/about-us">About us</Link>
                                 <Link href="/services">Services</Link>
