@@ -29,7 +29,7 @@ export default function Menu() {
                                     />
                                 </Link>
                             </div>
-                            <div className={`ml-[70px] space-x-[40px] font-medium text-[16px] leading-[16px] tracking-[-0.05em] ${isHomePage ? 'text-white' : 'text-black'}`}>
+                            <div className={`ml-[70px] space-x-[40px] font-medium text-[16px] leading-[16px] tracking-[-0.05em] ${isDetailsPage ? 'text-white' : 'text-black'} ${isHomePage ? 'text-white' : 'text-black'}`}>
                                 <Link href="/">Home</Link>
                                 <Link href="/about-us">About us</Link>
                                 <Link href="/services">Services</Link>
