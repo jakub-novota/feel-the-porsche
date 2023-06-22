@@ -7,7 +7,6 @@ export default function Cars() {
         <>
             <div className="bg-[#F2F6F8] h-full">
                 <CarsFilter />
-  
             </div>
         </>
     )
