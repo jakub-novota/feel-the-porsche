@@ -1,6 +1,4 @@
 import CarsFilter from "./Modules/CarsFilter";
-import CarImages from "./Modules/CarsImage";
-import Status from "./Modules/Status";
 
 export default function Cars() {
     return (
