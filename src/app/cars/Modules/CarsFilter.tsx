@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import carData from '../../json/cars.json';
-import CarCard from './CarCard';
+import CarCard from './CarsCard';
 
 interface Car {
     id: number;
@@ -15,6 +15,7 @@ interface Car {
     image: string;
     [key: string]: any; // Index signature allowing dynamic indexing
 }
+
 
 const CarGrid: React.FC = () => {
     const [filter, setFilter] = useState('');

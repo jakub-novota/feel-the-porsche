@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import CarImages from "./CarsImage";
 
 interface Car {
     id: number;
@@ -23,9 +23,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
     <Link href={`/cars/${car.id}`}>
         <div className='flex justify-center'>
             <div className=" w-[572px] h-[537px]">
-                <div className='relative w-[572px] h-[385px]'>
-                    <Image fill priority quality={100} src={car.image_cars} alt={car.name} />
-                </div>
+                <CarImages elementId={car.id} />
                 <div className='bg-white rounded-b-[12px] pt-[25px] pl-[30px] pr-[30px] pb-[27px]'>
                     <h1 className="font-sohogothicpro font-bold  italic text-[30px] leading-[45px] text-[#071529]">{car.name}</h1>
                     <div className='flex justify-between mt-[26px]'>

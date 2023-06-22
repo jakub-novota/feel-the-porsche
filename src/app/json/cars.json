@@ -9,7 +9,10 @@
     "year": 2022,
     "capacity": 2,
     "image": "/Home/porsche.png",
-    "image_cars": "/Cars/image_11.png",
+    "image_cars": {
+      "1": "/Cars/image_15.png",
+      "2": "/Cars/image_15.png"
+    },
     "drive": "RWD"
   },
   {
@@ -22,7 +25,10 @@
     "year": 2022,
     "capacity": 5,
     "image": "/Home/porsche.png",
-    "image_cars": "/Cars/image_15.png",
+    "image_cars": {
+      "1": "/Cars/image_11.png",
+      "2": "/Cars/image_11.png"
+    },
     "drive": "RWD"
   },
   {
@@ -35,7 +41,10 @@
     "year": 2020,
     "capacity": 4,
     "image": "/Home/porsche.png",
-    "image_cars": "/Cars/image_11.png",
+    "image_cars": {
+      "1": "/Cars/image_15.png",
+      "2": "/Cars/image_15.png"
+    },
     "drive": "RWD"
   },
   {
@@ -48,7 +57,10 @@
     "year": 2021,
     "capacity": 5,
     "image": "/Home/porsche.png",
-    "image_cars": "/Cars/image_15.png",
+    "image_cars": {
+      "1": "/Cars/image_11.png",
+      "2": "/Cars/image_11.png"
+    },
     "drive": "RWD"
   },
   {
@@ -61,7 +73,12 @@
     "year": 2022,
     "capacity": 5,
     "image": "/Home/porsche.png",
-    "image_cars": "/Cars/image_11.png",
+    "image_cars": {
+      "1": "/Cars/image_11.png",
+      "2": "/Cars/image_15.png",
+      "3": "/Cars/image_15.png",
+      "4": "/Cars/image_15.png"
+    },
     "drive": "RWD"
   }
 ]
