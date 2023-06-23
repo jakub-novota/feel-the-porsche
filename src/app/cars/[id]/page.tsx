@@ -28,11 +28,9 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <h1>My Page </h1>
-            <p>Current pathname: {pathname}</p>
             {params.id}
             <div className="flex">
-                <div className="flex-grow  flex justify-center 2xl:justify-start ">
+                <div className="flex-grow 2xl:ml-[10%]">
                     <Information carId={parseInt(params.id)} />
                 </div>
                 <div className="w-[30%] flex justify-center 2xl:justify-ends ">
