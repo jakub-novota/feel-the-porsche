@@ -2,33 +2,7 @@
 import React, { useState } from 'react';
 import carData from '../../json/cars.json';
 import CarCard from './CarsCard';
-
-interface Car {
-    id: number;
-    name: string;
-    power_PS: number;
-    power_HP: number;
-    max_speed: number;
-    transmission: string;
-    acceleration: number;
-    year: number;
-    capacity: number;
-    image: string;
-    image_cars: {
-        "1": string;
-        "2": string;
-        "3"?: string | undefined;
-        "4"?: string | undefined;
-    };
-    drive: string;
-    description: string;
-    cylinder_capacity: number;
-    model: string;
-    body: string;
-    mileage: number;
-    fuel: string;
-    [key: string]: any; // Index signature allowing dynamic indexing
-}
+import { Car } from './CarInterface';
 
 
 const CarGrid: React.FC = () => {
@@ -91,7 +65,7 @@ const CarGrid: React.FC = () => {
                     className="border border-gray-300 rounded-md px-2 py-1 mr-2"
                 >
                     <option value="name">Name</option>
-                    <option value="power">Power</option>
+                    <option value="power_PS">Power</option>
                     <option value="max_speed">Max Speed</option>
                     <option value="acceleration">Acceleration</option>
                     <option value="year">Year</option>

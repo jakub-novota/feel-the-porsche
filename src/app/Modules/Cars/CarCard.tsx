@@ -2,18 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Car } from '@/app/cars/Modules/CarInterface';
 
-interface Car {
-    id: number;
-    name: string;
-    power: number;
-    max_speed: number;
-    transmission: string;
-    acceleration: number;
-    year: number;
-    capacity: number;
-    image: string;
-}
 
 interface CarCardProps {
     car: Car;
