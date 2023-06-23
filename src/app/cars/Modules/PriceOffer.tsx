@@ -157,7 +157,7 @@ export default function PriceOffer() {
 
         // Perform form submission logic here
         sendData();
-        console.log("Form submitted successfully!");
+        //console.log("Form submitted successfully!");
         console.log("Form values:", formValues);
         setIsSent(true);
     };
