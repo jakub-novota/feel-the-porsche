@@ -6,6 +6,7 @@ import AnimatedArrow from '@/app/Modules/Svg_Module/Arrow';
 import Information from '../Modules/Information';
 import PriceOffer from '../Modules/PriceOffer';
 import carData from '@/app/json/cars.json';
+import Galery from '../Modules/Galery';
 
 export default function Page() {
     const params = useParams();
@@ -36,6 +37,9 @@ export default function Page() {
                 <div className="w-[30%] flex justify-center 2xl:justify-ends ">
                     <PriceOffer />
                 </div>
+            </div>
+            <div className='mt-[57px]'>
+                <Galery />
             </div>
 
         </>

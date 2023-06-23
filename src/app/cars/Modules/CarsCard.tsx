@@ -1,34 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import CarImages from "./CarsImage";
-
-
-interface Car {
-    id: number;
-    name: string;
-    power_PS: number;
-    power_HP: number;
-    max_speed: number;
-    transmission: string;
-    acceleration: number;
-    year: number;
-    capacity: number;
-    image: string;
-    image_cars: {
-        "1": string;
-        "2": string;
-        "3"?: string | undefined;
-        "4"?: string | undefined;
-    };
-    drive: string;
-    description: string;
-    cylinder_capacity: number;
-    model: string;
-    body: string;
-    mileage: number;
-    fuel: string;
-    [key: string]: any; // Index signature allowing dynamic indexing
-}
+import { Car } from './CarInterface';
 
 interface CarCardProps {
     car: Car;
@@ -44,7 +17,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
                     <div className='flex justify-between mt-[26px]'>
                         <div >
                             <p className='text-[#646464] text-[12px] font-light leading-[15px] tracking-[-0.05em]'>Power</p>
-                            <p className='text-[20px] font-sohogothicpro font-bold  leading-[30px] tracking-[-0.02em] text-[#313131]'>{car.power} PS</p>
+                            <p className='text-[20px] font-sohogothicpro font-bold  leading-[30px] tracking-[-0.02em] text-[#313131]'>{car.power_PS} PS</p>
                         </div>
                         <div >
                             <p className='text-[#646464] text-[12px] font-light leading-[15px] tracking-[-0.05em]'>Transmission</p>
