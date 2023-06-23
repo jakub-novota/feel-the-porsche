@@ -1,15 +1,11 @@
 "use client"
 import Image from "next/image";
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { usePathname } from 'next/navigation';
 
 type CustomCheckboxProps = {
     isChecked: boolean;
     onChange: () => void;
 };
-
-
-
 
 
 
