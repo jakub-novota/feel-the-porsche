@@ -35,7 +35,7 @@ export default function Page() {
                 <div className="flex-grow  flex justify-center 2xl:justify-start ">
                     <Information carId={parseInt(params.id)} />
                 </div>
-                <div className="w-[40%] flex justify-center 2xl:justify-ends ">
+                <div className="w-[30%] flex justify-center 2xl:justify-ends ">
                     <PriceOffer />
                 </div>
             </div>

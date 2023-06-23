@@ -2,7 +2,8 @@
   {
     "id": 1,
     "name": "Porsche 911 Turbo S",
-    "power": 460,
+    "power_PS": 460,
+    "power_HP": 460,
     "max_speed": 330,
     "transmission": "Automatic",
     "acceleration": 2.7,
@@ -13,28 +14,42 @@
       "1": "/Cars/image_15.png",
       "2": "/Cars/image_15.png"
     },
-    "drive": "RWD"
+    "drive": "RWD",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "cylinder_capacity": 3.2,
+    "model": "911 Carrera 3.2",
+    "body": "Targa",
+    "mileage": 32000,
+    "fuel": "Gasoline"
   },
   {
     "id": 2,
-    "name": "Toyota Camry",
-    "power": 460,
+    "name": "Porsche 911 Carrera",
+    "power_PS": 230,
+    "power_HP": 231,
     "max_speed": 330,
-    "transmission": "Automatic",
-    "acceleration": 7.9,
-    "year": 2022,
-    "capacity": 5,
+    "transmission": "Manual",
+    "acceleration": 2.7,
+    "year": 1988,
+    "capacity": 2,
     "image": "/Home/porsche.png",
     "image_cars": {
       "1": "/Cars/image_11.png",
       "2": "/Cars/image_11.png"
     },
-    "drive": "RWD"
+    "drive": "RWD",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! <br/> <br/> Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "cylinder_capacity": 3.2,
+    "model": "911 Carrera 3.2",
+    "body": "Targa",
+    "mileage": 32000,
+    "fuel": "Gasoline"
   },
   {
     "id": 3,
     "name": "Ford Mustang",
-    "power": 310,
+    "power_PS": 460,
+    "power_HP": 460,
     "max_speed": 250,
     "transmission": "Manual",
     "acceleration": 5.8,
@@ -45,12 +60,19 @@
       "1": "/Cars/image_15.png",
       "2": "/Cars/image_15.png"
     },
-    "drive": "RWD"
+    "drive": "RWD",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "cylinder_capacity": 3.2,
+    "model": "911 Carrera 3.2",
+    "body": "Targa",
+    "mileage": 32000,
+    "fuel": "Gasoline"
   },
   {
     "id": 4,
     "name": "BMW 3 Series",
-    "power": 248,
+    "power_PS": 460,
+    "power_HP": 460,
     "max_speed": 250,
     "transmission": "Automatic",
     "acceleration": 5.6,
@@ -61,12 +83,19 @@
       "1": "/Cars/image_11.png",
       "2": "/Cars/image_11.png"
     },
-    "drive": "RWD"
+    "drive": "RWD",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "cylinder_capacity": 3.2,
+    "model": "911 Carrera 3.2",
+    "body": "Targa",
+    "mileage": 32000,
+    "fuel": "Gasoline"
   },
   {
     "id": 5,
     "name": "Mercedes-Benz E-Class",
-    "power": 241,
+    "power_PS": 460,
+    "power_HP": 460,
     "max_speed": 250,
     "transmission": "Automatic",
     "acceleration": 6.2,
@@ -79,6 +108,12 @@
       "3": "/Cars/image_15.png",
       "4": "/Cars/image_15.png"
     },
-    "drive": "RWD"
+    "drive": "RWD",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "cylinder_capacity": 3.2,
+    "model": "911 Carrera 3.2",
+    "body": "Targa",
+    "mileage": 32000,
+    "fuel": "Gasoline"
   }
 ]
