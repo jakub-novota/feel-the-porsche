@@ -11,7 +11,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
     <Link href={`/cars/${car.id}`}>
         <div className='flex justify-center'>
             <div className=" w-[572px] h-[537px]">
-                <CarImages elementId={car.id} />
+                <CarImages elementId={car.id} width="572px" height={"385px"} />
                 <div className='bg-white rounded-b-[12px] pt-[25px] pl-[30px] pr-[30px] pb-[27px]'>
                     <h1 className="font-sohogothicpro font-bold  italic text-[30px] leading-[45px] text-[#071529]">{car.name}</h1>
                     <div className='flex justify-between mt-[26px]'>
@@ -33,7 +33,6 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </Link>

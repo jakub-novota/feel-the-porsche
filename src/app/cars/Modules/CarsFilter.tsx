@@ -84,7 +84,7 @@ const CarGrid: React.FC = () => {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-[25px] gap-y-[54px]">
                         {sortedCars.map((car: Car) => (
-                            <CarCard key={car.id} car={car} />
+                            <CarCard  car={car}  />
                         ))}
                     </div>
                 </div>

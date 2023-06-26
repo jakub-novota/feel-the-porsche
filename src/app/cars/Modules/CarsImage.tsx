@@ -11,9 +11,11 @@ SwiperCore.use([Pagination]);
 
 interface CarImagesProps {
   elementId: number;
+  width: string;
+  height: string;
 }
 
-const CarImages: React.FC<CarImagesProps> = ({ elementId }) => {
+const CarImages: React.FC<CarImagesProps> = ({ elementId, width, height }) => {
   const car = carData.find((car) => car.id === elementId);
   let imageUrls: string[] = [];
 
@@ -36,17 +38,15 @@ const CarImages: React.FC<CarImagesProps> = ({ elementId }) => {
   };
 
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
-
+  console.log(width, height)
   return (
     <>
-
-
       <div className='relative'>
         <Swiper slidesPerView={1} onSlideChange={handleSlideChange}>
           {imageUrls.map((imageUrl, index) => (
             <React.Fragment key={index}>
               <SwiperSlide>
-                <div className='relative w-[572px] h-[385px]'>
+                <div className={`relative w-[${width}] h-[${height}]`}>
                   <Image fill priority quality={100} src={imageUrl} alt={`Image ${index}`} />
                 </div>
               </SwiperSlide>
@@ -57,8 +57,6 @@ const CarImages: React.FC<CarImagesProps> = ({ elementId }) => {
           <Status quantity={totalImages} activePosition={activeIndex} />
         </div>
       </div>
-
-
     </>
   );
 };

@@ -134,10 +134,10 @@
     "fuel": "Gasoline",
     "image": "/Home/porsche.png",
     "image_cars": {
-      "1": "/Gallery/Porsche911TurboS_1.png",
-      "2": "/Gallery/Porsche911TurboS_2.png",
-      "3": "/Gallery/Porsche911TurboS_3.png",
-      "4": "/Gallery/Porsche911TurboS_4.png"
+      "1": "/Cars/image_11.png",
+      "2": "/Cars/image_15.png",
+      "3": "/Cars/image_11.png",
+      "4": "/Cars/image_15.png"
     },
     "gallery": {
       "1": "/Gallery/Porsche911TurboS_1.png",

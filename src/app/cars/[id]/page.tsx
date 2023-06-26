@@ -6,6 +6,7 @@ import PriceOffer from '../Modules/PriceOffer';
 import carData from '@/app/json/cars.json';
 import Galery from '../Modules/Galery';
 import Cover from '../Modules/DetalCover';
+import InterestCars from '../Interest/Interest';
 
 export default function Page() {
     const params = useParams();
@@ -34,8 +35,8 @@ export default function Page() {
             <div className='mt-[57px]'>
                 <Galery carId={parseInt(params.id)} />
             </div>
-            <div className='mt-[70px]'>
-
+            <div className='mt-[68px] mb-[200px]'>
+            <InterestCars excludedId={parseInt(params.id)}/>
             </div>
 
         </>
