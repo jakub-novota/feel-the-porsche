@@ -62,11 +62,9 @@ export default function InterestCars({ excludedId }: { excludedId: number }) {
                 </div>
 
                 <div className='flex mr-[135px]'>
-                    <div className='flex'>
+                    <div className='flex space-x-[60px]'>
                         {selectedCars.slice(currentIndex, currentIndex + 2).map((car: Car) => (
-                            <div className='ml-[60px]'>
                                 <CarsCard key={car.id} car={car}  />
-                            </div>
                         ))}
                     </div>
                 </div>
