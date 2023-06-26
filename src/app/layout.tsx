@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter, Roboto_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import Menu from './Menu'
+import Footer from './footer'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -16,7 +17,7 @@ const roboto_mono = Roboto_Mono({
 })
 
 
-const sohogothicpro  = localFont({
+const sohogothicpro = localFont({
   variable: '--font-sohogothicpro',
   src: [
     {
@@ -70,6 +71,9 @@ export default function RootLayout({
           <Menu />
         </nav>
         {children}
+        <div className='bg-[#0C1B26] pb-[50px]'>
+          <Footer />
+        </div>
       </body>
     </html>
   )

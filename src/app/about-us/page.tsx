@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function About() {
     return (
         <>
-            <div className="flex flex-col">
+            <div className="flex flex-col ">
                 <div className='h-full w-1/2 flex justify-center '>
                     <h1 className="font-sohogothicpro italic font-bold text-[70px] leading-[105px] tracking-[-0.04em] text-[#313131]">About us</h1>
                 </div>
@@ -56,7 +56,7 @@ export default function About() {
 
 
 
-            <div className='relative mr-[188px] ml-[188px] mt-[154px] flex justify-center'>
+            <div className='relative mr-[188px] ml-[188px] mt-[154px] flex justify-center mb-[50px]'>
                 <Image
                     fill
                     priority
