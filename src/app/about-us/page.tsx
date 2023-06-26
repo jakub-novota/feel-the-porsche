@@ -52,29 +52,46 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <div className=' bg-[#12385B] mr-[188px] ml-[188px] mt-[154px]'>
-                <div className="h-249 w-1170px flex items-center pt-[50px] pl-[100px] pr-[100px] pb-[50px]">
-                    <div className='relative w-[141px] h-[141px]'>
+
+
+
+
+            <div className='relative mr-[188px] ml-[188px] mt-[154px] flex justify-center'>
+                <Image
+                    fill
+                    priority
+                    quality={100}
+                    src={"/about/mask.png"}
+                    alt="mask"
+                    className='z-10  mix-blend-multiply'
+                />
+                <div className='absolute top-0 left-0 w-full h-full bg-[#12385B] '>
+                </div>
+
+                <div className="z-30 h-249 w-1170px  flex items-center  pt-[50px] pl-[100px] pr-[100px] pb-[50px]">
+                    <div>
                         <Image
-                            fill
+                            width={150}
+                            height={150}
                             priority
                             quality={100}
                             src={"/about/ceo.png"}
-                            alt=""
+                            className='rounded-full z-30'
+                            alt="CEO"
                         />
                     </div>
-                    <div className="ml-6 w-2/3">
-                        <p className="text-[14px] leading-[23px] tracking-[-0.05em] text-[#D4E6F6]">
+                    <div className="z-30 ml-6 w-2/3">
+                        <p className="z-30 text-[14px] w-[769px] leading-[23px] tracking-[-0.05em] text-[#D4E6F6]">
                             At our premium rental car company, we are committed to providing the best possible service to our customers. With a fleet of top-of-the-line vehicles and personalized support from our experienced professionals, we strive to make every rental experience truly exceptional. Thank you for choosing our company, and we look forward to providing you with an unmatched level of luxury and convenience.
                         </p>
-                        <div className="mt-4">
-                            <p className="text-[16px] font-semibold leading-[23px] tracking-[-0.05em] text-white">Andrej Šturc</p>
-                            <p className="text-[16px] font-semibold leading-[23px] tracking-[-0.05em] text-white ">CEO</p>
+                        <div className="z-30 mt-4">
+                            <p className="z-30 text-[16px] font-semibold leading-[23px] tracking-[-0.05em] text-white">Andrej Šturc</p>
+                            <p className="z-30 text-[16px] font-semibold leading-[23px] tracking-[-0.05em] text-white ">CEO</p>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </>
     )
 }
