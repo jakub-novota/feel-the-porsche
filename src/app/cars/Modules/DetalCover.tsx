@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from 'next/image';
 import 'swiper/swiper.min.css';
 import AnimatedArrow from '@/app/Modules/Svg_Module/Arrow';
-import SwiperCore, { Navigation, Autoplay, Pagination } from 'swiper';
+import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -64,8 +63,8 @@ export default function Gallery({ carId }: GalleryProps) {
                     onSwiper={(swiper) => (swiperRef.current = swiper)}
                 >
                     {images.map((imageUrl, index) => (
-                        <React.Fragment key={(index+"cover")}>
-                            <SwiperSlide key={(index+"cover")}>
+                        <React.Fragment key={(index + "cover")}>
+                            <SwiperSlide key={(index + "cover")}>
                                 <div className='z-10 relative w-full h-[660px] '>
                                     <Image className='z-10' src={imageUrl} alt={`Image ${index + 1}`} priority quality={100} fill style={{ objectFit: "cover" }} />
                                 </div>

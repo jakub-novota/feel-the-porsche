@@ -1,6 +1,5 @@
 "use client"
 import { useParams } from 'next/navigation';
-import { usePathname } from 'next/navigation'
 import Information from '../Modules/Information';
 import PriceOffer from '../Modules/PriceOffer';
 import carData from '@/app/json/cars.json';
@@ -10,7 +9,6 @@ import InterestCars from '../Interest/Interest';
 
 export default function Page() {
     const params = useParams();
-    const pathname = usePathname()
     const carId = parseInt(params.id)
 
     const car = carData.find((car) => car.id === carId);
@@ -36,7 +34,7 @@ export default function Page() {
                 <Galery carId={parseInt(params.id)} />
             </div>
             <div className='mt-[68px] mb-[200px]'>
-            <InterestCars excludedId={parseInt(params.id)}/>
+                <InterestCars excludedId={parseInt(params.id)} />
             </div>
 
         </>

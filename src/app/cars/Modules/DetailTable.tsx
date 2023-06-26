@@ -1,7 +1,6 @@
 import React from 'react';
 import { Car } from './CarInterface';
 
-
 interface CarDetailsProps {
     car: Car;
 }
