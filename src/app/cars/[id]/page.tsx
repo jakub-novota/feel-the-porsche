@@ -34,6 +34,9 @@ export default function Page() {
             <div className='mt-[57px]'>
                 <Galery carId={parseInt(params.id)} />
             </div>
+            <div className='mt-[70px]'>
+
+            </div>
 
         </>
     )
