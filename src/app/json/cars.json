@@ -9,23 +9,23 @@
     "acceleration": 2.7,
     "year": 2022,
     "capacity": 2,
-    "image": "/Home/porsche.png",
-    "image_cars": {
-      "1": "/Cars/image_15.png",
-      "2": "/Cars/image_15.png"
-    },
     "drive": "RWD",
-    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! <br/> <br/> Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
     "cylinder_capacity": 3.2,
     "model": "911 Carrera 3.2",
     "body": "Targa",
     "mileage": 32000,
     "fuel": "Gasoline",
+    "image": "/Home/porsche.png",
+    "image_cars": {
+      "1": "/Cars/image_15.png",
+      "2": "/Cars/image_15.png"
+    },
     "gallery": {
-      "1": "/Gallery/gallery1.png",
-      "2": "/Gallery/gallery2.png",
-      "3": "/Gallery/gallery3.png",
-      "4": "/Gallery/gallery4.png"
+      "1": "/Gallery/Porsche911TurboS_1.png",
+      "2": "/Gallery/Porsche911TurboS_2.png",
+      "3": "/Gallery/Porsche911TurboS_3.png",
+      "4": "/Gallery/Porsche911TurboS_4.png"
     }
   },
   {
@@ -38,11 +38,6 @@
     "acceleration": 2.7,
     "year": 1988,
     "capacity": 2,
-    "image": "/Home/porsche.png",
-    "image_cars": {
-      "1": "/Cars/image_11.png",
-      "2": "/Cars/image_11.png"
-    },
     "drive": "RWD",
     "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! <br/> <br/> Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
     "cylinder_capacity": 3.2,
@@ -50,11 +45,16 @@
     "body": "Targa",
     "mileage": 32000,
     "fuel": "Gasoline",
+    "image": "/Home/porsche.png",
+    "image_cars": {
+      "1": "/Cars/image_11.png",
+      "2": "/Cars/image_11.png"
+    },
     "gallery": {
-      "1": "/Gallery/gallery1.png",
-      "2": "/Gallery/gallery2.png",
-      "3": "/Gallery/gallery3.png",
-      "4": "/Gallery/gallery4.png"
+      "1": "/Gallery/Porsche911TurboS_1.png",
+      "2": "/Gallery/Porsche911TurboS_2.png",
+      "3": "/Gallery/Porsche911TurboS_3.png",
+      "4": "/Gallery/Porsche911TurboS_4.png"
     }
   },
   {
@@ -67,23 +67,23 @@
     "acceleration": 5.8,
     "year": 2020,
     "capacity": 4,
-    "image": "/Home/porsche.png",
-    "image_cars": {
-      "1": "/Cars/image_15.png",
-      "2": "/Cars/image_15.png"
-    },
     "drive": "RWD",
-    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! <br/> <br/> Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
     "cylinder_capacity": 3.2,
     "model": "911 Carrera 3.2",
     "body": "Targa",
     "mileage": 32000,
     "fuel": "Gasoline",
+    "image": "/Home/porsche.png",
+    "image_cars": {
+      "1": "/Cars/image_15.png",
+      "2": "/Cars/image_15.png"
+    },
     "gallery": {
-      "1": "/Gallery/gallery1.png",
-      "2": "/Gallery/gallery2.png",
-      "3": "/Gallery/gallery3.png",
-      "4": "/Gallery/gallery4.png"
+      "1": "/Gallery/Porsche911TurboS_1.png",
+      "2": "/Gallery/Porsche911TurboS_2.png",
+      "3": "/Gallery/Porsche911TurboS_3.png",
+      "4": "/Gallery/Porsche911TurboS_4.png"
     }
   },
   {
@@ -96,23 +96,23 @@
     "acceleration": 5.6,
     "year": 2021,
     "capacity": 5,
-    "image": "/Home/porsche.png",
-    "image_cars": {
-      "1": "/Cars/image_11.png",
-      "2": "/Cars/image_11.png"
-    },
     "drive": "RWD",
-    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! <br/> <br/> Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
     "cylinder_capacity": 3.2,
     "model": "911 Carrera 3.2",
     "body": "Targa",
     "mileage": 32000,
     "fuel": "Gasoline",
+    "image": "/Home/porsche.png",
+    "image_cars": {
+      "1": "/Cars/image_11.png",
+      "2": "/Cars/image_11.png"
+    },
     "gallery": {
-      "1": "/Gallery/gallery1.png",
-      "2": "/Gallery/gallery2.png",
-      "3": "/Gallery/gallery3.png",
-      "4": "/Gallery/gallery4.png"
+      "1": "/Gallery/Porsche911TurboS_1.png",
+      "2": "/Gallery/Porsche911TurboS_2.png",
+      "3": "/Gallery/Porsche911TurboS_3.png",
+      "4": "/Gallery/Porsche911TurboS_4.png"
     }
   },
   {
@@ -125,25 +125,25 @@
     "acceleration": 6.2,
     "year": 2022,
     "capacity": 5,
-    "image": "/Home/porsche.png",
-    "image_cars": {
-      "1": "/Cars/image_11.png",
-      "2": "/Cars/image_15.png",
-      "3": "/Cars/image_15.png",
-      "4": "/Cars/image_15.png"
-    },
     "drive": "RWD",
-    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
+    "description": "Anniversary model \"250,000 x 911\" with plaque (1 of only 165 Targas of this model worldwide), leather interior with Raffleder, 15\" Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance! <br/> <br/> Fuchs rims with star rims in the color of the car, no model designation, short shifter, Austrian car, very good original condition, recently serviced, classic car insurance!",
     "cylinder_capacity": 3.2,
     "model": "911 Carrera 3.2",
     "body": "Targa",
     "mileage": 32000,
     "fuel": "Gasoline",
+    "image": "/Home/porsche.png",
+    "image_cars": {
+      "1": "/Gallery/Porsche911TurboS_1.png",
+      "2": "/Gallery/Porsche911TurboS_2.png",
+      "3": "/Gallery/Porsche911TurboS_3.png",
+      "4": "/Gallery/Porsche911TurboS_4.png"
+    },
     "gallery": {
-      "1": "/Gallery/gallery1.png",
-      "2": "/Gallery/gallery2.png",
-      "3": "/Gallery/gallery3.png",
-      "4": "/Gallery/gallery4.png"
+      "1": "/Gallery/Porsche911TurboS_1.png",
+      "2": "/Gallery/Porsche911TurboS_2.png",
+      "3": "/Gallery/Porsche911TurboS_3.png",
+      "4": "/Gallery/Porsche911TurboS_4.png"
     }
   }
 ]
