@@ -34,7 +34,7 @@ export default function () {
 
     return (
         <div className='flex justify-center h-screen items-center flex-col w-screen'>
-            <div className='flex flex-col  w-[268px] py-[31px] px-[30px] rounded-[24px]  bg-[#ffffffcc]   border-red shadow-[0px_20px_60px_rgba(74,80,83,0.3)] sm:py-0 sm:px-0 sm:rounded-[90px] sm:w-screen  lg:w-[975px] sm:h-[101px] sm:items-center sm:justify-center '>
+            <div className='flex flex-col  w-[268px] py-[31px] px-[30px] rounded-[24px]  bg-white   border-red shadow-[0px_20px_60px_rgba(74,80,83,0.3)] sm:py-0 sm:px-0 sm:rounded-[90px] sm:w-screen  lg:w-[975px] sm:h-[101px] sm:items-center sm:justify-center '>
                 <div ref={formRef} className="grid grid-cols-1 gap-4   sm:grid-cols-[0.5fr,0.5fr,0.5fr,0.5fr,auto]  lg:grid-cols-[1fr,1fr,1fr,1fr,auto] sm:gap-0 ">
 
                     <div className={`relative  my-auto border-b pb-[20px] sm:border-b-0  sm:pb-0  sm:border-r  sm:px-[20px] lg:pl-[57px] lg:px-[30px] `}>
