@@ -24,9 +24,6 @@ export default function PriceOffer() {
     const [occasion, setOccasion] = useState("");
 
 
-
-
-
     // Client-side code
     const sendData = async () => {
         const data = {
@@ -135,26 +132,21 @@ export default function PriceOffer() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         setIsSubmitted(true);
-
         if (email === "") {
             setIsValidEmail(false);
         }
-
         if (message === "") {
             setIsMessageEmpty(true);
         }
         if (name === "") {
             setisNameEmpty(true);
         }
-
         if (!isChecked || !isValidEmail || isMessageEmpty || isNameEmpty || pickUpDate === "" || pickOffDate === "") {
             // Handle validation errors, e.g., set border color to red
             return;
         }
 
         const formValues = [name, email, message, isChecked, pickUpDate, pickOffDate, occasion];
-
-        // Perform form submission logic here
         sendData();
         setIsSent(true);
     };

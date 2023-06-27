@@ -48,10 +48,12 @@ export default function VideoPlayer(): JSX.Element {
     };
 
     return (
-        <div style={{ position: 'relative' }}>
-            <video ref={videoRef} width="100%" height="100%" autoPlay muted >
-                <source src="/porsche-turbo-web.mov" type="video/mp4" />
-            </video>
+        <div className='relative'>
+            <div className=''>
+                <video ref={videoRef} playsInline width="100%" height="100%" autoPlay muted className='h-[552px] object-cover	' >
+                    <source src="/porsche-turbo-web.mov" type="video/mp4" />
+                </video>
+            </div>
             <div className="absolute bottom-0 left-0 w-full h-[236px] bg-gradient-to-b from-transparent to-[#F2F6F8] flex justify-center items-center">
                 <Options />
             </div>

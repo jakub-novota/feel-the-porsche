@@ -67,13 +67,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sohogothicpro.variable}`}>
       <body>
-        <nav>
+        <nav className='hidden lg:block'>
           <Menu />
         </nav>
         <div className='min-h-screen'>
           {children}
         </div>
-        <div className='bg-[#0C1B26] pb-[50px]'>
+        <div className='bg-[#0C1B26] pb-[50px] hidden lg:block'>
           <Footer />
         </div>
       </body>

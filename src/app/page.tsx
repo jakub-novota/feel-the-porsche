@@ -10,20 +10,22 @@ export default function Home() {
 
   return (
     <>
-      <VideoPlayer />
-      <div>
+      <div className="">
+        <VideoPlayer />
+      </div>
+      <div className="hidden lg:block">
         <HowItWorks />
       </div>
-      <div className="mt-[128px] mb-[126px]">
+      <div className="mt-[128px] mb-[126px] hidden lg:block">
         <PickCar />
       </div>
-      <div className="">
+      <div className="hidden lg:block">
         <Services />
       </div>
-      <div className="mt-[103px]">
-        <FAQ/>
+      <div className="mt-[103px] hidden lg:block">
+        <FAQ />
       </div>
-      <div className="mt-[127px] ">
+      <div className="mt-[127px] hidden lg:block">
         <ContactUs />
       </div>
     </>
