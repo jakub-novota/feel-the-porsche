@@ -66,7 +66,15 @@ export default function Gallery({ carId }: GalleryProps) {
                         <React.Fragment key={(index + "cover")}>
                             <SwiperSlide key={(index + "cover")}>
                                 <div className='z-10 relative w-full h-[660px] '>
-                                    <Image className='z-10' src={imageUrl} alt={`Image ${index + 1}`} priority quality={100} fill style={{ objectFit: "cover" }} />
+                                    <Image className='z-10'
+                                        src={imageUrl}
+                                        alt={`Image ${index + 1}`}
+                                        priority
+                                        quality={100}
+                                        fill
+                                        style={{ objectFit: "cover" }}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
                                 </div>
                             </SwiperSlide>
                         </React.Fragment>

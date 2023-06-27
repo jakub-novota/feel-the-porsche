@@ -83,8 +83,8 @@ const CarGrid: React.FC = () => {
                         <p className="mb-[31px] font-medium text-[14px] leading-[17px] tracking-[-0.05em] text-[#313131]">Sort by</p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-[25px] gap-y-[54px]">
-                        {sortedCars.map((car: Car) => (
-                            <CarCard  car={car}  />
+                        {sortedCars.map((car: Car, index) => (
+                            <CarCard car={car} key={index}/>
                         ))}
                     </div>
                 </div>

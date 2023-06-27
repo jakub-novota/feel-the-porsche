@@ -45,7 +45,14 @@ const CarImages: React.FC<CarImagesProps> = ({ elementId }) => {
             <React.Fragment key={index}>
               <SwiperSlide key={index}>
                 <div className='relative w-[350px] h-[245px]'>
-                  <Image fill priority quality={100} src={imageUrl} alt={`Image ${index}`} />
+                  <Image
+                    fill
+                    priority
+                    quality={100}
+                    src={imageUrl}
+                    alt={`Image ${index}`}
+                    sizes="100vw"
+                  />
                 </div>
               </SwiperSlide>
             </React.Fragment>

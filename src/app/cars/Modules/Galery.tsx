@@ -20,7 +20,15 @@ export default function Galery({ carId }: GaleryProps) {
         {Object.values(selectedCar.gallery).map((imageUrl, index) => (
           <div className="w-full md:w-1/2" key={index}>
             <div className="bg-white relative w-full h-[503px]">
-              <Image src={imageUrl} alt={`Image ${index + 1}`} priority quality={100} fill style={{ objectFit: "cover" }} />
+              <Image
+                src={imageUrl}
+                alt={`Image ${index + 1}`}
+                priority
+                quality={100}
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
             </div>
           </div>
         ))}

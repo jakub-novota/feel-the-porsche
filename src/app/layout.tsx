@@ -70,7 +70,9 @@ export default function RootLayout({
         <nav>
           <Menu />
         </nav>
-        {children}
+        <div className='min-h-screen'>
+          {children}
+        </div>
         <div className='bg-[#0C1B26] pb-[50px]'>
           <Footer />
         </div>

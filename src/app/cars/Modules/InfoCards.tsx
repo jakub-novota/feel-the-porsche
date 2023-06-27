@@ -81,7 +81,12 @@ const InfoCards: React.FC<CarDetailsProps> = ({
                         className="flex flex-col w-[136px] h-[134px] pl-[20px] items-leftw-[136px]  bg-detailcards rounded-[16px]"
                     >
                         <div className="mt-[11px] w-[52px] h-[52px] relative rounded-full flex justify-center items-center bg-detailcardssvg">
-                            <Image src={card.src} width={card.width} height={card.height} alt="Card Image" />
+                            <Image
+                                src={card.src}
+                                width={card.width}
+                                height={card.height}
+                                alt="Card Image"
+                            />
                         </div>
                         <div className="mt-2 text-left">
                             <p className="font-light  text-[12px] leading-[15px] tracking-[-0.05em] text-[#646464]">

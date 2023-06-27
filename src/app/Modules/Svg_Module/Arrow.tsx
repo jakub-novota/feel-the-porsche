@@ -22,7 +22,6 @@ const AnimatedArrow: React.FC<AnimatedArrowProps> = ({
 
   const handleClick = () => {
     // Add your logic or functionality for each click here
-    console.log('Arrow clicked!');
   };
 
   return (
