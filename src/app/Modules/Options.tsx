@@ -1,13 +1,45 @@
+"use client"
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
+
+
+
+
+
+
 export default function () {
+    const [showMore, setShowMore] = useState(false);
+    const formRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (formRef.current && !formRef.current.contains(event.target as Node)) {
+                setShowMore(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    const handleShowMore = () => {
+        setShowMore(true);
+    };
+
+
+
     return (
-        <div className='flex justify-center'>
-            <div className='flex items-center justify-center w-[975px] h-[101px] bg-white rounded-[90px] border-red shadow-[0px_20px_60px_rgba(74,80,83,0.3)]'>
-                <div className="grid grid-cols-[1fr,1fr,1fr,1fr,auto] gap-0">
-                    <div className="relative pl-[57px] my-auto border-r">
+        <div className=''>
+            <div className='flex flex-col  w-[268px] py-[31px] px-[30px] rounded-[24px]  bg-white backdrop-blur-[3.5px]  border-red shadow-[0px_20px_60px_0px_rgba(74,80,83,0.30)] sm:rounded-[90px] sm:w-[975px] sm:h-[101px] sm:items-center sm:justify-center '>
+                <div ref={formRef} className="grid grid-cols-1 gap-4   sm:grid-cols-[1fr,1fr,1fr,1fr,auto] sm:gap-0 ">
+
+                    <div className={`relative  my-auto border-b pb-[20px] sm:border-b-0  sm:pb-0  sm:border-r  sm:pl-[57px] sm:px-[30px] `}>
                         <h2 className=" text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Which</h2>
-                        <select defaultValue="default" className="mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
+                        <select defaultValue="default" className="bg-inherit w-full mt-[5px] sm:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6] ">
                             <option value="default" disabled hidden>Car model</option>
                             <option value="">Option 1</option>
                             <option value="">Option 2</option>
@@ -15,33 +47,85 @@ export default function () {
                         </select>
                     </div>
 
-                    <div className="relative px-[30px] my-auto border-r">
+                    <div className={`relative  my-auto   pb-[20px] sm:pb-0  sm:border-r  sm:pl-[57px] sm:px-[30px] ${showMore ? 'border-b pb-[20px]' : ''}`}>
                         <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Location</h2>
-                        <select defaultValue="default" className="mt-[7px]  rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
-                            <option value="default" disabled selected hidden>Location</option>
+                        <select defaultValue="default" className="bg-inherit w-full mt-[5px] sm:mt-[7px]  rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
+                            <option value="default" disabled selected hidden>Where</option>
                             <option value="">Option 1</option>
                             <option value="">Option 2</option>
                             <option value="">Option 3</option>
                         </select>
                     </div>
 
-                    <div className="relative px-[30px] my-auto border-r">
+
+                    {/*For mobile*/}
+                    {showMore && (
+                        <>
+                            <div className="relative border-b  pb-[20px] sm:pb-0 ">
+                                <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Pick Up</h2>
+                                <div className="flex mt-[5px] space-x-[20px]">
+                                    <input
+                                        type="date"
+                                        className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                        defaultValue="2023-09-22"
+                                    />
+                                    <input
+                                        type="time"
+                                        className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                        defaultValue="12:00"
+                                    />
+                                </div>
+                                <div className="absolute right-0 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-[#BCBCBC] to-transparent opacity-25 dark:opacity-100 lg:block"></div>
+                            </div>
+
+                            <div className="relative  ">
+                                <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Drop Off</h2>
+                                <div className="flex mt-[5px] space-x-[20px]">
+                                    <input
+                                        type="date"
+                                        className="bg-inherit date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                        defaultValue="2023-09-22"
+                                    />
+                                    <input
+                                        type="time"
+                                        className="bg-inherit time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                        defaultValue="12:00"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="relative  hidden sm:block">
+                                <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
+                                    <Image width={19} height={19} src="./svg/search.svg" alt="search" />
+                                </button>
+                            </div>
+
+                            <button className="bg-[#4E5860] w-[208px] h-[52px] text-white text-[14px] font-sohogothicpro font-medium tracking-[0.28px] uppercase  py-2 px-4 rounded-[8px] mt-[20px] text-left">
+                                Submit
+                            </button>
+                        </>
+                    )}
+
+
+
+                    {/*For Dekstop*/}
+                    <div className="hidden sm:block relative px-[30px] my-auto  border-r">
                         <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Pick Up</h2>
-                        <div className="flex mt-[7px]">
-                            <input type="date" className="rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="2023-09-22" />
-                            <input type="time" className="rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="12:00" />
+                        <div className="flex mt-[7px] ">
+                            <input type="date" className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="2023-09-22" />
+                            <input type="time" className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="12:00" />
                         </div>
                     </div>
 
-                    <div className="relative px-[30px] my-auto border-r">
+                    <div className="hidden sm:block relative px-[30px] my-auto border-r">
                         <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Drop Off</h2>
                         <div className="flex mt-[7px] ">
-                            <input type="date" className="date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="2023-09-22" />
-                            <input type="time" className="time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="12:00" />
+                            <input type="date" className="bg-inherit date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="2023-09-22" />
+                            <input type="time" className="bg-inherit time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]" defaultValue="12:00" />
                         </div>
                     </div>
 
-                    <div className="relative px-[30px] flex ">
+                    <div className="hidden sm:flex relative px-[30px]  ">
                         <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
                             <Image
                                 width={19}
@@ -51,8 +135,19 @@ export default function () {
                             />
                         </button>
                     </div>
+
+
                 </div>
+            </div >
+            <div className='sm:hidden'>
+                {!showMore && (
+                    <div className="flex justify-center mt-4">
+                        <button onClick={handleShowMore} className=" text-black text-[16px] font-medium tracking-[-0.8px]   underline  ">
+                            Show More
+                        </button>
+                    </div>
+                )}
             </div>
-        </div>
+        </div >
     );
 }
