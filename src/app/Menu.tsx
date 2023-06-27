@@ -12,7 +12,6 @@ export default function Menu() {
     const isDetailsPage = pathname.match(/^\/cars\/\d+$/);
     const isAboutPage = pathname === '/about-us';
     const isHomePage = pathname === '/'; // Adjust the condition based on your actual homepage route
-    console.log(pathname)
     return (
         <>
             <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen ${isCarsPage ? 'bg-gray-100' : ''}`}>

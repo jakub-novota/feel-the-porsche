@@ -3,6 +3,7 @@ import { Inter, Roboto_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import Menu from './Menu'
 import Footer from './footer'
+import MenuMobile from './MenuMobile'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -67,9 +68,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sohogothicpro.variable}`}>
       <body>
-        <nav className='hidden lg:block'>
+        <div className='hidden sm:block'>
           <Menu />
-        </nav>
+        </div>
+        <div className='sm:hidden'>
+          <MenuMobile />
+        </div>
         <div className='min-h-screen'>
           {children}
         </div>
