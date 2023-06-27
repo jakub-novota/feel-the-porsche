@@ -32,7 +32,7 @@ export default function () {
 
                     <div className={`relative my-auto border-b pb-[20px] sm:border-b-0 sm:pb-0 sm:border-r sm:px-[20px] lg:pl-[57px] lg:px-[30px]`}>
                         <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Which</h2>
-                        <select defaultValue="default" className="bg-inherit mt-[5px] sm:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
+                        <select defaultValue="default" className="bg-inherit w-full sm:w-auto mt-[5px] sm:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
                             <option value="default" disabled hidden>
                                 Car model
                             </option>
@@ -44,7 +44,7 @@ export default function () {
 
                     <div className={`relative my-auto pb-[20px] sm:pb-0 sm:border-r lg:pl-[57px] sm:px-[20px] lg:mx-0 lg:px-[30px] ${showMore ? 'border-b pb-[20px]' : ''}`}>
                         <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Location</h2>
-                        <select defaultValue="default" className="bg-inherit lg:w-full mt-[5px] sm:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
+                        <select defaultValue="default" className="bg-inherit w-full sm:w-auto lg:w-full mt-[5px] sm:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
                             <option value="default" disabled selected hidden>
                                 Where
                             </option>
@@ -68,12 +68,12 @@ export default function () {
                                     <div className="flex mt-[5px] space-x-[20px]">
                                         <input
                                             type="date"
-                                            className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit w-full rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="2023-09-22"
                                         />
                                         <input
                                             type="time"
-                                            className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit w-full rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="12:00"
                                         />
                                     </div>
@@ -85,12 +85,12 @@ export default function () {
                                     <div className="flex mt-[5px] space-x-[20px]">
                                         <input
                                             type="date"
-                                            className="bg-inherit date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit w-full date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="2023-09-22"
                                         />
                                         <input
                                             type="time"
-                                            className="bg-inherit time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit w-full time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="12:00"
                                         />
                                     </div>
