@@ -68,12 +68,12 @@ export default function () {
                                     <div className="flex mt-[5px] space-x-[20px]">
                                         <input
                                             type="date"
-                                            className="bg-inherit w-full rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="2023-09-22"
                                         />
                                         <input
                                             type="time"
-                                            className="bg-inherit w-full rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit  rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="12:00"
                                         />
                                     </div>
@@ -85,12 +85,12 @@ export default function () {
                                     <div className="flex mt-[5px] space-x-[20px]">
                                         <input
                                             type="date"
-                                            className="bg-inherit w-full date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit  date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="2023-09-22"
                                         />
                                         <input
                                             type="time"
-                                            className="bg-inherit w-full time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                            className="bg-inherit time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
                                             defaultValue="12:00"
                                         />
                                     </div>
