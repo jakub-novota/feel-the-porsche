@@ -55,7 +55,7 @@ export default function VideoPlayer(): JSX.Element {
                 </video>
                 <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white to-transparent"></div>
             </div>
-            <div className="absolute bottom-0 left-0 w-full h-[236px] bg-gradient-to-b from-transparent to-[#F2F6F8] flex justify-center items-center">
+            <div className="z-40 absolute bottom-0 left-0 w-full h-[236px] bg-gradient-to-b from-transparent to-[#F2F6F8] flex justify-center items-center">
                 <Options />
             </div>
             <div style={{ position: 'absolute', bottom: '15px', right: '20px' }}>

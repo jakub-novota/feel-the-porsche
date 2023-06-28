@@ -91,7 +91,7 @@ const CardSlider: React.FC = () => {
 
 export default function MyPage() {
     return (
-        <div className="bg-[#F2F6F8]  pt-[245px] pb-[50px] md:pt-0   ">
+        <div className="bg-[#F2F6F8]  pt-[220px] pb-[50px] md:pt-0   ">
             <CardSlider />
         </div>
     );

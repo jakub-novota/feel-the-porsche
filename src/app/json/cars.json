@@ -59,7 +59,7 @@
   },
   {
     "id": 3,
-    "name": "Ford Mustang",
+    "name": "Porsche Macan",
     "power_PS": 460,
     "power_HP": 460,
     "max_speed": 250,
@@ -88,7 +88,7 @@
   },
   {
     "id": 4,
-    "name": "BMW 3 Series",
+    "name": "Porsche Cayenne",
     "power_PS": 460,
     "power_HP": 460,
     "max_speed": 250,
@@ -117,7 +117,7 @@
   },
   {
     "id": 5,
-    "name": "Mercedes-Benz E-Class",
+    "name": "Porsche 718 Cayman",
     "power_PS": 460,
     "power_HP": 460,
     "max_speed": 250,
