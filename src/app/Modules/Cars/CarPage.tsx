@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CarCard from './CarCard';
 import carsData from '@/app/json/cars.json';
 import SwiperCore, { Navigation, Autoplay, Pagination } from 'swiper';
-import AnimatedArrow from "../Svg_Module/Arrow";
+import AnimatedArrow from "@/app/Modules/Svg_Module/Arrow";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
@@ -46,10 +46,7 @@ const CarsPage: React.FC = () => {
 
     return (
         <div className="relative">
-            <Swiper
-                slidesPerView={1}
-                onSwiper={(swiper) => (swiperRef.current = swiper)}
-            >
+            <Swiper slidesPerView={1} onSwiper={(swiper) => (swiperRef.current = swiper)}>
                 {carsData.map((car, index) => (
                     <SwiperSlide key={index}>
                         <div className="flex justify-center">
@@ -58,11 +55,7 @@ const CarsPage: React.FC = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <button
-                className="z-40 ml-[20px] absolute top-1/2 left-2 transform -translate-y-1/2"
-                onClick={showPreviousCar}
-            >
-
+            <button className="z-40 absolute top-1/3 left-[35vw]  sm:top-1/4 sm:left-2 sm:transform sm:-translate-y-1/2" onClick={showPreviousCar}>
                 <AnimatedArrow
                     direction="left"
                     color={isFirstSlide ? "#E0E8E5" : "#33B888"}
@@ -70,15 +63,9 @@ const CarsPage: React.FC = () => {
                     strokeWidth={2}
                     circleStrokeWidth={2}
                     circleFill="inherit"
-                    
                 />
-
             </button>
-            <button
-                className="z-40 mr-[20px] absolute top-1/2 right-2 transform -translate-y-1/2"
-                onClick={showNextCar}
-            >
-
+            <button className="z-40  absolute top-1/3 right-[35vw] sm:top-1/4 sm:right-2 sm:transform sm:-translate-y-1/2" onClick={showNextCar} >
                 <AnimatedArrow
                     direction="right"
                     color={isLastSlide ? "#E0E8E5" : "#33B888"}
@@ -87,7 +74,6 @@ const CarsPage: React.FC = () => {
                     circleStrokeWidth={2}
                     circleFill="inherit"
                 />
-
             </button>
         </div>
     );
