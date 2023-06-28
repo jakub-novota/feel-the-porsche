@@ -5,18 +5,17 @@ import Link from "next/link"
 
 export default function MenuMobile() {
     const pathname = usePathname()
-    const isListPage = pathname === '/cars';
     const isCarsPage = pathname === '/cars';
-    const isFaqPage = pathname === '/cars';
     const isDetailsPage = pathname.match(/^\/cars\/\d+$/);
-    const isAboutPage = pathname === '/about-us';
     const isHomePage = pathname === '/'; // Adjust the condition based on your actual homepage route
+   
     return (
         <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''}  left-0 w-screen ${isCarsPage ? 'bg-gray-100' : ''}`}>
             <div className="w-screen mt-[10px] h-[74px] ">
                 <div className="pl-[23px] pr-[31px] w-full flex">
                     <Link href="/" >
                         <Image
+                            priority
                             width={72}
                             height={79}
                             src="/menu/Logo.svg"

@@ -68,10 +68,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sohogothicpro.variable}`}>
       <body>
-        <div className='hidden sm:block'>
+        <div className='hidden md:block'>
           <Menu />
         </div>
-        <div className='sm:hidden'>
+        <div className='md:hidden'>
           <MenuMobile />
         </div>
         <div className='min-h-screen'>
