@@ -55,7 +55,7 @@ const CarsPage: React.FC = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <button className="z-40 absolute top-1/3 left-[35vw]  sm:top-1/4 sm:left-2 sm:transform sm:-translate-y-1/2" onClick={showPreviousCar}>
+            <button className="z-40 absolute top-1/4 mt-[10px] sm:mt-0 left-[35vw]  sm:top-1/4 sm:left-2 sm:transform sm:-translate-y-1/2" onClick={showPreviousCar}>
                 <AnimatedArrow
                     direction="left"
                     color={isFirstSlide ? "#E0E8E5" : "#33B888"}
@@ -65,7 +65,7 @@ const CarsPage: React.FC = () => {
                     circleFill="inherit"
                 />
             </button>
-            <button className="z-40  absolute top-1/3 right-[35vw] sm:top-1/4 sm:right-2 sm:transform sm:-translate-y-1/2" onClick={showNextCar} >
+            <button className="z-40  absolute top-1/4 mt-[10px] sm:mt-0 right-[35vw] sm:top-1/4 sm:right-2 sm:transform sm:-translate-y-1/2" onClick={showNextCar} >
                 <AnimatedArrow
                     direction="right"
                     color={isLastSlide ? "#E0E8E5" : "#33B888"}

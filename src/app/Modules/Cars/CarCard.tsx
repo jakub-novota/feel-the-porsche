@@ -16,19 +16,19 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-[325px] sm:w-[741px] mb-4 sm:mb-[27px]"
+            className="w-[325px] sm:w-[741px] mb-4 sm:mb-[27px] ml-[20px] mr-[20px]"
         >
             <div className="relative mx-auto h-[152px] md:w-[741px] md:h-[346px] sm:h-[252px] sm:w-[525px] mb-4">
                 <Image fill priority quality={100} src={car.image} alt={car.name} />
             </div>
-            <h1 className="font-sohogothicpro font-bold mt-[100px] sm:mt-0 text-[28px] sm:text-[42px] tracking-[-1.4] sm:tracking-[-2.1px] text-[#071529] mb-[35px] sm:mb-[40px] text-center">
+            <h1 className="font-sohogothicpro font-bold text-[28px]  mt-[70px] sm:mt-0 sm:text-[42px] tracking-[-1.4] sm:tracking-[-2.1px] text-[#071529] mb-[35px] sm:mb-[40px] text-center">
                 {car.name}
             </h1>
-            <div className="ml-[20px] mr[20px] sm:ml-0 sm:mr-0 grid grid-cols-3 sm:gap-[32px] md:gap-[65px] sm:flex sm:justify-center">
+            <div className=" grid grid-cols-3  sm:gap-[32px] md:gap-[65px] sm:flex sm:justify-center">
                 <div>
                     <p className="text-[#9C9C9C] text-sm leading-5 tracking-[-0.05em]">Power</p>
                     <p className="text-lg font-sohogothicpro font-medium leading-9 tracking-[-0.02em] text-black">
-                        {car.power} PS
+                        {car.power_PS} PS
                     </p>
                 </div>
                 <div>
@@ -62,7 +62,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                     </p>
                 </div>
             </div>
-            <div className="flex justify-center mt-4 sm:mt-[49px]">
+            <div className="flex justify-center mt-[70px] sm:mt-[67px]">
                 <Link href={`/cars/${carId}`}>
                     <div className="flex justify-center items-center bg-buttonmoreinfo w-40 h-12 p-2 rounded-lg sm:w-[165px] sm:h-[52px] sm:p-[8px]">
                         <p className="text-white font-sohogothicpro font-medium text-sm sm:text-[15px] leading-3 sm:leading-[15px] tracking-wide uppercase">
