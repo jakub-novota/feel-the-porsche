@@ -102,31 +102,28 @@ export default function MenuMobile() {
                 </div>
             </nav>
             {showOverlay && (
-                <div className="fixed inset-0 bg-black opacity-75 z-50 flex items-center justify-center">
-                    <div className=" p-8">
+                <div className="fixed inset-0 bg-black opacity-100 z-50 flex items-center justify-center">
+                    <div className='absolute top-0 bottom-0 left-0 right-0   flex items-center justify-center'>
                         <button className="absolute top-0 right-0 mr-[21px] mt-[29px] text-red-400" onClick={toggleOverlay}>
                             Close
                         </button>
-                        <div className='absolute bg-red-400'>
-                            <ul className=' text-white text-[16px] font-medium tracking-[-0.8px] space-y-[50px]'>
-                                <li>
-                                    <Link href="/">
-                                        Page 1
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/">
-                                        Page 2
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/">
-                                        Page 3
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-
+                        <ul className=' text-white text-[16px] font-medium tracking-[-0.8px] space-y-[50px]'>
+                            <li>
+                                <Link href="/cars">
+                                    Page 1
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/">
+                                    Page 2
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/">
+                                    Page 3
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             )}
