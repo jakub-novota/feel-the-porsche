@@ -53,6 +53,7 @@ export default function VideoPlayer(): JSX.Element {
                 <video ref={videoRef} playsInline width="100%" height="100%" autoPlay muted className='h-[552px] object-cover ' >
                     <source src="/porsche-turbo-web.mov" type="video/mp4" />
                 </video>
+                <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white to-transparent"></div>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-[236px] bg-gradient-to-b from-transparent to-[#F2F6F8] flex justify-center items-center">
                 <Options />
