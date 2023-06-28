@@ -8,11 +8,11 @@ import 'swiper/css/scrollbar';
 
 const Card: React.FC<{ title: string; content: string; number: string }> = ({ title, content, number }) => {
     return (
-        <div className="card bg-cardhome w-[310px] h-[338px] rounded-[12px] pt-[27px] pl-[34px] relative">
+        <div className="card bg-cardhome w-[310px] h-[338px] rounded-[12px] pt-[27px] relative px-[20px]">
             <h1 className="text-[#313131] font-sohogothicpro font-bold text-[28px] tracking-[-1.4px] ">
                 {title}
             </h1>
-            <p className="text-[#313131] pt-[22px] max-w-[240px] text-[15px] leading-[20px] tracking-[-0.75px] pb-[53px] whitespace-pre-line">
+            <p className="text-[#313131] pt-[22px] w-[240px] text-[15px] leading-[20px] tracking-[-0.75px] pb-[53px] whitespace-pre-line">
                 {content}
             </p>
             <div className="absolute bottom-0 right-0 ">
@@ -55,6 +55,12 @@ const CardSlider: React.FC = () => {
     };
 
     const breakpoints = {
+        0: {
+            slidesPerView: 1,
+        },
+        325: {
+            slidesPerView: 1.15,
+        },
         640: {
             slidesPerView: 1,
         },
@@ -65,7 +71,7 @@ const CardSlider: React.FC = () => {
             <Swiper slidesPerView={1.2} breakpoints={breakpoints} className="" onSlideChange={handleSlideChange}>
                 {cardData.map((data, index) => (
                     <SwiperSlide key={index}>
-                        <div className="flex justify-start sm:justify-center py-[50px] ml-[20px] mr-[20px] sm:mr-0 sm:ml-0">
+                        <div className="flex justify-start sm:justify-center py-[50px] sm:mr-0 sm:ml-0 pl-[20px] pr-[20px]">
                             <Card title={data.title} content={data.content} number={data.number} />
                         </div>
                     </SwiperSlide>
@@ -85,7 +91,7 @@ const CardSlider: React.FC = () => {
 
 export default function MyPage() {
     return (
-        <div className="bg-[#F2F6F8]  pt-[245px] pb-[50px] md:pt-0">
+        <div className="bg-[#F2F6F8]  pt-[245px] pb-[50px] md:pt-0   ">
             <CardSlider />
         </div>
     );

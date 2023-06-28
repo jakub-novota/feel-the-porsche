@@ -20,7 +20,7 @@ export default function Home() {
       <div className="lg:hidden">
         <HowItWorksMobil />
       </div>
-      <div className="mt-[128px] mb-[126px] ">
+      <div className="mt-[53px] sm:mt-[128px] mb-[126px] ">
         <PickCar />
       </div>
       <div className="hidden lg:block">
