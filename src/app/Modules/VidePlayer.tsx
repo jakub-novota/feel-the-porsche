@@ -50,7 +50,7 @@ export default function VideoPlayer(): JSX.Element {
     return (
         <div className='relative'>
             <div className=''>
-                <video ref={videoRef} playsInline width="100%" height="100%" autoPlay muted className='h-[552px] object-cover	' >
+                <video ref={videoRef} playsInline width="100%" height="100%" autoPlay muted className='h-[552px] object-cover ' >
                     <source src="/porsche-turbo-web.mov" type="video/mp4" />
                 </video>
             </div>
