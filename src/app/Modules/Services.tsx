@@ -26,7 +26,7 @@ const BoxesOnImage: React.FC = () => {
                     <p className="font-sohogothicpro font-medium text-[15px] leading-[22px] tracking-[-0.02em] uppercase text-[#33B888]">services</p>
                     <h1 className='mt-[5px] font-sohogothicpro font-bold italic text-[42px] leading-[63px] tracking-[-0.05em] text-white '>Which occasion?</h1>
                 </div>
-                <div className='mt-[48px] space-x-[135px] flex justify-center w-screen '>
+                <div className='pl-[20px] pr-[20px] mt-[48px]   lg:space-x-[135px] flex justify-center w-screen '>
                     <Box
                         imageSrc="/svg/icon.svg"
                         title="Movie / advertising"

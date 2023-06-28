@@ -24,10 +24,10 @@ export default function Home() {
       <div className="mt-[53px] sm:mt-[128px] mb-[126px] ">
         <PickCar />
       </div>
-      <div className="lg:hidden">
+      <div className="md:hidden">
         <ServicesMobile />
       </div>
-      <div className="hidden lg:block">
+      <div className="hidden md:block">
         <Services />
       </div>
       <div className="mt-[103px] hidden lg:block">
