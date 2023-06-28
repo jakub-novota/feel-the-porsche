@@ -1,174 +1,87 @@
 "use client"
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.min.css';
 
-export default function () {
-    const [showMore, setShowMore] = useState(false);
-    const formRef = useRef<HTMLDivElement>(null);
+interface BoxProps {
+    imageSrc: string;
+    title: string;
+    text: string;
+}
 
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (formRef.current && !formRef.current.contains(event.target as Node)) {
-                setShowMore(false);
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    const handleShowMore = () => {
-        setShowMore(!showMore);
-    };
-
+const Box: React.FC<BoxProps> = ({ imageSrc, title, text }) => {
     return (
-        <div className="flex justify-center h-screen items-center flex-col w-screen">
-            <div className="flex flex-col w-[268px] py-[31px] px-[30px] rounded-[24px] bg-[#ffffffcc] border-red shadow-[0px_20px_60px_rgba(74,80,83,0.3)] sm:py-0 sm:px-0 sm:rounded-[90px] sm:w-screen lg:w-[975px] sm:h-[101px] sm:items-center sm:justify-center">
-                <div ref={formRef} className="grid grid-cols-1 gap-4 sm:grid-cols-[0.5fr,0.5fr,0.5fr,0.5fr,auto] lg:grid-cols-[1fr,1fr,1fr,1fr,auto] sm:gap-0">
+        <div className="box flex flex-col items-center">
+            <div className='bg-[#081625] p-[27px] rounded-[12px]'>
+                <Image src={imageSrc} alt={title} width={46} height={46} />
+            </div>
+            <h1 className='mt-[26px] mb-[12px] font-sohogothicpro font-medium text-[26px] leading-[23px] tracking-[-0.05em] text-white'>{title}</h1>
+            <p className='text-center max-w-[279px] font-medium text-[14px] leading-[23px] text-[#BBBBBB] '>{text}</p>
+        </div>
+    );
+};
 
-                    <div className={`relative my-auto border-b pb-[20px] sm:border-b-0 sm:pb-0 sm:border-r sm:px-[20px] lg:pl-[57px] lg:px-[30px]`}>
-                        <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Which</h2>
-                        <select defaultValue="default" className="bg-inherit mt-[5px] sm:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
-                            <option value="default" disabled hidden>
-                                Car model
-                            </option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 2</option>
-                            <option value="">Option 3</option>
-                        </select>
-                    </div>
-
-                    <div className={`relative my-auto pb-[20px] sm:pb-0 sm:border-r lg:pl-[57px] sm:px-[20px] lg:mx-0 lg:px-[30px] ${showMore ? 'border-b pb-[20px]' : ''}`}>
-                        <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Location</h2>
-                        <select defaultValue="default" className="bg-inherit lg:w-full mt-[5px] sm:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
-                            <option value="default" disabled selected hidden>
-                                Where
-                            </option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 2</option>
-                            <option value="">Option 3</option>
-                        </select>
-                    </div>
-                    {/* For mobile */}
-                    <AnimatePresence>
-                        {showMore && (
-                            <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="overflow-hidden"
-                            >
-                                <div className="relative border-b pb-[20px] sm:pb-0" >
-                                    <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Pick Up</h2>
-                                    <div className="flex mt-[5px] :space-x-[20px]">
-                                        <input
-                                            type="date"
-                                            className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                            defaultValue="2023-09-22"
-                                        />
-                                        <input
-                                            type="time"
-                                            className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                            defaultValue="12:00"
-                                        />
-                                    </div>
-                                    <div className="absolute right-0 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-[#BCBCBC] to-transparent opacity-25 dark:opacity-100 sm:block"></div>
-                                </div>
-
-                                <div className="relative">
-                                    <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Drop Off</h2>
-                                    <div className="flex mt-[5px] space-x-[20px]">
-                                        <input
-                                            type="date"
-                                            className="bg-inherit date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                            defaultValue="2023-09-22"
-                                        />
-                                        <input
-                                            type="time"
-                                            className="bg-inherit time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                            defaultValue="12:00"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="relative hidden sm:block">
-                                    <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
-                                        <Image width={19} height={19} src="./svg/search.svg" alt="search" />
-                                    </button>
-                                </div>
-
-                                <button className="bg-[#4E5860] w-[208px] h-[52px] text-white font-bold py-2 px-4 rounded mt-4 text-left">
-                                    Submit
-                                </button>
-                            </motion.div>
-
-                        )}
-                    </AnimatePresence>
-
-
-                    {/* For Desktop */}
-                    <div
-                        className="hidden sm:block relative sm:px-[20px]  lg:px-[30px] my-auto  border-r"
+const BoxesOnImage: React.FC = () => {
+    return (
+        <div className="container relative">
+            <div className="z-40 absolute">
+                <div className='flex flex-col items-center pt-[100px]'>
+                    <p className="font-sohogothicpro font-medium text-[15px] leading-[22px] tracking-[-0.02em] uppercase text-[#33B888]">services</p>
+                    <h1 className='mt-[5px] font-sohogothicpro font-bold italic text-[42px] leading-[63px] tracking-[-0.05em] text-white '>Which occasion?</h1>
+                </div>
+                <div className='mt-[48px]'>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={20}
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 1,
+                                spaceBetween: 40,
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 50,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 50,
+                            },
+                        }}
+                        navigation
+                        className="mySwiper"
                     >
-                        <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Pick Up</h2>
-                        <div className=" flex mt-[7px]">
-                            <input
-                                type="date"
-                                className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                defaultValue="2023-09-22"
+                        <SwiperSlide>
+                            <Box
+                                imageSrc="/svg/icon.svg"
+                                title="Movie / advertising"
+                                text="We offer the possibility of renting cars for movie and advertising production. This can be a great option for filmmakers and advertisers looking for high-end vehicles for their projects. Be sure to inquire about any additional fees or requirements for using the rental car in a film or advertisement."
                             />
-                            <input
-                                type="time"
-                                className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                defaultValue="12:00"
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Box
+                                imageSrc="/svg/icon2.svg"
+                                title="Wedding / PR events"
+                                text="Our premium car selection could be great option for couples or event planners looking to add a touch of luxury or elegance to their special day. We offer a range of vehicles, including luxury cars, vintage models, and even limousines, and can provide personalized service to ensure that the rental meets the specific needs of the event."
                             />
-                        </div>
-                    </div>
-
-                    <div
-
-                        className="hidden sm:block relative sm:px-[20px] lg:px-[30px] my-auto "
-                    >
-                        <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Drop Off</h2>
-                        <div className="flex mt-[7px] ">
-                            <input
-                                type="date"
-                                className="bg-inherit date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                defaultValue="2023-09-22"
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Box
+                                imageSrc="/svg/icon3.svg"
+                                title="Personal"
+                                text="Renting a premium car can be a great option for personal use, whether for a special occasion or just to treat yourself to a luxurious driving experience. With high-end features and amenities, a premium rental car can provide a level of comfort and convenience that is unmatched by standard rental cars."
                             />
-                            <input
-                                type="time"
-                                className="bg-inherit time-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
-                                defaultValue="12:00"
-                            />
-                        </div>
-                    </div>
-
-                    <div
-                        className="hidden sm:flex relative sm:ml-[10px] lg:px-[30px]"
-                    >
-                        <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
-                            <Image width={19} height={19} src="./svg/search.svg" alt="search" />
-                        </button>
-                    </div>
-
+                        </SwiperSlide>
+                    </Swiper>
                 </div>
             </div>
-
-            <div className="sm:hidden">
-                {!showMore && (
-                    <div className="flex justify-center mt-4">
-                        <button onClick={handleShowMore} className="text-black text-[16px] font-medium tracking-[-0.8px] underline">
-                            Show More
-                        </button>
-                    </div>
-                )}
+            <div className="relative w-screen h-[711px] bg-[#12385B]">
+                <div className="absolute top-0 left-0 right-0 bottom-0">
+                    <Image src="/Home/bg-services-02.png" alt="Main Image" fill objectFit="cover" />
+                </div>
             </div>
-        </div >
+        </div>
     );
-}
+};
+
+export default BoxesOnImage;

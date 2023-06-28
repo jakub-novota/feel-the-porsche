@@ -1,82 +1,71 @@
 "use client"
-
-import React, { useEffect, useRef, useState } from "react";
-import CarCard from './Modules/CarsCard';
-import carsData from '@/app/json/cars.json';
-import SwiperCore, { Navigation, Autoplay, Pagination } from 'swiper';
-import AnimatedArrow from "@/app/Modules/Svg_Module/Arrow";
+import React from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import 'swiper/swiper.min.css';
 
-SwiperCore.use([Navigation]);
+interface BoxProps {
+    imageSrc: string;
+    title: string;
+    text: string;
+}
 
-const CarsPage: React.FC = () => {
-    const swiperRef = React.useRef<SwiperCore | null>(null);
-    const [isLastSlide, setIsLastSlide] = useState(false);
-    const [isFirstSlide, setIsFirstSlide] = useState(true);
-
-    const showNextCar = () => {
-        if (swiperRef.current && swiperRef.current.slideNext) {
-            swiperRef.current.slideNext();
-        }
-    };
-
-    const showPreviousCar = () => {
-        if (swiperRef.current && swiperRef.current.slidePrev) {
-            swiperRef.current.slidePrev();
-        }
-    };
-
-    const handleSlideChange = (swiper: SwiperCore) => {
-        const activeIndex = swiper.activeIndex;
-        const totalSlides = swiper.slides.length;
-        setIsFirstSlide(activeIndex === 0);
-        setIsLastSlide(activeIndex === totalSlides - 1);
-    };
-
-    useEffect(() => {
-        if (swiperRef.current) {
-            swiperRef.current.on("slideChange", handleSlideChange);
-        }
-    }, []);
-
+const Box: React.FC<BoxProps> = ({ imageSrc, title, text }) => {
     return (
-        <div className="relative">
-            <Swiper slidesPerView={1} onSwiper={(swiper) => (swiperRef.current = swiper)}>
-                {carsData.map((car, index) => (
-                    <SwiperSlide key={index}>
-                        <div className="flex justify-center">
-                            <CarCard key={index} car={car} />
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-            <button className="z-40 absolute top-1/3 left-[35vw]  sm:top-1/4 sm:left-2 sm:transform sm:-translate-y-1/2" onClick={showPreviousCar}>
-                <AnimatedArrow
-                    direction="left"
-                    color={isFirstSlide ? "#E0E8E5" : "#33B888"}
-                    circleColor={isFirstSlide ? "#E0E8E5" : "#33B888"}
-                    strokeWidth={2}
-                    circleStrokeWidth={2}
-                    circleFill="inherit"
-                />
-            </button>
-            <button className="z-40  absolute top-1/3 right-[35vw] sm:top-1/4 sm:right-2 sm:transform sm:-translate-y-1/2" onClick={showNextCar} >
-                <AnimatedArrow
-                    direction="right"
-                    color={isLastSlide ? "#E0E8E5" : "#33B888"}
-                    circleColor={isLastSlide ? "#E0E8E5" : "#33B888"}
-                    strokeWidth={1.5}
-                    circleStrokeWidth={2}
-                    circleFill="inherit"
-                />
-            </button>
+        <div className="box flex flex-col items-center">
+            <div className='bg-[#081625] p-[27px] rounded-[12px]'>
+                <Image src={imageSrc} alt={title} width={46} height={46} />
+            </div>
+            <h1 className='mt-[26px] mb-[12px] font-sohogothicpro font-medium text-[26px] leading-[23px] tracking-[-0.05em] text-white'>{title}</h1>
+            <p className='text-center max-w-[279px] font-medium text-[14px] leading-[23px] text-[#BBBBBB] '>{text}</p>
         </div>
     );
 };
 
-export default CarsPage;
+const BoxesOnImage: React.FC = () => {
+    return (
+        <div className="container relative">
+            <div className="z-40 absolute w-screen">
+                <div className='flex flex-col items-center pt-[100px]'>
+                    <p className="font-sohogothicpro font-medium text-[15px] leading-[22px] tracking-[-0.02em] uppercase text-[#33B888]">services</p>
+                    <h1 className='mt-[5px] font-sohogothicpro font-bold italic text-[42px] leading-[63px] tracking-[-0.05em] text-white '>Which occasion?</h1>
+                </div>
+                <div className='mt-[48px]'>
+                    <Swiper
+                        slidesPerView={1}
+                        className="mySwiper"
+                    >
+                        <SwiperSlide>
+                            <Box
+                                imageSrc="/svg/icon.svg"
+                                title="Movie / advertising"
+                                text="We offer the possibility of renting cars for movie and advertising production. This can be a great option for filmmakers and advertisers looking for high-end vehicles for their projects. Be sure to inquire about any additional fees or requirements for using the rental car in a film or advertisement."
+                            />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Box
+                                imageSrc="/svg/icon2.svg"
+                                title="Wedding / PR events"
+                                text="Our premium car selection could be great option for couples or event planners looking to add a touch of luxury or elegance to their special day. We offer a range of vehicles, including luxury cars, vintage models, and even limousines, and can provide personalized service to ensure that the rental meets the specific needs of the event."
+                            />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <Box
+                                imageSrc="/svg/icon3.svg"
+                                title="Personal"
+                                text="Renting a premium car can be a great option for personal use, whether for a special occasion or just to treat yourself to a luxurious driving experience. With high-end features and amenities, a premium rental car can provide a level of comfort and convenience that is unmatched by standard rental cars."
+                            />
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
+            </div>
+            <div className="relative w-screen h-[711px] bg-[#12385B]">
+                <div className="absolute top-0 left-0 right-0 bottom-0">
+                    <Image src="/Home/bg-services-02.png" alt="Main Image" fill objectFit="cover" />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default BoxesOnImage;

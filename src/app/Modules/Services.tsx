@@ -14,7 +14,6 @@ const Box: React.FC<BoxProps> = ({ imageSrc, title, text }) => {
             </div>
             <h1 className='mt-[26px] mb-[12px] font-sohogothicpro font-medium text-[26px] leading-[23px] tracking-[-0.05em] text-white'>{title}</h1>
             <p className='text-center max-w-[279px]  font-medium text-[14px] leading-[23px] text-[#BBBBBB] '>{text}</p>
-
         </div>
     );
 };

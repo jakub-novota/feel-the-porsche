@@ -6,6 +6,7 @@ import Services from "./Modules/Services";
 import FAQ from "./Modules/Faq";
 import ContactUs from './Modules/ContactUs/ContactUs';
 import HowItWorksMobil from "./Modules/HowItWorksMobil";
+import ServicesMobile from "./Modules/ServicesMobile";
 
 export default function Home() {
 
@@ -22,6 +23,9 @@ export default function Home() {
       </div>
       <div className="mt-[53px] sm:mt-[128px] mb-[126px] ">
         <PickCar />
+      </div>
+      <div className="lg:hidden">
+        <ServicesMobile />
       </div>
       <div className="hidden lg:block">
         <Services />
