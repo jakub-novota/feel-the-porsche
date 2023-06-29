@@ -4,9 +4,11 @@ export default function Map() {
     return (
         <>
             <div className="relative">
-                <div className="absolute  z-40"> <ContactFromular /></div>
+                <div className="z-40 absolute inset-0 flex items-center justify-center sm:justify-start ">
+                    <ContactFromular />
+                </div>
                 {
-                  //  <div className="absolute inset-0 bg-black opacity-10"></div>
+                    //  <div className="absolute inset-0 bg-black opacity-10"></div>
                 }
                 <iframe
                     className="w-full h-[671px]   "
