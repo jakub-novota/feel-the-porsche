@@ -77,7 +77,7 @@ export default function RootLayout({
         <div className='min-h-screen'>
           {children}
         </div>
-        <div className='bg-[#0C1B26] pb-[50px] hidden lg:block'>
+        <div className='bg-[#0C1B26] pb-[50px]'>
           <Footer />
         </div>
       </body>
