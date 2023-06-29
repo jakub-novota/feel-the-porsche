@@ -136,7 +136,7 @@ export default function ContactFromular() {
     };
     return (
         <>
-            <div className="z-40 w-[383px]  bg-[#fbfbfbc9] sm:mt-[59px] sm:ml-[135px] backdrop-filter backdrop-blur-[5px] roundedn-[12px] rounded-[12px] border-[0.5px] boreder-[#DEDEDE]">
+            <div className="z-40 max-w-[354px] sm:w-[383px]  bg-[#fbfbfbc9] sm:mt-[59px] sm:ml-[135px] backdrop-filter backdrop-blur-[5px] roundedn-[12px] rounded-[12px] border-[0.5px] boreder-[#DEDEDE]">
                 <div className="px-[39px] pt-[40px] text-[#707070]">
                     <div>
                         <form onSubmit={handleSubmit}>
@@ -168,7 +168,7 @@ export default function ContactFromular() {
                             <textarea
                                 id="text"
                                 rows={4}
-                                className={`z-40 mt-[10px] ring-[1px] ring-[#C5C5C5]   h-[127px] w-[307px]  break-after-auto whitespace-pre-wrap break-words  bg-[#fbfbfbc9] placeholder-[#D6D6D6]   text-black text-[16px] leading-[16px] tracking-[-0.05]  rounded-[8px] block p-[15px]  pb-20  focus:outline-none focus:border-[#756C63] focus:ring-1 focus:ring-[#756C63] ${isMessageEmpty && isSubmitted ? 'border border-red-500 ' : ''}`}
+                                className={`z-40 mt-[10px] ring-[1px] ring-[#C5C5C5]   h-[127px] w-full break-after-auto whitespace-pre-wrap break-words  bg-[#fbfbfbc9] placeholder-[#D6D6D6]   text-black text-[16px] leading-[16px] tracking-[-0.05]  rounded-[8px] block p-[15px]  pb-20  focus:outline-none focus:border-[#756C63] focus:ring-1 focus:ring-[#756C63] ${isMessageEmpty && isSubmitted ? 'border border-red-500 ' : ''}`}
                                 placeholder="Any other special requirements?"
                                 value={message}
                                 onChange={handleMessageChange} // Pass the event object correctly
