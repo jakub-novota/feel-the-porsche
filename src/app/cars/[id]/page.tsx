@@ -26,11 +26,11 @@ export default function Page() {
                 <div className="flex-grow 2xl:ml-[10%] ">
                     <Information carId={parseInt(params.id)} />
                 </div>
-                <div className="z-40 hidden sm:block w-[30%] flex justify-center 2xl:justify-ends ">
+                <div className="z-40 hidden  w-[30%] sm:flex justify-center 2xl:justify-ends ">
                     <PriceOffer />
                 </div>
             </div>
-            <div className='mt-[57px hidden'>
+            <div className='mt-[57px]'>
                 <Galery carId={parseInt(params.id)} />
             </div>
             <div className='mt-[68px] mb-[200px] hidden'>
