@@ -33,7 +33,7 @@ export default function Page() {
             <div className='mt-[57px]'>
                 <Galery carId={parseInt(params.id)} />
             </div>
-            <div className='mt-[68px] mb-[200px] hidden'>
+            <div className='mt-[68px] mb-[200px] '>
                 <InterestCars excludedId={parseInt(params.id)} />
             </div>
 
