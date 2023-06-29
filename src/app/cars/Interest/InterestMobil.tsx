@@ -26,24 +26,26 @@ export default function InterestCarsMobile({ excludedId }: { excludedId: number 
     return (
         <>
             <div className="flex flex-col items-center justify-center w-full">
-                <h1 className="font-sohogothicpro italic font-bold text-3xl leading-7 tracking-wider text-gray-800 mb-4 max-w-xs">
-                    Not interested in this car?
-                </h1>
-                <p className="text-sm leading-6 text-gray-800 max-w-xs mb-6">
-                    Look at other cars from our collection and find the perfect car for you.
-                </p>
-                <Link href="/cars">
-                    <button className="bg-green-500 text-white py-3 px-6 rounded-lg font-medium text-lg">
-                        See all cars
-                    </button>
-                </Link>
+                <div className='sflex flex-col justify-center text-center'>
+                    <h1 className="font-sohogothicpro italic font-bold text-3xl leading-7 tracking-wider text-gray-800 mb-4 max-w-xs">
+                        Not interested in this car?
+                    </h1>
+                    <p className="mx-auto text-[16pxs] leading-[22px] text-[#313131] max-w-[261px] tracking-[-0.8px] mt-[30px]">
+                        Look at other cars from our collection and find the perfect car for you.
+                    </p>
+                    <Link href="/cars" >
+                        <button className="mt-[36px] bg-[#33B888] text-white py-3 px-6 rounded-[8px] font-sohogothicpro uppercase tracking-[0.3px] font-medium text-[15px]">
+                            See all cars
+                        </button>
+                    </Link>
+                </div>
             </div>
             <div className="flex flex-col items-center justify-center mt-8">
                 {selectedCars.slice(currentIndex, currentIndex + 1).map((car: Car) => (
                     <CarsCard key={car.id} car={car} />
                 ))}
             </div>
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-end mt-[50px] mr-[10vw]">
                 <div className="flex space-x-4">
                     <button onClick={handlePrevSlide} disabled={currentIndex === 0}>
                         <AnimatedArrow
