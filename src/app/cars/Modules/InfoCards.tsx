@@ -74,7 +74,7 @@ const InfoCards: React.FC<CarDetailsProps> = ({
 
     return (
         <div className="flex justify-center">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {cards.map((card, index) => (
                     <div
                         key={index}
