@@ -136,7 +136,7 @@ export default function ContactFromular() {
     };
     return (
         <>
-            <div className="z-40 w-[383px]  bg-[#fbfbfbc9] mt-[100vh] sm:mt-[59px] sm:ml-[135px] backdrop-filter backdrop-blur-[5px] roundedn-[12px] rounded-[12px] border-[0.5px] boreder-[#DEDEDE]">
+            <div className="z-40 w-[383px]  bg-[#fbfbfbc9] sm:mt-[59px] sm:ml-[135px] backdrop-filter backdrop-blur-[5px] roundedn-[12px] rounded-[12px] border-[0.5px] boreder-[#DEDEDE]">
                 <div className="px-[39px] pt-[40px] text-[#707070]">
                     <div>
                         <form onSubmit={handleSubmit}>
