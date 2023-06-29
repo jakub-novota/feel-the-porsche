@@ -17,7 +17,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen = false }) =
 
     return (
         <div className={` p-8  rounded-sm  backdrop-blur-lg bg-opacity-75 border-b-[0.5px] border-b-[#D0DCD7] ${isOpenState ? 'bg-[#F9F9F9]' : 'bg-none'} duration-300`}>
-            <button className={`faq-question  w-full ${isOpenState ? 'active' : ''}`} onClick={toggleAccordion}>
+            <button className={`faq-question text-left  w-full ${isOpenState ? 'active' : ''}`} onClick={toggleAccordion}>
                 <h1 className="z-30 text-[23px] text-[#33B888] font-sohogothicpro font-medium leading-[23px] tracking-[-0.05em]">
                     <span className="flex items-center justify-between">
                         <span>{question}</span>
@@ -68,7 +68,7 @@ const FAQ_MODULE: React.FC = () => {
     ];
 
     return (
-        <div className="faq-section max-w-[765px] xl:w-[765px]">
+        <div className="faq-section max-w-[765px] xl:w-[765px] ml-[20px] mr-[20px]">
             {faqItems.map((item, index) => (
                 <FAQItem key={index} question={item.question} answer={item.answer} isOpen={item.isOpen} />
             ))}
