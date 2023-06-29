@@ -6,6 +6,7 @@ import carData from '@/app/json/cars.json';
 import Galery from '../Modules/Galery';
 import Cover from '../Modules/DetalCover';
 import InterestCars from '../Interest/Interest';
+import InterestCarsMobil from '../Interest/InterestMobil';
 
 export default function Page() {
     const params = useParams();
@@ -33,7 +34,10 @@ export default function Page() {
             <div className='mt-[57px]'>
                 <Galery carId={parseInt(params.id)} />
             </div>
-            <div className='mt-[68px] mb-[200px] '>
+            <div className='mt-[68px] sm:hidden mb-[200px] '>
+                <InterestCarsMobil excludedId={parseInt(params.id)}/>
+            </div>
+            <div className='mt-[68px] hidden sm:block mb-[200px] '>
                 <InterestCars excludedId={parseInt(params.id)} />
             </div>
 
