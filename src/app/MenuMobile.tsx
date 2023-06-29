@@ -27,12 +27,13 @@ export default function MenuMobile() {
     const isCarsPage = pathname === '/cars';
     const isDetailsPage = pathname.match(/^\/cars\/\d+$/); //To find all car ID
     const isHomePage = pathname === '/';
+    const menuIconColor = isCarsPage ? 'black' : 'white';
 
     return (
         <>
             <nav
                 className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''
-                    } left-0 w-screen ${isCarsPage ? '' : ''}`}
+                    } left-0 w-screen ${isCarsPage ? 'bg-[#F2F6F8]' : ''}`}
             >
                 <div className="w-screen mt-[10px] h-[74px]">
                     <div className="pl-[23px] pr-[31px] w-full flex">
@@ -63,7 +64,7 @@ export default function MenuMobile() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0 }}
                             >
-                                <MenuIcon />
+                                <MenuIcon color={menuIconColor} />
                             </motion.button>
                         </div>
                     </div>
