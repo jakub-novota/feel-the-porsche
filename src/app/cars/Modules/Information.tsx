@@ -15,7 +15,7 @@ const CarInformation: React.FC<CarInformationProps> = ({ carId }) => {
   }
 
   return (
-    <div className="w-full sm:pl-[89px] pl-[20px] pr-[20px]">
+    <div className="w-full xl:pl-[89px] pl-[20px] pr-[20px]">
       <h1 className="font-sohogothicpro font-bold italic text-[32px] tracking-[-0.96px] sm:text-[49px] sm:tracking-[-0.03em] text-[#313131]">
         {car.name}
       </h1>

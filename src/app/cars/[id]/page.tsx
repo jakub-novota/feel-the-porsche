@@ -27,17 +27,17 @@ export default function Page() {
                 <div className="flex-grow 2xl:ml-[10%] ">
                     <Information carId={parseInt(params.id)} />
                 </div>
-                <div className="z-40 hidden  w-[30%] sm:flex justify-center 2xl:justify-ends ">
+                <div className="z-40 hidden  w-[30%] xl:flex justify-center 2xl:justify-ends ">
                     <PriceOffer />
                 </div>
             </div>
             <div className='mt-[57px]'>
                 <Galery carId={parseInt(params.id)} />
             </div>
-            <div className='mt-[68px] sm:hidden mb-[200px] '>
+            <div className='mt-[68px] lg:hidden mb-[200px] '>
                 <InterestCarsMobil excludedId={parseInt(params.id)}/>
             </div>
-            <div className='mt-[68px] hidden sm:block mb-[200px] '>
+            <div className='mt-[68px] hidden lg:block mb-[200px] '>
                 <InterestCars excludedId={parseInt(params.id)} />
             </div>
 

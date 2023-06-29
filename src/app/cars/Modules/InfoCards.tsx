@@ -78,7 +78,7 @@ const InfoCards: React.FC<CarDetailsProps> = ({
                 {cards.map((card, index) => (
                     <div
                         key={index}
-                        className="flex flex-col w-[136px] h-[134px] pl-[20px] items-leftw-[136px]  bg-detailcards rounded-[16px]"
+                        className="flex flex-col w-[136px] h-[134px] md:w-[116px] md:h-[124px] lg:w-[136px] lg:h-[134px] pl-[20px] items-leftw-[136px]  bg-detailcards rounded-[16px]"
                     >
                         <div className="mt-[11px] w-[52px] h-[52px] relative rounded-full flex justify-center items-center bg-detailcardssvg">
                             <Image
@@ -92,7 +92,7 @@ const InfoCards: React.FC<CarDetailsProps> = ({
                             <p className="font-light  text-[12px] leading-[15px] tracking-[-0.05em] text-[#646464]">
                                 {card.description}
                             </p>
-                            <div className="font-sohogothicpro font-bold text-[20px] leading-[30px] tracking-[-0.02em] text-[#313131]">
+                            <div className="font-sohogothicpro font-bold text-[20px] md:text-[18px] lg:text-[20px] leading-[30px] tracking-[-0.02em] text-[#313131]">
                                 {card.key === 'power' && <p>{power} PS</p>}
                                 {card.key === 'maxSpeed' && <p>{maxSpeed} km/h</p>}
                                 {card.key === 'transmission' && <p>{transmission} </p>}
