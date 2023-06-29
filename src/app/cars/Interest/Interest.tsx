@@ -47,9 +47,9 @@ export default function InterestCars({ excludedId }: { excludedId: number }) {
                             circleStrokeWidth={2}
                         />
                     </button>
-
                 </div>
             </div>
+            
             <div className="flex pr-[20px] pl-[20px] flex-col sm:flex-row w-screen justify-between">
                 <div className='xl:ml-[137px]  '>
                     <div className='flex text-center sm:text-left flex-col items-center sm:items-start w-full'>
