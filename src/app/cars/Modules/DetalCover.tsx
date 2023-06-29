@@ -65,7 +65,7 @@ export default function Gallery({ carId }: GalleryProps) {
                     {images.map((imageUrl, index) => (
                         <React.Fragment key={(index + "cover")}>
                             <SwiperSlide key={(index + "cover")}>
-                                <div className='z-10 relative w-full h-[660px] '>
+                                <div className='z-10 relative w-full h-[334px] sm:h-[660px] '>
                                     <Image className='z-10'
                                         src={imageUrl}
                                         alt={`Image ${index + 1}`}
@@ -80,7 +80,7 @@ export default function Gallery({ carId }: GalleryProps) {
                         </React.Fragment>
                     ))}
                 </Swiper >
-                <div className="z-40 absolute bottom-0 left-0 ml-[168px] mb-[25px]">
+                <div className="z-40 absolute bottom-0 left-0  ml-[70vw] sm:ml-[168px] mb-[25px]">
                     <div className='flex  space-x-[25px] mb-[25px]'>
                         <button
                             className="z-40 ml-[20px] absolute top-1/2 left-2 transform -translate-y-1/2"
