@@ -36,7 +36,7 @@ export default function MenuMobile() {
                     } left-0 w-screen ${isCarsPage ? 'bg-[#F2F6F8]' : ''}`}
             >
                 <div className="w-screen mt-[10px] h-[74px]">
-                    <div className="pl-[23px] pr-[31px] w-full flex">
+                    <div className="pl-[23px] pr-[31px] flex">
                         <Link href="/">
                             <Image
                                 priority
@@ -81,6 +81,15 @@ export default function MenuMobile() {
                     >
                         <div className="absolute inset-0 bg-black opacity-[0.75] "></div>
                         <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
+                            <Link href="/" className="absolute top-0 left-0 pl-[23px] mt-[10px] ">
+                                <Image
+                                    priority
+                                    width={59}
+                                    height={64}
+                                    src="/menu/Logo.svg"
+                                    alt="Logo"
+                                />
+                            </Link>
                             <motion.button
                                 className="absolute top-0 right-0 mr-[21px] mt-[20px] text-white"
                                 onClick={toggleOverlay}
@@ -93,20 +102,30 @@ export default function MenuMobile() {
                             >
                                 <MenuCloseIcon />
                             </motion.button>
-                            <ul className="text-white text-[16px] font-medium tracking-[-0.8px] space-y-[50px]">
+                            <ul className="text-white uppercase text-[16px] text-center font-medium tracking-[-0.8px] space-y-[50px]">
                                 <li>
                                     <Link href="/" onClick={toggleOverlay}>
-                                        Page 1
+                                        Home
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/" onClick={toggleOverlay}>
-                                        Page 2
+                                        About us
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/" onClick={toggleOverlay}>
-                                        Page 3
+                                        Services
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/" onClick={toggleOverlay}>
+                                        FAQ
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/cars" onClick={toggleOverlay}>
+                                        Cars
                                     </Link>
                                 </li>
                             </ul>
