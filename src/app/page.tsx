@@ -29,7 +29,7 @@ export default function Home() {
       <div className="hidden md:block">
         <Services />
       </div>
-      <div className="mt-[103px] ">
+      <div className="mt-[52px] md:mt-[103px] ">
         <FAQ />
       </div>
       <div className="mt-[127px] hidden lg:block">
