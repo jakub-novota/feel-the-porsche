@@ -27,7 +27,7 @@ export default function Page() {
                 <div className="flex-grow 2xl:ml-[10%] ">
                     <Information carId={parseInt(params.id)} />
                 </div>
-                <div className="z-40 hidden  w-[30%] xl:flex justify-center 2xl:justify-ends ">
+                <div className="z-40 hidden  w-[30%] xl:flex 2xl:mr-[5vw] ">
                     <PriceOffer />
                 </div>
             </div>
