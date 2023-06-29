@@ -1,6 +1,6 @@
 import ContactFromular from "./ContactFormular";
 
-export default function () {
+export default function Map() {
     return (
         <>
             <div className="relative">

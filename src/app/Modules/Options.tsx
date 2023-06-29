@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-export default function () {
+export default function Options() {
     const [showMore, setShowMore] = useState(false);
     const formRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +45,7 @@ export default function () {
                     <div className={`relative my-auto pb-[20px] md:pb-0 md:border-r lg:pl-[57px] md:px-[20px] lg:mx-0 lg:px-[30px] ${showMore ? 'border-b pb-[20px]' : ''}`}>
                         <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Location</h2>
                         <select defaultValue="default" className="bg-inherit w-full md:w-auto lg:w-full mt-[5px] md:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
-                            <option value="default" disabled selected hidden>
+                            <option value="default" disabled hidden>
                                 Where
                             </option>
                             <option value="">Option 1</option>
@@ -107,7 +107,7 @@ export default function () {
 
 
                     {/* For Desktop */}
-                    <div  className="hidden md:block relative md:px-[20px]  lg:px-[30px] my-auto  border-r">
+                    <div className="hidden md:block relative md:px-[20px]  lg:px-[30px] my-auto  border-r">
                         <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Pick Up</h2>
                         <div className=" flex mt-[7px]">
                             <input

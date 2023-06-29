@@ -1,4 +1,3 @@
-import Image from "next/image"
 import VideoPlayer from "./Modules/VidePlayer"
 import HowItWorks from "./Modules/HowItWorks"
 import PickCar from './Modules/PickCar';

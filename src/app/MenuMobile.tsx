@@ -59,11 +59,11 @@ export default function MenuMobile() {
                                 className="ml-[5%]"
                                 onClick={toggleOverlay}
                                 whileTap={{ scale: 0.95 }}
-                                transition={{ duration: 0.2 }}
+                                transition={{ duration: 0.1 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0 }}
                             >
-                                {!showOverlay ? <MenuIcon /> : <MenuCloseIcon />}
+                                <MenuIcon />
                             </motion.button>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ export default function MenuMobile() {
                         <div className="absolute inset-0 bg-black opacity-[0.75] "></div>
                         <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
                             <motion.button
-                                className="absolute top-0 right-0 mr-[21px] mt-[29px] text-white"
+                                className="absolute top-0 right-0 mr-[21px] mt-[20px] text-white"
                                 onClick={toggleOverlay}
                                 whileTap={{ scale: 0.95 }}
                                 whileHover={{ scale: 1.05 }}
