@@ -82,7 +82,7 @@ const CarGrid: React.FC = () => {
                         <h1 className="font-sohogothicpro font-bold italic text-[70px] leading-[79px] tracking-[-0.02em] text-[#313131] mb-[71px]">Cars</h1>
                         <p className="mb-[31px] font-medium text-[14px] leading-[17px] tracking-[-0.05em] text-[#313131]">Sort by</p>
                     </div>
-                    <div className="grid grid-cols-1 space-y-[45px] sm:space-y-0 sm:grid-cols-2 sm:gap-x-[25px] sm:gap-y-[54px]">
+                    <div className="grid grid-cols-1 space-y-[45px] sm:space-y-0 lg:grid-cols-2 sm:gap-x-[25px] sm:gap-y-[54px]">
                         {sortedCars.map((car: Car, index) => (
                             <CarCard car={car} key={index}/>
                         ))}

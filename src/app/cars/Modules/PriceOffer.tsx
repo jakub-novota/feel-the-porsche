@@ -6,10 +6,15 @@ type CustomCheckboxProps = {
     isChecked: boolean;
     onChange: () => void;
 };
+type PriceOfferProps = {
+    carModel?: string;
+    location?: string;
+    pickUp?: string;
+    dropOff?: string;
+};
 
 
-
-export default function PriceOffer() {
+export default function PriceOffer({ carModel, location, pickUp, dropOff }: PriceOfferProps) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
