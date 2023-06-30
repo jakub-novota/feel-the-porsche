@@ -31,7 +31,12 @@ export default function Options() {
                 <div ref={formRef} className="grid grid-cols-1 gap-4 md:grid-cols-[0.5fr,0.5fr,0.5fr,0.5fr,auto] lg:grid-cols-[1fr,1fr,1fr,1fr,auto] md:gap-0">
 
                     <div className={`relative my-auto border-b pb-[20px] md:border-b-0 md:pb-0 md:border-r md:px-[20px] lg:pl-[57px] lg:px-[30px]`}>
-                        <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Which</h2>
+                        <div className='flex justify-between items-end'>
+                            <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Which </h2>
+                            <svg className='sm:hidden' width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 1C7.94866 2.45386 6.71804 3.7576 5.34008 4.87811C5.14022 5.04063 4.85978 5.04063 4.65992 4.87811C3.28196 3.7576 2.05134 2.45386 1 1" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
                         <select defaultValue="default" className="bg-inherit w-full md:w-auto mt-[5px] md:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
                             <option value="default" disabled hidden>
                                 Car model
@@ -43,7 +48,12 @@ export default function Options() {
                     </div>
 
                     <div className={`relative my-auto pb-[20px] md:pb-0 md:border-r lg:pl-[57px] md:px-[20px] lg:mx-0 lg:px-[30px] ${showMore ? 'border-b pb-[20px]' : ''}`}>
-                        <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Location</h2>
+                        <div className='flex justify-between items-end'>
+                            <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Location</h2>
+                            <svg className='sm:hidden' width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 1C7.94866 2.45386 6.71804 3.7576 5.34008 4.87811C5.14022 5.04063 4.85978 5.04063 4.65992 4.87811C3.28196 3.7576 2.05134 2.45386 1 1" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
                         <select defaultValue="default" className="bg-inherit w-full md:w-auto lg:w-full mt-[5px] md:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
                             <option value="default" disabled hidden>
                                 Where

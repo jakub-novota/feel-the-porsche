@@ -81,7 +81,7 @@ const CardSlider: React.FC = () => {
                 {cardData.map((data, index) => (
                     <div
                         key={index}
-                        className={`h-[10px] w-[10px]  mx-1 ${activeSlideIndex === index ? 'bg-[#4E5860]' : 'bg-gray-400'}`}
+                        className={`h-[10px] w-[10px]  mx-[10px] ${activeSlideIndex === index ? 'bg-[#4E5860]' : 'bg-gray-400'}`}
                     ></div>
                 ))}
             </div>
