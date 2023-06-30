@@ -32,7 +32,7 @@ export default function Home() {
       <div className="mt-[52px] md:mt-[103px] ">
         <FAQ />
       </div>
-      <div className="mt-[127px] ">
+      <div className="mt-[97px] ">
         <ContactUs />
       </div>
     </>

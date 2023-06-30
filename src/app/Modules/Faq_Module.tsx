@@ -22,7 +22,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen = false }) =
   };
 
   return (
-    <div className={`p-8 rounded-sm backdrop-blur-lg bg-opacity-75 border-b-[0.5px] border-b-[#D0DCD7] ${isOpenState ? 'bg-[#F9F9F9]' : 'bg-none'} duration-300`}>
+    <div className={`pt-[20px] ${isOpenState ? 'pb-[20px]' : ''} rounded-sm backdrop-blur-lg bg-opacity-75 border-b-[0.5px] border-b-[#D0DCD7] ${isOpenState ? 'bg-[#F9F9F9]' : 'bg-none'} duration-300`}>
       <button className={`faq-question text-left w-full ${isOpenState ? 'active' : ''}`} onClick={toggleAccordion}>
         <h1 className="z-30 text-[23px] text-[#33B888] font-sohogothicpro font-medium leading-[23px] tracking-[-0.05em]">
           <span className="flex items-center justify-between">
@@ -44,7 +44,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen = false }) =
       </button>
 
       <motion.div
-        className="faq-answer mt-[20px] text-[15px] leading-[21px] tracking-[-0.05em] text-[#6D6D6D] max-w-[633px]"
+        className="faq-answer mt-[20px]  text-[15px] leading-[21px] tracking-[-0.05em] text-[#6D6D6D] max-w-[633px]"
         initial={isOpenState ? 'open' : 'closed'}
         animate={isOpenState ? 'open' : 'closed'}
         variants={variants}
