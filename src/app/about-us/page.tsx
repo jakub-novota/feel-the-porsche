@@ -77,17 +77,17 @@ export default function About() {
                         />
                     </div>
                     <div className="z-30 sm:ml-6 w-full sm:w-2/3">
-                        <p className="z-30 text-[14px] max-w-[340px] sm:w-[769px] leading-[23px] tracking-[-0.05em] text-[#D4E6F6]">
+                        <p className="z-30 text-[14px] max-w-[340px] sm:max-w-[769px] leading-[23px] tracking-[-0.05em] text-[#D4E6F6]">
                             At our premium rental car company, we are committed to providing the best possible service to our customers. With a fleet of top-of-the-line vehicles and personalized support from our experienced professionals, we strive to make every rental experience truly exceptional. Thank you for choosing our company, and we look forward to providing you with an unmatched level of luxury and convenience.
                         </p>
-                        <div className=' sm:hidden flex items-center mt-[33px] sm:mt-0'>
+                        <div className=' flex items-center mt-[33px] sm:mt-0'>
                             <Image
                                 width={100}
                                 height={100}
                                 priority
                                 quality={100}
                                 src={"/about/ceo.png"}
-                                className="rounded-full z-30 mr-[15px]"
+                                className="rounded-full z-30 mr-[15px] sm:hidden"
                                 alt="CEO"
                             />
                             <div className="z-30 mt-4">
