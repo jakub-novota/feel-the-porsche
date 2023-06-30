@@ -45,9 +45,10 @@ export default function MenuMobile() {
                             <Image
                                 priority
                                 width={72}
-                                height={79}
+                                height={0}
                                 src="/menu/Logo.svg"
                                 alt="Logo"
+                                className="w-full h-auto"
                             />
                         </Link>
                         <div className="flex justify-end items-center w-full">
@@ -89,9 +90,10 @@ export default function MenuMobile() {
                                 <Image
                                     priority
                                     width={59}
-                                    height={64}
+                                    height={0}
                                     src="/menu/Logo.svg"
                                     alt="Logo"
+                                    className="w-full h-auto"
                                 />
                             </Link>
                             <motion.button

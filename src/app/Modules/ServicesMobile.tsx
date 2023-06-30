@@ -85,7 +85,7 @@ const ServicesMobile: React.FC = () => {
 
             <div className="relative w-screen h-[714px] sm:h-[711px] bg-[#12385B]">
                 <div className="absolute top-0 left-0 right-0 bottom-0">
-                    <Image src="/Home/bg-services-02.png" alt="Main Image" fill  />
+                    <Image src="/Home/bg-services-02.png" alt="Main Image" fill sizes="() 100vw" />
                 </div>
             </div>
         </div>

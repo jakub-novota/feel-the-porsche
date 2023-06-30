@@ -27,7 +27,8 @@ const Cards: React.FC = () => {
                         width={86}
                         height={0}
                         src="./svg/arrow.svg"
-                        alt="Arrow"
+                        alt="Arro_Nextw"
+                        className="w-full h-auto"
                     />
                 </div>
 
@@ -53,7 +54,8 @@ const Cards: React.FC = () => {
                         width={86}
                         height={0}
                         src="./svg/arrow_down.svg"
-                        alt="Arrow"
+                        alt="Arrow_Next"
+                        className="w-full h-auto"
                     />
                 </div>
 

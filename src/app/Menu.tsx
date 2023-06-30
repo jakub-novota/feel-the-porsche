@@ -11,7 +11,7 @@ export default function Menu() {
     const isFaqPage = pathname === '/cars';
     const isDetailsPage = pathname.match(/^\/cars\/\d+$/); //To find all car ID 
     const isAboutPage = pathname === '/about-us';
-    const isHomePage = pathname === '/'; 
+    const isHomePage = pathname === '/';
     return (
         <>
             <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen ${isCarsPage ? 'bg-gray-100' : ''}`}>
@@ -22,9 +22,10 @@ export default function Menu() {
                                 <Link href="/" >
                                     <Image
                                         width={72}
-                                        height={79}
+                                        height={0}
                                         src="/menu/Logo.svg"
                                         alt="Logo"
+                                        className="w-full h-auto"
                                     />
                                 </Link>
                             </div>

@@ -19,7 +19,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
             className="w-[325px] sm:w-full mb-4 sm:mb-[27px] ml-[20px] mr-[20px]"
         >
             <div className="relative mx-auto h-[152px] md:w-[741px] md:h-[346px] sm:h-[252px] sm:w-[525px] mb-4">
-                <Image fill priority quality={100} src={car.image} alt={car.name} />
+                <Image fill priority quality={100} src={car.image} alt={car.name} sizes="() 100vw" />
             </div>
             <h1 className="font-sohogothicpro font-bold text-[28px]  mt-[70px] sm:mt-0 sm:text-[42px] tracking-[-1.4] sm:tracking-[-2.1px] text-[#071529] mb-[35px] sm:mb-[40px] text-center">
                 {car.name}
