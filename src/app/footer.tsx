@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Footer() {
     return (
         <footer className="bg-[#0C1B26] relative grid">
@@ -13,24 +14,24 @@ export default function Footer() {
                         </strong>
                     </div>
                     <div className="text-left order-1 md:order-2 w-full  md:text-right flex  flex-col md:flex-row md:items-end md:justify-end text-white md:space-x-[20px] text-[16px] leading-[26px] tracking-[-0.05em]">
-                        <a href="/" className="hover:underline">
+                        <Link href="/" className="hover:underline">
                             Home
-                        </a>
-                        <a href="/about" className="hover:underline">
+                        </Link>
+                        <Link href="/about-us" className="hover:underline">
                             About us
-                        </a>
-                        <a href="/services" className="hover:underline">
+                        </Link>
+                        <Link href="/services" className="hover:underline">
                             Services
-                        </a>
-                        <a href="/cars" className="hover:underline">
+                        </Link>
+                        <Link href="/cars" className="hover:underline">
                             Cars
-                        </a>
-                        <a href="/services" className="hover:underline">
+                        </Link>
+                        <Link href="/faq" className="hover:underline">
                             FAQ
-                        </a>
-                        <a href="/contact" className="hover:underline">
+                        </Link>
+                        <Link href="/contact" className="hover:underline">
                             Contact us
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
