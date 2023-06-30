@@ -42,12 +42,12 @@ export default function Options() {
                                 <path d="M9 1C7.94866 2.45386 6.71804 3.7576 5.34008 4.87811C5.14022 5.04063 4.85978 5.04063 4.65992 4.87811C3.28196 3.7576 2.05134 2.45386 1 1" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </div>
-                        <select defaultValue="default" className="bg-inherit w-full md:w-auto mt-[5px] md:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
+                        <select defaultValue="default" className="bg-inherit w-full md:w-auto md:max-w-[80px] mt-[5px] md:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]">
                             <option value="default" disabled hidden>
                                 Car model
                             </option>
                             {carModelOptions.map((carModel) => (
-                                <option key={carModel.id} value={carModel.name}>
+                                <option key={carModel.id} value={carModel.name} >
                                     {carModel.name}
                                 </option>
                             ))}
