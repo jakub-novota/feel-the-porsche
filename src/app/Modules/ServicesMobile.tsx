@@ -14,7 +14,7 @@ const Box: React.FC<BoxProps> = ({ imageSrc, title, text }) => {
     return (
         <div className="box flex flex-col items-center">
             <div className='bg-[#081625] p-[27px] rounded-[12px]'>
-                <Image src={imageSrc} alt={title} width={46} height={46} />
+                <Image src={imageSrc} priority alt={title} width={46} height={46} />
             </div>
             <h1 className='mt-[26px] mb-[12px] font-sohogothicpro font-medium text-[26px] leading-[23px] tracking-[-0.05em] text-white'>{title}</h1>
             <p className='text-center max-w-[279px] font-medium text-[14px] leading-[23px] text-[#BBBBBB] '>{text}</p>
@@ -51,7 +51,7 @@ const ServicesMobile: React.FC = () => {
     return (
         <div className="container relative">
             <div className="z-40 absolute w-screen">
-                <div className='flex flex-col items-center pt-[100px]'>
+                <div className='flex flex-col items-center pt-[60px] sm:pt-[100px]'>
                     <p className="font-sohogothicpro font-medium text-[15px] leading-[22px] tracking-[-0.02em] uppercase text-[#33B888]">services</p>
                     <h1 className='text-center mt-[5px] font-sohogothicpro font-bold italic text-[42px] leading-[63px] tracking-[-0.05em] text-white '>Which occasion?</h1>
                 </div>
@@ -77,13 +77,13 @@ const ServicesMobile: React.FC = () => {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className={`h-[10px] w-[10px]  mx-1 ${activeSlideIndex === index ? 'bg-[#D9D9D9]' : 'bg-[#4E5860]'}`}
+                            className={`h-[10px] w-[10px]  mx-[10px] ${activeSlideIndex === index ? 'bg-[#D9D9D9]' : 'bg-[#4E5860]'}`}
                         ></div>
                     ))}
                 </div>
             </div>
 
-            <div className="relative w-screen h-[711px] bg-[#12385B]">
+            <div className="relative w-screen h-[714px] sm:h-[711px] bg-[#12385B]">
                 <div className="absolute top-0 left-0 right-0 bottom-0">
                     <Image src="/Home/bg-services-02.png" alt="Main Image" fill objectFit="cover" />
                 </div>

@@ -97,8 +97,11 @@ export default function Options() {
                                     </div>
                                 </div>
 
-                                <button className="mt-[30px] bg-[#4E5860] w-[208px] h-[52px] text-white font-bold py-2 px-4 rounded text-left">
+                                <button className="mt-[30px] flex items-center justify-between bg-[#4E5860] w-[208px] h-[52px] text-white font-bold py-[15px] px-4 rounded-[8px] text-left">
                                     Submit
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17 17L11.622 11.622M11.622 11.622C12.748 10.496 13.4444 8.94044 13.4444 7.22222C13.4444 3.78578 10.6587 1 7.22222 1C3.78578 1 1 3.78578 1 7.22222C1 10.6587 3.78578 13.4444 7.22222 13.4444C8.94044 13.4444 10.496 12.748 11.622 11.622Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
                                 </button>
                             </motion.div>
 

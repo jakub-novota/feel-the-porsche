@@ -25,9 +25,13 @@ export default function MenuMobile() {
 
     const pathname = usePathname();
     const isCarsPage = pathname === '/cars';
+    const isServicesPage = pathname === '/services';
+    const isAboutPage = pathname === '/about-us';
+    const isFaqPage = pathname === '/faq';
     const isDetailsPage = pathname.match(/^\/cars\/\d+$/); //To find all car ID
     const isHomePage = pathname === '/';
-    const menuIconColor = isCarsPage ? 'black' : 'white';
+    let menuIconColor = isCarsPage || isServicesPage || isAboutPage || isFaqPage ? 'black' : 'white';
+
 
     return (
         <>
@@ -109,17 +113,17 @@ export default function MenuMobile() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/" onClick={toggleOverlay}>
+                                    <Link href="/about-us" onClick={toggleOverlay}>
                                         About us
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/" onClick={toggleOverlay}>
+                                    <Link href="/services" onClick={toggleOverlay}>
                                         Services
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/" onClick={toggleOverlay}>
+                                    <Link href="/faq" onClick={toggleOverlay}>
                                         FAQ
                                     </Link>
                                 </li>
