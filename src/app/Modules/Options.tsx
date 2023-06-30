@@ -2,10 +2,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import carModels from '@/app/json/cars.json'; // Update the path to carModels.json
 
 export default function Options() {
     const [showMore, setShowMore] = useState(false);
+    const [carModelOptions, setCarModelOptions] = useState<{ id: number; name: string; }[]>([]);
     const formRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        // Fetch car models from the JSON file
+        setCarModelOptions(carModels);
+    }, []);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -39,9 +46,11 @@ export default function Options() {
                             <option value="default" disabled hidden>
                                 Car model
                             </option>
-                            <option value="">Option 1</option>
-                            <option value="">Option 2</option>
-                            <option value="">Option 3</option>
+                            {carModelOptions.map((carModel) => (
+                                <option key={carModel.id} value={carModel.name}>
+                                    {carModel.name}
+                                </option>
+                            ))}
                         </select>
                     </div>
 

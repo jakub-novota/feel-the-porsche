@@ -46,7 +46,7 @@ const BoxesOnImage: React.FC = () => {
             </div>
             <div className="relative w-screen h-[711px] bg-[#12385B]">
                 <div className="absolute top-0 left-0 right-0 bottom-0">
-                    <Image src="/Home/bg-services-02.png" alt="Main Image" fill objectFit="cover" />
+                    <Image src="/Home/bg-services-02.png" alt="Main Image" fill />
                 </div>
             </div>
         </div>
