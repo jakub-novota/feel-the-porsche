@@ -12,4 +12,11 @@ export async function GET(params: any) {
     await connectMongoDb();
     const cars = await CarModel.find()
     return NextResponse.json({ cars })
-} 
+}
+
+export async function DELETE(params: any) {
+    const id = params.nextUrl.searchParams.get("id")
+    await connectMongoDb();
+    await CarModel.findByIdAndDelete(id)
+    return NextResponse.json({ message: "Car Deleted" }, { status: 200 })
+}  
