@@ -7,5 +7,5 @@ export async function POST(params: any) {
     await connectMongoDb();
     await CarModel.create({ name, description });
     //return NextResponse.json("Email sent");
-    return NextResponse.json({ message: "Api is working correctly !" }, { status: 2001 })
+    return NextResponse.json({ message: "Api is working correctly !" }, { status: 201 })
 }
