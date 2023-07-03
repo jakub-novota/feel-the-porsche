@@ -11,7 +11,8 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
     <Link href={`/cars/${car.id}`}>
         <div className='flex justify-center'>
             <div className=" w-[353px]  sm:w-[572px] sm:h-[537px]">
-                <CarImages elementId={car.id} />
+                <CarImages carImagesURL={JSON.stringify(car.image_cars)} />
+
                 <div className='bg-white rounded-b-[12px] pt-[15px] pl-[19px] pr-[16px] pb-[30px] sm:pt-[25px] sm:pl-[30px] sm:pr-[30px] sm:pb-[27px]'>
                     <h1 className="font-sohogothicpro font-bold  italic text-[24px] sm:text-[30px]  text-[#071529]">{car.name}</h1>
                     <div className='flex justify-between mt-[26px]'>

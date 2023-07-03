@@ -1,4 +1,3 @@
-import carData from '../../json/cars.json';
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from 'next/image';
@@ -10,15 +9,21 @@ import Status from "../../Modules/Svg_Module/Status";
 SwiperCore.use([Pagination]);
 
 interface CarImagesProps {
-  elementId: number;
+  carImagesURL: string;
 }
 
-const CarImages: React.FC<CarImagesProps> = ({ elementId }) => {
-  const car = carData.find((car) => car.id === elementId);
+const CarImages: React.FC<CarImagesProps> = ({ carImagesURL }) => {
   let imageUrls: string[] = [];
 
-  if (car) {
-    imageUrls = Array.isArray(car.image_cars) ? car.image_cars : Object.values(car.image_cars || {});
+  try {
+    const parsedCarImagesURL = JSON.parse(carImagesURL);
+    if (Array.isArray(parsedCarImagesURL)) {
+      imageUrls = parsedCarImagesURL;
+    } else if (typeof parsedCarImagesURL === 'object' && parsedCarImagesURL !== null) {
+      imageUrls = Object.values(parsedCarImagesURL);
+    }
+  } catch (error) {
+    console.error('Error parsing carImagesURL:', error);
   }
 
   const totalImages = imageUrls.length;
