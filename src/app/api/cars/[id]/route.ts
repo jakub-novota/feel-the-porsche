@@ -10,3 +10,11 @@ export async function PUT(request: any, { params }: any) {
     await CarModel.findByIdAndUpdate(id, { name, description });
     return NextResponse.json({ message: "Car Updated" }, { status: 200 })
 }
+
+export async function GET(request: any, { params }: any) {
+    const { id } = params;
+    await connectMongoDb()
+    const car = await CarModel.findOne({ _id: id })
+    return NextResponse.json({ car }, { status: 200 })
+}
+
