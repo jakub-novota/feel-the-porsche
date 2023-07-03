@@ -3,11 +3,19 @@ import connectMongoDb from "@/app/libs/mongodb";
 import CarModel from "@/app/models/carsSchema"
 
 export async function POST(params: any) {
-    const { name, description } = await params.json()
+    const { id, name, description, power_PS } = await params.json()
+
     await connectMongoDb();
-    await CarModel.create({ name, description });
+    
+    await CarModel.create({ id, name, description, power_PS });
+    await CarModel.updateMany({}, { $set: { power_PS } }); // Add power_PS field to all documents
     return NextResponse.json({ message: "Car Created" }, { status: 201 })
 }
+
+
+
+
+
 export async function GET(params: any) {
     await connectMongoDb();
     const cars = await CarModel.find()

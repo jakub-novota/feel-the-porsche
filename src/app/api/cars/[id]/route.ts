@@ -3,12 +3,23 @@ import CarModel from "@/app/models/carsSchema"
 import { NextResponse } from "next/server";
 
 
-export async function PUT(request: any, { params }: any) {
+export async function PUT(request: Request, { params }: any) {
     const { id } = params;
-    const { newName: name, newDescription: description } = await request.json()
-    await connectMongoDb()
-    await CarModel.findByIdAndUpdate(id, { name, description });
-    return NextResponse.json({ message: "Car Updated" }, { status: 200 })
+    const { name: name, description: description, power_PS: power_PS } = await request.json();
+
+    await connectMongoDb();
+
+    try {
+        const car = await CarModel.findByIdAndUpdate(id, { name, description, power_PS }, { new: true });
+
+        if (!car) {
+            return NextResponse.json({ message: "Car not found" }, { status: 404 });
+        }
+
+        return NextResponse.json({ message: "Car Updated", car }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: "Error updating car" }, { status: 500 });
+    }
 }
 
 export async function GET(request: any, { params }: any) {
