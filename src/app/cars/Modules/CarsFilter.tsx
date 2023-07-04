@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import CarCard from './CarsCard';
 import { Car } from './CarInterface';
+import Skeleton from '@/app/Modules/SkeletonLoader';
 
 
 const CarGrid: React.FC = () => {
@@ -62,12 +63,12 @@ const CarGrid: React.FC = () => {
     });
 
     if (isLoading) {
-        return <div className=' h-screen flex justify-center items-center'>Loading...</div>; // Render a loading message or spinner while loading
+        return <Skeleton /> // Render a loading message or spinner while loading
     }
 
     return (
-        <div className="pb-50">
-            <div className="mb-4">
+        <div className=' pb-[50px]'>
+            <div className="mb-4 ">
                 <label htmlFor="filter" className="mr-2">
                     Filter:
                 </label>
@@ -99,19 +100,22 @@ const CarGrid: React.FC = () => {
                 </button>
             </div>
 
-            <div className="flex justify-center">
+            <div className='flex justify-center '>
                 <div className="flex flex-col items-start">
                     <div>
-                        <h1 className="font-sohogothicpro font-bold italic text-70 leading-79 tracking--0.02em text-313131 mb-71">Cars</h1>
-                        <p className="mb-31 font-medium text-14 leading-17 tracking--0.05em text-313131">Sort by</p>
+                        <h1 className="font-sohogothicpro font-bold italic text-[70px] leading-[79px] tracking-[-0.02em] text-[#313131] mb-[71px]">Cars</h1>
+                        <p className="mb-[31px] font-medium text-[14px] leading-[17px] tracking-[-0.05em] text-[#313131]">Sort by</p>
                     </div>
-                    <div className="grid grid-cols-1 space-y-45 sm:space-y-0 lg:grid-cols-2 sm:gap-x-25 sm:gap-y-54">
+                    <div className="grid grid-cols-1 space-y-[45px] sm:space-y-0 lg:grid-cols-2 sm:gap-x-[25px] sm:gap-y-[54px]">
                         {sortedCars.map((car: Car, index) => (
                             <CarCard car={car} key={index} />
                         ))}
                     </div>
                 </div>
             </div>
+
+
+
         </div>
     );
 };
