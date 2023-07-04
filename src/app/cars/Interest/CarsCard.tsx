@@ -6,9 +6,8 @@ import { Car } from '../Modules/CarInterface';
 interface CarCardProps {
   car: Car;
 }
-
 const CarCard: React.FC<CarCardProps> = ({ car }) => (
-  <Link href={`/cars/${car.id}`}>
+  < Link href={`/cars/${car.id}`}>
     <div className='flex justify-center'>
       <div className='w-[350px] h-[382px]'>
         <CarImages elementId={car.id} />
@@ -35,7 +34,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => (
         </div>
       </div>
     </div>
-  </Link>
+  </Link >
 );
 
 export default CarCard;

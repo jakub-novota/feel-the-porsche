@@ -64,7 +64,7 @@ export default function Page() {
                 <InterestCarsMobil excludedId={car.id} />
             </div>
             <div className='mt-[68px] hidden lg:block mb-[200px] '>
-                <InterestCars excludedId={car.id} />
+                <InterestCars car={car} />
             </div>
         </>
     );
