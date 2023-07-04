@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef, useState } from "react";
 import Image from 'next/image';
 import 'swiper/swiper.min.css';
@@ -8,21 +9,31 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
-import CarsJSON from '@/app/json/cars.json';
 import { Car } from './CarInterface';
 
 interface GalleryProps {
-    carId: number;
+    carImagesURL: string;
 }
 
 SwiperCore.use([Navigation]);
 
-export default function Gallery({ carId }: GalleryProps) {
-    const selectedCar = CarsJSON.find((car: Car) => car.id === carId);
-    const swiperRef = React.useRef<SwiperCore | null>(null);
+export default function Gallery({ carImagesURL }: GalleryProps) {
+    const swiperRef = useRef<SwiperCore | null>(null);
     const [isLastSlide, setIsLastSlide] = useState(false);
     const [isFirstSlide, setIsFirstSlide] = useState(true);
+
+    let imageUrls: string[] = [];
+    console.log(carImagesURL)
+    try {
+        const parsedCarImagesURL = JSON.parse(carImagesURL);
+        if (Array.isArray(parsedCarImagesURL)) {
+            imageUrls = parsedCarImagesURL;
+        } else if (typeof parsedCarImagesURL === 'object' && parsedCarImagesURL !== null) {
+            imageUrls = Object.values(parsedCarImagesURL);
+        }
+    } catch (error) {
+        console.error('Error parsing carImagesURL:', error);
+    }
 
     const showNextCar = () => {
         if (swiperRef.current && swiperRef.current.slideNext) {
@@ -50,11 +61,6 @@ export default function Gallery({ carId }: GalleryProps) {
     }, []);
 
 
-    if (!selectedCar) {
-        return <div>Loading...</div>;
-    }
-
-    const images = Object.values(selectedCar.gallery);
     return (
         <>
             <div className='relative'>
@@ -62,7 +68,7 @@ export default function Gallery({ carId }: GalleryProps) {
                     slidesPerView={1}
                     onSwiper={(swiper) => (swiperRef.current = swiper)}
                 >
-                    {images.map((imageUrl, index) => (
+                    {imageUrls.map((imageUrl, index) => (
                         <React.Fragment key={(index + "cover")}>
                             <SwiperSlide key={(index + "cover")}>
                                 <div className='z-10 relative w-full h-[334px] sm:h-[660px] '>
