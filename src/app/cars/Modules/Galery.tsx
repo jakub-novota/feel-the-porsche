@@ -1,23 +1,31 @@
-import { useState } from 'react';
 import Image from 'next/image';
-import CarsJSON from '@/app/json/cars.json';
-import { Car } from './CarInterface';
 
 interface GaleryProps {
-  carId: number;
+  carGalleryURL: string; // Update prop name and type to receive a single string
 }
 
-export default function Galery({ carId }: GaleryProps) {
-  const selectedCar = CarsJSON.find((car: Car) => car.id === carId);
+export default function Galery({ carGalleryURL }: GaleryProps) {
+  let imageUrls: string[] = [];
+  try {
+    const parsedCarImagesURL = JSON.parse(carGalleryURL);
+    if (Array.isArray(parsedCarImagesURL)) {
+      imageUrls = parsedCarImagesURL;
+    } else if (typeof parsedCarImagesURL === 'object' && parsedCarImagesURL !== null) {
+      imageUrls = Object.values(parsedCarImagesURL);
+    }
+  } catch (error) {
+    console.error('Error parsing carImagesURL:', error);
+  }
 
-  if (!selectedCar) {
+  //console.log(imageUrls)
+  if (!carGalleryURL) {
     return <div>Loading...</div>;
   }
 
   return (
     <>
       <div className="flex flex-wrap">
-        {Object.values(selectedCar.gallery).map((imageUrl, index) => (
+        {imageUrls.map((imageUrl, index) => (
           <div className="w-full md:w-1/2" key={index}>
             <div className="bg-white relative w-full h-[275px] sm:h-[503px]">
               <Image

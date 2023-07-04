@@ -9,16 +9,11 @@ import InterestCarsMobil from '../Interest/InterestMobil';
 import { Car } from '../Modules/CarInterface';
 import { useParams } from 'next/navigation';
 
-
-interface Params {
-    id: string;
-}
-
 export default function Page() {
     const [car, setCar] = useState<Car | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const params = useParams();
-    console.log(params.id)
+    // console.log(params.id)
     useEffect(() => {
         const fetchCar = async () => {
             try {
@@ -47,7 +42,7 @@ export default function Page() {
     if (!car) {
         return <div className='h-screen w-screen flex justify-center items-center'>Car does not exist.</div>;
     }
-    console.log(car.name)
+    //console.log(car)
     return (
         <>
             <div className='z-20'>
@@ -56,14 +51,14 @@ export default function Page() {
             {params.id}
             <div className="flex ">
                 <div className="flex-grow 2xl:ml-[10%] ">
-                    <Information carId={car.id} />
+                    <Information carData={car} />
                 </div>
                 <div className="z-40 hidden  w-[30%] xl:flex 2xl:mr-[5vw] ">
                     <PriceOffer />
                 </div>
             </div>
             <div className='mt-[57px]'>
-                <Galery carId={car.id} />
+                <Galery carGalleryURL={JSON.stringify(car.gallery)} />
             </div>
             <div className='mt-[68px] lg:hidden mb-[200px] '>
                 <InterestCarsMobil excludedId={car.id} />

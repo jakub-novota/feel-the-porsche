@@ -22,7 +22,7 @@ export default function Gallery({ carImagesURL }: GalleryProps) {
     const [isFirstSlide, setIsFirstSlide] = useState(true);
 
     let imageUrls: string[] = [];
-    console.log(carImagesURL)
+    //console.log(carImagesURL)
     try {
         const parsedCarImagesURL = JSON.parse(carImagesURL);
         if (Array.isArray(parsedCarImagesURL)) {
