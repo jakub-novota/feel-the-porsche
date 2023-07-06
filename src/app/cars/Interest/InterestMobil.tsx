@@ -27,14 +27,16 @@ export default function InterestCarsMobile({ car }: InterestCarsProps) {
     };
 
     const handlePrevSlide = () => {
-        setCurrentIndex((prevIndex) => Math.max(prevIndex - 2, 0));
+        setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     };
 
     const handleNextSlide = () => {
-        setCurrentIndex((prevIndex) => Math.min(prevIndex + 2, selectedCars.length - 2));
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, selectedCars.length - 2));
     };
 
     const filteredCars = selectedCars.filter((c) => c._id !== car._id);
+
+
 
     return (
         <>
@@ -54,7 +56,7 @@ export default function InterestCarsMobile({ car }: InterestCarsProps) {
                 </div>
             </div>
             <div className="flex flex-col items-center justify-center mt-8">
-                {selectedCars.slice(currentIndex, currentIndex + 1).map((car: Car) => (
+                {filteredCars.slice(currentIndex, currentIndex + 1).map((car: Car) => (
                     <CarsCard key={car.id} car={car} />
                 ))}
             </div>
@@ -70,11 +72,11 @@ export default function InterestCarsMobile({ car }: InterestCarsProps) {
                             circleStrokeWidth={2}
                         />
                     </button>
-                    <button onClick={handleNextSlide} disabled={currentIndex === selectedCars.length - 1}>
+                    <button onClick={handleNextSlide} disabled={currentIndex === selectedCars.length - 2}>
                         <AnimatedArrow
                             direction="right"
-                            circleColor={currentIndex === selectedCars.length - 1 ? '#bec4cc' : '#33B888'}
-                            color={currentIndex === selectedCars.length - 1 ? '#bec4cc' : '#33b888'}
+                            circleColor={currentIndex === selectedCars.length - 2 ? '#bec4cc' : '#33B888'}
+                            color={currentIndex === selectedCars.length - 2 ? '#bec4cc' : '#33b888'}
                             circleFill="white"
                             strokeWidth={2}
                             circleStrokeWidth={2}

@@ -1,20 +1,20 @@
-import carData from '../../json/cars.json';
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from 'next/image';
 import "swiper/css";
 import SwiperCore, { Pagination } from "swiper";
 import Status from "../../Modules/Svg_Module/Status";
+import { Car } from "../Modules/CarInterface";
 
-// Initialize Swiper modules
+
+
 SwiperCore.use([Pagination]);
 
-interface CarImagesProps {
-  elementId: number;
+interface CarCardProps {
+  car: Car;
 }
 
-const CarImages: React.FC<CarImagesProps> = ({ elementId }) => {
-  const car = carData.find((car) => car.id === elementId);
+const CarImages: React.FC<CarCardProps> = ({ car }) => {
   let imageUrls: string[] = [];
 
   if (car) {
@@ -34,9 +34,7 @@ const CarImages: React.FC<CarImagesProps> = ({ elementId }) => {
     // Dummy state update to trigger a re-render
     setActiveIndex(activeIndexRef.current);
   };
-
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
-
   return (
     <>
       <div className='relative'>
