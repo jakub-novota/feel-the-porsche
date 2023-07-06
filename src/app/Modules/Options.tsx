@@ -2,8 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import carModels from '@/app/json/cars.json'; // Update the path to carModels.json
 import Link from 'next/link';
+import { Car } from '../cars/Modules/CarInterface';
 
 interface SelectedCar {
     id: number;
@@ -20,10 +20,25 @@ export default function Options() {
     const [dropOffDate, setDropOffDate] = useState("2023-09-22");
     const [dropOffTime, setDropOffTime] = useState("12:00");
     const formRef = useRef<HTMLDivElement>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [carData, setCarData] = useState<Car[]>([]);
 
     useEffect(() => {
-        // Fetch car models from the JSON file
-        setCarModelOptions(carModels);
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/cars'); // Replace with your API endpoint
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const responseData = await response.json();
+                setCarData(responseData.cars); // Assuming the cars array is nested within the "cars" property
+                setIsLoading(false); // Mark loading as complete
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     useEffect(() => {
@@ -84,7 +99,7 @@ export default function Options() {
         <div className="mt-[263px] md:mt-0">
             <div className="flex flex-col w-[268px] py-[31px] px-[30px] rounded-[24px] bg-white border-red shadow-[0px_20px_60px_rgba(74,80,83,0.3)] md:py-0 md:px-0 md:rounded-[90px] md:w-[768px] md:max-w-[975px] lg:w-[975px] md:h-[101px] md:items-center md:justify-center">
                 <div ref={formRef} className="grid grid-cols-1 gap-4 md:grid-cols-[0.5fr,0.5fr,0.5fr,0.5fr,auto] lg:grid-cols-[1fr,1fr,1fr,1fr,auto] md:gap-0">
-                    <form onSubmit={handleFormSubmit} className='flex '>
+                    <form onSubmit={handleFormSubmit} className='flex flex-col sm:flex-row'>
                         <div className={`relative my-auto border-b pb-[20px] md:border-b-0 md:pb-0 md:border-r md:px-[20px] lg:pl-[57px] lg:px-[30px]`}>
                             <div className='flex justify-between items-end'>
                                 <h2 className="text-[14px] leading-[17px] font-medium tracking-[-0.05em]">Which </h2>
@@ -100,8 +115,8 @@ export default function Options() {
                                 <option value="default" disabled hidden>
                                     Car model
                                 </option>
-                                {carModelOptions.map((carModel) => (
-                                    <option key={carModel.id} value={carModel.id}>
+                                {carData.map((carModel) => (
+                                    <option key={carModel._id} value={carModel._id}>
                                         {carModel.name}
                                     </option>
                                 ))}
@@ -174,7 +189,7 @@ export default function Options() {
                                     <button className="mt-[30px] flex items-center justify-between bg-[#4E5860] w-[208px] h-[52px] text-white font-bold py-[15px] px-4 rounded-[8px] text-left">
                                         Submit
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M17 17L11.622 11.622M11.622 11.622C12.748 10.496 13.4444 8.94044 13.4444 7.22222C13.4444 3.78578 10.6587 1 7.22222 1C3.78578 1 1 3.78578 1 7.22222C1 10.6587 3.78578 13.4444 7.22222 13.4444C8.94044 13.4444 10.496 12.748 11.622 11.622Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M17 17L11.622 11.622M11.622 11.622C12.748 10.496 13.4444 8.94044 13.4444 7.22222C13.4444 3.78578 10.6587 1 7.22222 1C3.78578 1 1 3.78578 1 7.22222C1 10.6587 3.78578 13.4444 7.22222 13.4444C8.94044 13.4444 10.496 12.748 11.622 11.622Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </button>
                                 </motion.div>

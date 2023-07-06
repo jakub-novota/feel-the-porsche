@@ -26,7 +26,7 @@ export default function MenuMobile() {
 
     if (isCarsPage || isServicesPage || isAboutPage || isFaqPage) {
         menuIconColor = 'black';
-    }else{
+    } else {
         menuIconColor = "white"
     }
 
@@ -78,8 +78,6 @@ export default function MenuMobile() {
             }
         }
     }, [pathname, carData, isLoading]);
-    console.log(isDetailsPage)
-
 
     return (
         <>
