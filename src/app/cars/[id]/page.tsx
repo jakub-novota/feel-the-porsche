@@ -61,10 +61,10 @@ export default function Page() {
                 <Galery carGalleryURL={JSON.stringify(car.gallery)} />
             </div>
             <div className='mt-[68px] lg:hidden mb-[200px] '>
-                <InterestCarsMobil excludedId={car.id} />
+                <InterestCarsMobil car={car} />
             </div>
             <div className='mt-[68px] hidden lg:block mb-[200px] '>
-                <InterestCars car={ car} />
+                <InterestCars car={car} />
             </div>
         </>
     );

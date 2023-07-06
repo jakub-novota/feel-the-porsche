@@ -1,27 +1,40 @@
 import { useState, useEffect } from 'react';
-import CarsJSON from '@/app/json/cars.json';
 import { Car } from '../Modules/CarInterface';
 import CarsCard from './CarsCard';
 import Link from 'next/link';
 import AnimatedArrow from '@/app/Modules/Svg_Module/Arrow';
 
-export default function InterestCarsMobile({ excludedId }: { excludedId: number }) {
+interface InterestCarsProps {
+    car: Car;
+}
+
+export default function InterestCarsMobile({ car }: InterestCarsProps) {
     const [selectedCars, setSelectedCars] = useState<Car[]>([]);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
     useEffect(() => {
-        const cars = CarsJSON.filter((car: Car) => car.id !== excludedId);
-        setSelectedCars(cars);
-        setCurrentIndex(0);
-    }, [excludedId]);
+        fetchCars();
+    }, []);
+
+    const fetchCars = async () => {
+        try {
+            const response = await fetch('/api/cars');
+            const data = await response.json();
+            setSelectedCars(data.cars);
+        } catch (error) {
+            console.error('Error fetching cars:', error);
+        }
+    };
 
     const handlePrevSlide = () => {
-        setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+        setCurrentIndex((prevIndex) => Math.max(prevIndex - 2, 0));
     };
 
     const handleNextSlide = () => {
-        setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, selectedCars.length - 1));
+        setCurrentIndex((prevIndex) => Math.min(prevIndex + 2, selectedCars.length - 2));
     };
+
+    const filteredCars = selectedCars.filter((c) => c._id !== car._id);
 
     return (
         <>
