@@ -38,18 +38,7 @@ export default function Skeleton() {
                     </div>
                     <div className="grid grid-cols-1 space-y-[45px] sm:space-y-0 lg:grid-cols-2 sm:gap-x-[25px] sm:gap-y-[54px]">
 
-                        <div role="status" className="w-[353px]  sm:w-[572px] sm:h-[537px]  rounded  animate-pulse md:p-6 ">
-                            <div className="flex items-center justify-center rounded bg-gray-200 w-[353px] h-[280px] sm:w-[573px] sm:h-[401px]" />
-                            <div className=" mt-[20px] rounded-b-[12px] pt-[15px] pl-[19px] pr-[16px] pb-[30px] sm:pt-[25px] sm:pl-[30px] sm:pr-[30px] sm:pb-[27px]">
-                                <div className="h-2.5 rounded-full bg-gray-400 w-48 mb-4"></div>
-                                <div className="h-2  rounded-full bg-gray-400 mb-2.5"></div>
-                                <div className="h-2 rounded-full bg-gray-400 mb-2.5"></div>
-                                <div className="h-2 rounded-full bg-gray-400"></div>
-                            </div>
-                            <span className="sr-only">Loading...</span>
-                        </div>
-
-                        <div role="status" className=" w-[353px]  sm:w-[572px] sm:h-[537px] rounded  animate-pulse md:p-6 ">
+                        <div role="status" className="w-[353px]  sm:w-[572px] sm:h-[537px]  rounded  animate-pulse ">
                             <div className="flex items-center justify-center rounded bg-gray-200 w-[353px] h-[280px] sm:w-[573px] sm:h-[401px]" />
                             <div className="mt-[20px] rounded-b-[12px] pt-[15px] pl-[19px] pr-[16px] pb-[30px] sm:pt-[25px] sm:pl-[30px] sm:pr-[30px] sm:pb-[27px]">
                                 <div className="h-2.5 rounded-full bg-gray-400 w-48 mb-4"></div>
@@ -60,7 +49,18 @@ export default function Skeleton() {
                             <span className="sr-only">Loading...</span>
                         </div>
 
-                        <div role="status" className=" w-[353px]  sm:w-[572px] sm:h-[537px] rounded  animate-pulse md:p-6" >
+                        <div role="status" className=" w-[353px]  sm:w-[572px] sm:h-[537px] rounded  animate-pulse ">
+                            <div className="flex items-center justify-center rounded bg-gray-200 w-[353px] h-[280px] sm:w-[573px] sm:h-[401px]" />
+                            <div className="mt-[20px] rounded-b-[12px] pt-[15px] pl-[19px] pr-[16px] pb-[30px] sm:pt-[25px] sm:pl-[30px] sm:pr-[30px] sm:pb-[27px]">
+                                <div className="h-2.5 rounded-full bg-gray-400 w-48 mb-4"></div>
+                                <div className="h-2  rounded-full bg-gray-400 mb-2.5"></div>
+                                <div className="h-2 rounded-full bg-gray-400 mb-2.5"></div>
+                                <div className="h-2 rounded-full bg-gray-400"></div>
+                            </div>
+                            <span className="sr-only">Loading...</span>
+                        </div>
+
+                        <div role="status" className=" w-[353px]  sm:w-[572px] sm:h-[537px] rounded  animate-pulse" >
                             <div className="flex items-center justify-center rounded bg-gray-200 w-[353px] h-[280px] sm:w-[573px] sm:h-[401px]" />
                             <div className="mt-[20px] rounded-b-[12px] pt-[15px] pl-[19px] pr-[16px] pb-[30px] sm:pt-[25px] sm:pl-[30px] sm:pr-[30px] sm:pb-[27px]">
                                 <div className="h-2.5  rounded-full bg-gray-400 w-48 mb-4"></div>
@@ -70,7 +70,7 @@ export default function Skeleton() {
                             </div>
                             <span className="sr-only">Loading...</span>
                         </div>
-                        <div role="status" className=" w-[353px]  sm:w-[572px] sm:h-[537px] rounded  animate-pulse md:p-6 ">
+                        <div role="status" className=" w-[353px]  sm:w-[572px] sm:h-[537px] rounded  animate-pulse ">
                             <div className="flex items-center justify-center rounded bg-gray-200 w-[353px] h-[280px] sm:w-[573px] sm:h-[401px]" />
                             <div className="mt-[20px] rounded-b-[12px] pt-[15px] pl-[19px] pr-[16px] pb-[30px] sm:pt-[25px] sm:pl-[30px] sm:pr-[30px] sm:pb-[27px]">
                                 <div className="h-2.5 rounded-full bg-gray-400 w-48 mb-4"></div>

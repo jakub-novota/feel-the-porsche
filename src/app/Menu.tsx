@@ -53,7 +53,6 @@ export default function Menu() {
             }
         }
     }, [pathname, carData, isLoading]);
-    console.log(isDetailsPage)
 
 
     return (
