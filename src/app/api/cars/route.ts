@@ -28,7 +28,6 @@ export async function POST(params: any) {
         image_cars,
         gallery
     });
-
     //await CarModel.updateMany({}, { $set: { power_PS } }); // Add power_PS field to all documents
     return NextResponse.json({ message: "Car Created" }, { status: 201 })
 }

@@ -1,6 +1,6 @@
 import VideoPlayer from "./Modules/VidePlayer"
 import HowItWorks from "./Modules/HowItWorks"
-import PickCar from './Modules/PickCar';
+import PickCar from './Modules/PickCar/PickCar';
 import Services from "./Modules/Services";
 import FAQ from "./Modules/Faq";
 import ContactUs from './Modules/ContactUs/ContactUs';
