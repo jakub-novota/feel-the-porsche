@@ -131,17 +131,16 @@ export default function MenuMobile() {
                         transition={{ duration: 0.2 }}
                     >
                         <div className="absolute inset-0 bg-black opacity-[0.75] "></div>
-                        <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
-                            <Link href="/" className="absolute top-0 left-0 pl-[23px] mt-[10px] ">
+                        <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center ">
+                            <Link href="/" className="absolute top-0 left-0 ml-[23px] mt-[10px] h-[64px] w-[59px]">
                                 <Image
                                     priority
-                                    width={59}
-                                    height={0}
+                                    fill
                                     src="/menu/Logo.svg"
                                     alt="Logo"
-                                    className="w-full h-auto"
                                 />
                             </Link>
+
                             <motion.button
                                 className="absolute top-0 right-0 mr-[21px] mt-[20px] text-white"
                                 onClick={toggleOverlay}

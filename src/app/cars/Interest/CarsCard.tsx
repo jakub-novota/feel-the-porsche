@@ -8,7 +8,7 @@ interface CarCardProps {
 }
 
 const CarCard: React.FC<CarCardProps> = ({ car }) => {
-  
+
   return (
     <Link href={`/cars/${car._id}`}>
       <div className='flex justify-center'>
