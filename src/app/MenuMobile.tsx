@@ -22,7 +22,13 @@ export default function MenuMobile() {
     const isFaqPage = pathname === '/faq';
     const [isDetailsPage, setIsDetailsPage] = useState(false);
     const isHomePage = pathname === '/';
-    let menuIconColor = isCarsPage || isServicesPage || isAboutPage || isFaqPage ? 'black' : 'white';
+    let menuIconColor = isDetailsPage ? 'white' : 'black';
+
+    if (isCarsPage || isServicesPage || isAboutPage || isFaqPage) {
+        menuIconColor = 'black';
+    }else{
+        menuIconColor = "white"
+    }
 
     const toggleOverlay = () => {
         setShowOverlay(!showOverlay);
