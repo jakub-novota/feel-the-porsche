@@ -44,7 +44,10 @@ const carSchema = new Schema<CarDocument>({
     image: { type: String, required: true },
     image_cars: { type: Map, of: String, required: true },
     gallery: { type: Map, of: String, required: true },
-});
+}, {
+    timestamps: true
+}
+);
 
 // Create and export the Car model
 const CarModel = mongoose.models.Car || mongoose.model<CarDocument>('Car', carSchema);
