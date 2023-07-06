@@ -8,8 +8,21 @@ import CallIcon from './Modules/Svg_Module/CallIcon';
 import MenuIcon from './Modules/Svg_Module/Menu_Open';
 import { motion, AnimatePresence } from 'framer-motion';
 
+
+interface Car {
+    _id: string; // Adjust the type based on your actual car data structure
+}
+
 export default function MenuMobile() {
     const [showOverlay, setShowOverlay] = useState(false);
+    const pathname = usePathname();
+    const isCarsPage = pathname === '/cars';
+    const isServicesPage = pathname === '/services';
+    const isAboutPage = pathname === '/about-us';
+    const isFaqPage = pathname === '/faq';
+    const [isDetailsPage, setIsDetailsPage] = useState(false);
+    const isHomePage = pathname === '/';
+    let menuIconColor = isCarsPage || isServicesPage || isAboutPage || isFaqPage ? 'black' : 'white';
 
     const toggleOverlay = () => {
         setShowOverlay(!showOverlay);
@@ -23,14 +36,43 @@ export default function MenuMobile() {
         }
     }, [showOverlay]);
 
-    const pathname = usePathname();
-    const isCarsPage = pathname === '/cars';
-    const isServicesPage = pathname === '/services';
-    const isAboutPage = pathname === '/about-us';
-    const isFaqPage = pathname === '/faq';
-    const isDetailsPage = pathname.match(/^\/cars\/\d+$/); //To find all car ID
-    const isHomePage = pathname === '/';
-    let menuIconColor = isCarsPage || isServicesPage || isAboutPage || isFaqPage ? 'black' : 'white';
+    const [carData, setCarData] = useState<Car[]>([]); // Provide explicit type for carData
+    const [isLoading, setIsLoading] = useState(true); // State to track loading state
+
+    useEffect(() => {
+        if (pathname.startsWith('/cars/')) {
+            const fetchData = async () => {
+                try {
+                    const response = await fetch('/api/cars'); // Replace with your API endpoint
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch data');
+                    }
+                    const responseData = await response.json();
+                    setCarData(responseData.cars);
+                    setIsLoading(false);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    setIsLoading(false);
+                }
+            };
+
+            fetchData();
+        }
+    }, [pathname]);
+
+    useEffect(() => {
+        if (!isLoading) {
+            const carIds = carData.map(car => car._id);
+            const matchedCarId = carIds.find(id => pathname === `/cars/${id}`);
+
+            if (matchedCarId) {
+                setIsDetailsPage(true);
+            } else {
+                setIsDetailsPage(false);
+            }
+        }
+    }, [pathname, carData, isLoading]);
+    console.log(isDetailsPage)
 
 
     return (

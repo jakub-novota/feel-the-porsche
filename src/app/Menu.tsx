@@ -53,12 +53,12 @@ export default function Menu() {
             }
         }
     }, [pathname, carData, isLoading]);
-
+    console.log(isDetailsPage)
 
 
     return (
         <>
-            <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''} left-0 w-screen ${isCarsPage ? 'bg-gray-100' : ''}`}>
+            <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''} ${isCarsPage ? 'bg-gray-100' : ''} left-0 w-screen `}>
                 <div className="w-screen  pt-[18px] bg-transparent ">
                     <div className="flex items-center justify-between sm:ml-[20px] sm:mr-[20px] lg:ml-[135px] lg:mr-[135px]">
                         <div className="flex items-center">
