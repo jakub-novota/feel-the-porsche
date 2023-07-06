@@ -49,7 +49,7 @@ const CarImages: React.FC<CarImagesProps> = ({ carImagesURL }) => {
           {imageUrls.map((imageUrl, index) => (
             <React.Fragment key={index}>
               <SwiperSlide key={index}>
-                <div className="relative w-[353px] h-[280px] sm:w-[573px] sm:h-[401px]">
+                <div className="relative w-[353px] h-[280px] sm:w-[572px] sm:h-[386px]">
                   <Image
                     fill
                     priority
