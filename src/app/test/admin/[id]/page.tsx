@@ -55,7 +55,6 @@ export default function Page() {
 
     return (
         <>
-            <p>{carId}</p>
             {carData && (
                 <CarForm car={carData} onSubmit={handleFormSubmit} />
             )}
