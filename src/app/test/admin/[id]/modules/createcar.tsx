@@ -1,50 +1,15 @@
-"use client"
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
+import { Car } from '@/app/cars/Modules/CarInterface';
 
-interface FormData {
-    name: string;
-    power_PS: number;
-    power_HP: number;
-    max_speed: number;
-    transmission: string;
-    acceleration: number;
-    year: number;
-    capacity: number;
-    drive: string;
-    description: string;
-    cylinder_capacity: number;
-    model: string;
-    body: string;
-    mileage: number;
-    fuel: string;
-    image: string;
-    image_cars: { [key: string]: string };
-    gallery: { [key: string]: string };
+interface CarFormProps {
+    car: Car;
+    onSubmit: (formData: Car) => void;
 }
 
-export default function CreateCarForm(): JSX.Element {
-    const [formData, setFormData] = useState<FormData>({
-        name: '',
-        power_PS: 0,
-        power_HP: 0,
-        max_speed: 0,
-        transmission: '',
-        acceleration: 0,
-        year: 0,
-        capacity: 0,
-        drive: '',
-        description: '',
-        cylinder_capacity: 0,
-        model: '',
-        body: '',
-        mileage: 0,
-        fuel: '',
-        image: '',
-        image_cars: {},
-        gallery: {},
-    });
+export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
+    const [formData, setFormData] = useState<Car>(car);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -56,72 +21,216 @@ export default function CreateCarForm(): JSX.Element {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Perform form submission or API call with formData
-        console.log(formData);
+        onSubmit(formData);
     };
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4 text-center">Create New Item</h1>
-            <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
-                <div className="mb-4">
-                    <label htmlFor="name" className="block mb-2">
-                        Name:
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="border border-gray-400 px-4 py-2 rounded w-full"
-                    />
+            <h1 className="text-3xl font-bold mb-4">Car Details</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="border border-gray-300 rounded p-4">
+                        <h2 className="text-lg font-semibold mb-2">Specifications</h2>
+                        <p className="mb-4">
+                            <span className="font-medium">ID:</span> {car.id}
+                        </p>
+                        <div className="mb-4">
+                            <label htmlFor="power_PS" className="font-medium">
+                                Power (PS):
+                            </label>
+                            <input
+                                type="number"
+                                id="power_PS"
+                                name="power_PS"
+                                value={formData.power_PS}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="power_HP" className="font-medium">
+                                Power (HP):
+                            </label>
+                            <input
+                                type="number"
+                                id="power_HP"
+                                name="power_HP"
+                                value={formData.power_HP}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="max_speed" className="font-medium">
+                                Max Speed:
+                            </label>
+                            <input
+                                type="number"
+                                id="max_speed"
+                                name="max_speed"
+                                value={formData.max_speed}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="transmission" className="font-medium">
+                                Transmission:
+                            </label>
+                            <select
+                                id="transmission"
+                                name="transmission"
+                                value={formData.transmission}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            >
+                                <option value="manual">Manual</option>
+                                <option value="automatic">Automatic</option>
+                            </select>
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="acceleration" className="font-medium">
+                                Acceleration:
+                            </label>
+                            <input
+                                type="number"
+                                id="acceleration"
+                                name="acceleration"
+                                value={formData.acceleration}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="year" className="font-medium">
+                                Year:
+                            </label>
+                            <input
+                                type="number"
+                                id="year"
+                                name="year"
+                                value={formData.year}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="capacity" className="font-medium">
+                                Capacity:
+                            </label>
+                            <input
+                                type="number"
+                                id="capacity"
+                                name="capacity"
+                                value={formData.capacity}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="drive" className="font-medium">
+                                Drive:
+                            </label>
+                            <input
+                                type="text"
+                                id="drive"
+                                name="drive"
+                                value={formData.drive}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="description" className="font-medium">
+                                Description:
+                            </label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                    </div>
+                    <div className="border border-gray-300 rounded p-4">
+                        <h2 className="text-lg font-semibold mb-2">Additional Details</h2>
+                        <div className="mb-4">
+                            <label htmlFor="cylinder_capacity" className="font-medium">
+                                Cylinder Capacity:
+                            </label>
+                            <input
+                                type="number"
+                                id="cylinder_capacity"
+                                name="cylinder_capacity"
+                                value={formData.cylinder_capacity}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="model" className="font-medium">
+                                Model:
+                            </label>
+                            <input
+                                type="text"
+                                id="model"
+                                name="model"
+                                value={formData.model}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="body" className="font-medium">
+                                Body:
+                            </label>
+                            <input
+                                type="text"
+                                id="body"
+                                name="body"
+                                value={formData.body}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="mileage" className="font-medium">
+                                Mileage:
+                            </label>
+                            <input
+                                type="text"
+                                id="mileage"
+                                name="mileage"
+                                value={formData.mileage}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="fuel" className="font-medium">
+                                Fuel:
+                            </label>
+                            <select
+                                id="fuel"
+                                name="fuel"
+                                value={formData.fuel}
+                                onChange={handleChange}
+                                className="border border-gray-300 rounded px-3 py-2 w-full"
+                            >
+                                <option value="gasoline">Gasoline</option>
+                                <option value="diesel">Diesel</option>
+                                <option value="electric">Electric</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                {/* Add more input fields for other properties */}
-                <div className="mb-4">
-                    <label htmlFor="image" className="block mb-2">
-                        Image:
-                    </label>
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-
-                        className="border border-gray-400 px-4 py-2 rounded w-full"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="image_cars" className="block mb-2">
-                        Image Cars:
-                    </label>
-                    <input
-                        type="file"
-                        id="image_cars"
-                        name="image_cars"
-
-                        className="border border-gray-400 px-4 py-2 rounded w-full"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="gallery" className="block mb-2">
-                        Gallery:
-                    </label>
-                    <input
-                        type="file"
-                        id="gallery"
-                        name="gallery"
-
-                        className="border border-gray-400 px-4 py-2 rounded w-full"
-                    />
-                </div>
-                <div className="flex justify-center">
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                    >
-                        Create Item
-                    </button>
-                </div>
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
+                >
+                    Save
+                </button>
             </form>
         </div>
     );
