@@ -6,6 +6,7 @@ import PowerAndSpeed from './groups/PowerAndSpeed';
 import PeformanceAndSpecs from './groups/PerformanceAndSpecs';
 import DetailsAndDescription from './groups/DetailsAndDescription';
 import ImagesAndGallery from './groups/ImagesAndGallery';
+import Link from 'next/link';
 
 interface CarFormProps {
     car: Car;
@@ -28,9 +29,29 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
         onSubmit(formData);
     };
 
+
+
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">Car Details</h1>
+            <div className="flex items-center mb-4">
+                <div className='flex flex-col'>
+                    <Link
+                        className="text-[#00b300] hover:text-[#008000] font-medium cursor-pointer"
+                        href={"./"}
+                    >Back</Link>
+                    <h1 className="text-3xl font-bold ">Car Details</h1>
+                </div>
+            </div>
+            <div className='mb-[20px]'>
+                <p className="">
+                    <span className="font-medium">Name:</span> {car.name}
+                </p>
+                <p className="">
+                    <span className="font-medium">ID:</span> {car._id}
+                </p>
+            </div>
+
+
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <PowerAndSpeed car={car} formData={formData} handleChange={handleChange} />

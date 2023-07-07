@@ -10,12 +10,6 @@ export default function PeformanceAndSpecs({ car, formData, handleChange }: Pefo
     return (
         <div className="border border-gray-300 rounded p-4">
             <h2 className="text-lg font-semibold mb-2">Performance And Specs</h2>
-            <p className="">
-                <span className="font-medium">ID:</span> {car._id}
-            </p>
-            <p className="mb-4">
-                <span className="font-medium">Name:</span> {car.name}
-            </p>
             <div className="mb-4">
                 <label htmlFor="transmission" className="font-medium">
                     Transmission:
