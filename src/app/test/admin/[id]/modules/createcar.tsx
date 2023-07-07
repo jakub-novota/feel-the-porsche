@@ -2,6 +2,10 @@ import { useState, ChangeEvent } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import SpecificationsSection from './groups/SpecificationsSection';
 import AdditionalDetailsSection from './groups/AdditionalDetailsSection';
+import PowerAndSpeed from './groups/PowerAndSpeed';
+import PeformanceAndSpecs from './groups/PerformanceAndSpecs';
+import DetailsAndDescription from './groups/DetailsAndDescription';
+import ImagesAndGallery from './groups/ImagesAndGallery';
 
 interface CarFormProps {
     car: Car;
@@ -29,8 +33,10 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
             <h1 className="text-3xl font-bold mb-4">Car Details</h1>
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <SpecificationsSection car={car} formData={formData} handleChange={handleChange} />
-                    <AdditionalDetailsSection car={car} formData={formData} handleChange={handleChange} />
+                    <PowerAndSpeed car={car} formData={formData} handleChange={handleChange} />
+                    <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
+                    <DetailsAndDescription car={car} formData={formData} handleChange={handleChange} />
+                    <ImagesAndGallery car={car} formData={formData} handleChange={handleChange} />
                 </div>
                 <button
                     type="submit"
