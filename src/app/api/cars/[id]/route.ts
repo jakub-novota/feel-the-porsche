@@ -5,12 +5,12 @@ import { NextResponse } from "next/server";
 
 export async function PUT(request: Request, { params }: any) {
     const { id } = params;
-    const { name: name, description: description } = await request.json();
+    const updatedData = await request.json();
 
     await connectMongoDb();
 
     try {
-        const car = await CarModel.findByIdAndUpdate(id, { name, description }, { new: true });
+        const car = await CarModel.findByIdAndUpdate(id, updatedData, { new: true });
 
         if (!car) {
             return NextResponse.json({ message: "Car not found" }, { status: 404 });
@@ -21,6 +21,7 @@ export async function PUT(request: Request, { params }: any) {
         return NextResponse.json({ message: "Error updating car" }, { status: 500 });
     }
 }
+
 
 export async function GET(request: any, { params }: any) {
     const { id } = params;

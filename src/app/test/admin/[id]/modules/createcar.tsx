@@ -84,9 +84,13 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                                 onChange={handleChange}
                                 className="border border-gray-300 rounded px-3 py-2 w-full"
                             >
-                                <option value="manual">Manual</option>
-                                <option value="automatic">Automatic</option>
+                                <option value="" disabled hidden>
+                                    Select Transmission
+                                </option>
+                                <option value="Manual">Manual</option>
+                                <option value="Automatic">Automatic</option>
                             </select>
+
                         </div>
                         <div className="mb-4">
                             <label htmlFor="acceleration" className="font-medium">
