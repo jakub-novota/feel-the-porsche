@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-
+import  Image from 'next/image';
 export default function ImageUploadForm() {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -125,7 +125,7 @@ export default function ImageUploadForm() {
                     <div className="grid grid-cols-3 gap-4">
                         {selectedFiles.map((file, index) => (
                             <div key={index} className="relative">
-                                <img
+                                <Image
                                     src={URL.createObjectURL(file)}
                                     alt={`Selected Image ${index + 1}`}
                                     className="w-full h-auto"

@@ -2,7 +2,7 @@ import List from "./modules/carlist";
 import { ImageGallery } from "./upload/Images";
 import ImageUploadForm from "./upload/page";
 
-export default function () {
+export default function page() {
 
     return (
         <>
