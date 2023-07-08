@@ -64,22 +64,37 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className=' space-y-[40px]'>
                         <Description car={car} formData={formData} handleChange={handleChange} />
-                        <ImagesAndGallery car={car} formData={formData} handleChange={handleChange} />
-                    </div>
-                    <div className=' space-y-[40px]'>
                         <Details car={car} formData={formData} handleChange={handleChange} />
+                    </div>
+                    <div className=' '>
+                        <div className='space-y-[40px]'>
+                            <ImagesAndGallery car={car} formData={formData} handleChange={handleChange} />
+                            <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
+                        </div>
+                        <div className=' flex '>
+                            <div className='w-full flex justify-start '>
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
+                                >
+                                    Discard
+                                </button>
+                            </div>
+                            <div className=' w-full flex justify-end '>
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
+                                >
+                                    Save
+                                </button>
+                            </div>
 
-                        <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
+                        </div>
                     </div>
 
 
                 </div>
-                <button
-                    type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
-                >
-                    Save
-                </button>
+
             </form>
 
 

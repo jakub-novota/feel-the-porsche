@@ -19,7 +19,7 @@ export default function Description({ car, formData, handleChange }: Description
     return (
         <>
             <div>
-                <h2 className="text-2xl font-semibold mb-4">Description</h2>
+                <h2 className="text-[26px] mb-4">Description</h2>
                 <div className="border border-gray-300 rounded-lg p-4">
                     <div className="mb-4">
                         <label htmlFor="name" className="text-[#313131]">
