@@ -32,7 +32,7 @@ export default function ImagesAndGallery({ car }: ImagesAndGalleryProps): JSX.El
     };
 
     return (
-        <div className="border border-gray-300 rounded p-4">
+        <div className="border border-gray-300 rounded-[10px] p-[20px]">
             <h2 className="text-lg font-semibold mb-2">Images and Gallery</h2>
             <div className="mb-4">
                 <h3 className="text-md font-semibold mb-2">Frontpage Image</h3>

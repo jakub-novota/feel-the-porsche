@@ -8,75 +8,97 @@ interface PeformanceAndSpecs {
 
 export default function PeformanceAndSpecs({ car, formData, handleChange }: PeformanceAndSpecs): JSX.Element {
     return (
-        <div className="border border-gray-300 rounded p-4">
+        <div className="border border-gray-300 rounded-[10px] p-[20px]">
             <h2 className="text-lg font-semibold mb-2">Performance And Specs</h2>
-            <div className="mb-4">
-                <label htmlFor="transmission" className="font-medium">
-                    Transmission:
-                </label>
-                <select
-                    id="transmission"
-                    name="transmission"
-                    value={formData.transmission}
-                    onChange={handleChange}
-                    className="border border-gray-300 rounded px-3 py-2 w-full"
-                >
-                    <option value="Manual">Manual</option>
-                    <option value="Automatic">Automatic</option>
-                </select>
 
-            </div>
             <div className="mb-4">
-                <label htmlFor="acceleration" className="font-medium">
+                <label htmlFor="acceleration" className="text-[#313131]">
                     Acceleration:
                 </label>
-                <input
-                    type="number"
-                    id="acceleration"
-                    name="acceleration"
-                    value={formData.acceleration}
-                    onChange={handleChange}
-                    className="border border-gray-300 rounded px-3 py-2 w-full"
-                />
+                <div className="relative">
+                    <input
+                        type="number"
+                        id="acceleration"
+                        name="acceleration"
+                        value={formData.acceleration}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                    />
+                    <span className="absolute top-2 right-2 text-gray-500">0-100km/h</span>
+                </div>
             </div>
+
             <div className="mb-4">
-                <label htmlFor="year" className="font-medium">
-                    Year:
+                <label htmlFor="cylinder_capacity" className="font-medium">
+                    Cylinder Capacity:
                 </label>
-                <input
-                    type="number"
-                    id="year"
-                    name="year"
-                    value={formData.year}
-                    onChange={handleChange}
-                    className="border border-gray-300 rounded px-3 py-2 w-full"
-                />
+                <div className="relative">
+
+                    <input
+                        type="number"
+                        id="cylinder_capacity"
+                        name="cylinder_capacity"
+                        value={formData.cylinder_capacity}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded px-3 py-2 w-full"
+                    />
+                    <span className="absolute top-2 right-2 text-gray-500">liter</span>
+                </div>
             </div>
-            <div className="mb-4">
-                <label htmlFor="capacity" className="font-medium">
-                    Capacity:
-                </label>
-                <input
-                    type="number"
-                    id="capacity"
-                    name="capacity"
-                    value={formData.capacity}
-                    onChange={handleChange}
-                    className="border border-gray-300 rounded px-3 py-2 w-full"
-                />
-            </div>
-            <div className="mb-4">
-                <label htmlFor="drive" className="font-medium">
-                    Drive:
-                </label>
-                <input
-                    type="text"
-                    id="drive"
-                    name="drive"
-                    value={formData.drive}
-                    onChange={handleChange}
-                    className="border border-gray-300 rounded px-3 py-2 w-full"
-                />
+
+            <div className='flex justify-center  space-x-[20px]  '>
+                <div className="  flex  flex-col">
+                    <label htmlFor="power_PS" className="text-[#313131]">
+                        Power (PS):
+                    </label>
+                    <div className="relative">
+
+                        <input
+                            type="number"
+                            id="power_PS"
+                            name="power_PS"
+                            value={formData.power_PS}
+                            onChange={handleChange}
+                            className="border border-gray-300  px-3 py-2 w-auto rounded-[10px]"
+                        />
+                        <span className="absolute top-2 right-2 text-gray-500">PS</span>
+                    </div>
+                </div>
+
+                <div className=" flex flex-col ">
+                    <label htmlFor="power_HP" className=" text-[#313131]">
+                        Power (HP):
+                    </label>
+                    <div className="relative">
+                        <input
+                            type="number"
+                            id="power_HP"
+                            name="power_HP"
+                            value={formData.power_HP}
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-auto pr-8"
+                        />
+                        <span className="absolute top-2 right-2 text-gray-500">HP</span>
+                    </div>
+
+                </div>
+
+                <div className="  flex flex-col ">
+                    <label htmlFor="max_speed" className="text-[#313131]">
+                        Max Speed:
+                    </label>
+                    <div className="relative">
+                        <input
+                            type="number"
+                            id="max_speed"
+                            name="max_speed"
+                            value={formData.max_speed}
+                            onChange={handleChange}
+                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-auto"
+                        />
+                        <span className="absolute top-2 right-2 text-gray-500">km/h</span>
+                    </div>
+                </div>
             </div>
         </div>
     );

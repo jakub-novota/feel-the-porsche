@@ -1,12 +1,10 @@
 import { useState, ChangeEvent } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
-import SpecificationsSection from './groups/SpecificationsSection';
-import AdditionalDetailsSection from './groups/AdditionalDetailsSection';
-import PowerAndSpeed from './groups/PowerAndSpeed';
 import PeformanceAndSpecs from './groups/PerformanceAndSpecs';
-import DetailsAndDescription from './groups/DetailsAndDescription';
+import Details from './groups/Details';
 import ImagesAndGallery from './groups/ImagesAndGallery';
 import Link from 'next/link';
+import Description from './groups/Description';
 
 interface CarFormProps {
     car: Car;
@@ -34,12 +32,22 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="flex items-center mb-4">
+                <Link
+                    className="text-[#00b300] hover:text-[#008000] text-[14px] cursor-pointer"
+                    href={"./"}
+                >
+                    <div className='w-[40px] h-[40px] border rounded-[5px] mr-[10px] flex justify-center items-center'>
+                        <p className='text-gray-400'>←</p>
+                    </div>
+                </Link>
                 <div className='flex flex-col'>
                     <Link
-                        className="text-[#00b300] hover:text-[#008000] font-medium cursor-pointer"
+                        className="text-[#00b300] hover:text-[#008000] text-[14px] cursor-pointer"
                         href={"./"}
-                    >Back</Link>
-                    <h1 className="text-3xl font-bold ">Car Details</h1>
+                    >
+                        Back To Admin
+                    </Link>
+                    <h1 className="text-3xl font-bold ">Edit Car </h1>
                 </div>
             </div>
             <div className='mb-[20px]'>
@@ -54,10 +62,17 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
 
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <PowerAndSpeed car={car} formData={formData} handleChange={handleChange} />
-                    <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
-                    <DetailsAndDescription car={car} formData={formData} handleChange={handleChange} />
-                    <ImagesAndGallery car={car} formData={formData} handleChange={handleChange} />
+                    <div className=' space-y-[40px]'>
+                        <Description car={car} formData={formData} handleChange={handleChange} />
+                        <ImagesAndGallery car={car} formData={formData} handleChange={handleChange} />
+                    </div>
+                    <div className=' space-y-[40px]'>
+                        <Details car={car} formData={formData} handleChange={handleChange} />
+
+                        <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
+                    </div>
+
+
                 </div>
                 <button
                     type="submit"
@@ -66,6 +81,8 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                     Save
                 </button>
             </form>
+
+
         </div>
     );
 }
