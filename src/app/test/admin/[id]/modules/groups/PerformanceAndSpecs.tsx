@@ -61,7 +61,7 @@ export default function PeformanceAndSpecs({ car, formData, handleChange }: Pefo
                             onChange={handleChange}
                             className="border border-gray-300  px-3 py-2 w-auto rounded-[10px]"
                         />
-                        <span className="absolute top-2 right-2 text-gray-500">PS</span>
+                        <span className="absolute top-2 right-8 text-gray-500">PS</span>
                     </div>
                 </div>
 
@@ -76,9 +76,9 @@ export default function PeformanceAndSpecs({ car, formData, handleChange }: Pefo
                             name="power_HP"
                             value={formData.power_HP}
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-auto pr-8"
+                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-auto "
                         />
-                        <span className="absolute top-2 right-2 text-gray-500">HP</span>
+                        <span className="absolute top-2 right-8 text-gray-500">HP</span>
                     </div>
 
                 </div>
@@ -96,7 +96,7 @@ export default function PeformanceAndSpecs({ car, formData, handleChange }: Pefo
                             onChange={handleChange}
                             className="border border-gray-300 rounded-[10px] px-3 py-2 w-auto"
                         />
-                        <span className="absolute top-2 right-2 text-gray-500">km/h</span>
+                        <span className="absolute top-2 right-8 text-gray-500">km/h</span>
                     </div>
                 </div>
             </div>

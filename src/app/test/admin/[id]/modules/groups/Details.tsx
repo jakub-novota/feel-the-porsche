@@ -111,9 +111,9 @@ export default function Details({ car, formData, handleChange }: Details): JSX.E
                                 name="capacity"
                                 value={formData.capacity}
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                                className="border  border-gray-300 rounded-[10px] px-3 py-2 w-full "
                             />
-                            <span className="absolute top-2 right-2 text-gray-500">pers</span>
+                            <span className="absolute top-2 right-8 text-gray-500 ">pers</span>
                         </div>
                     </div>
 
@@ -128,7 +128,7 @@ export default function Details({ car, formData, handleChange }: Details): JSX.E
                                 name="mileage"
                                 value={formData.mileage}
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[10px]  px-3 py-2 w-full"
+                                className="border border-gray-300 rounded-[10px]  px-3 py-2 w-full "
                             />
                             <span className="absolute top-2 right-2 text-gray-500">km</span>
                         </div>
