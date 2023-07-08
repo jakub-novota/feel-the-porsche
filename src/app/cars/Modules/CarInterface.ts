@@ -10,8 +10,8 @@ export interface Car {
   capacity: number;
   image: string;
   image_cars: {
-    "1": string;
-    "2": string;
+    "1"?: string | undefined;
+    "2"?: string | undefined;
     "3"?: string | undefined;
     "4"?: string | undefined;
   };

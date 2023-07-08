@@ -24,6 +24,7 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        console.log(formData)
         onSubmit(formData);
     };
 

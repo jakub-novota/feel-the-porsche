@@ -23,11 +23,13 @@ export default function Description({ car, formData, handleChange }: Description
 
     const renderDescriptionOutput = () => {
         return (
-            <div className="border border-gray-300 rounded-lg p-4 mt-4 flex justify-center">
-                <div className="mb-4 max-w-[320px] text-[14px] leading-[20px] tracking-[-0.05em] text-[#545454]" dangerouslySetInnerHTML={{ __html: formData.description }} />
+            <div className="border border-gray-300 rounded-lg p-4 mt-4 flex justify-center items-center">
+                <div className="mb-4 max-w-[320px] text-[14px] leading-[20px] tracking-[-0.05em] text-[#545454] break-words" dangerouslySetInnerHTML={{ __html: formData.description }} />
             </div>
         );
     };
+
+
 
     return (
         <>
