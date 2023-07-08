@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ChangeEvent } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Link from 'next/link';
@@ -9,13 +10,19 @@ interface Description {
 }
 
 export default function Description({ car, formData, handleChange }: Description): JSX.Element {
+    const [showExamples, setShowExamples] = useState(false);
+
+    const handleToggle = () => {
+        setShowExamples(!showExamples);
+    };
+
     return (
         <>
             <div>
-                <h2 className="text-[24px]  mb-[10px]">Description</h2>
-                <div className="border border-gray-300 rounded-[10px] p-[20px]">
+                <h2 className="text-2xl font-semibold mb-4">Description</h2>
+                <div className="border border-gray-300 rounded-lg p-4">
                     <div className="mb-4">
-                        <label htmlFor="cylinder_capacity" className="text-[#313131]  ">
+                        <label htmlFor="name" className="text-[#313131]">
                             Car Name
                         </label>
                         <input
@@ -24,7 +31,7 @@ export default function Description({ car, formData, handleChange }: Description
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-full mt-[10px]"
+                            className="border border-gray-300 rounded-lg px-3 py-2 w-full mt-2"
                         />
                     </div>
                     <div className="mb-4">
@@ -36,80 +43,69 @@ export default function Description({ car, formData, handleChange }: Description
                             name="description"
                             value={formData.description}
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-lg px-3 py-2 w-full min-h-[200px] mt-[10px]"
+                            className="border border-gray-300 rounded-lg px-3 py-2 w-full min-h-[200px] mt-2"
                         />
                     </div>
-                    <div className='flex justify-center'>
-                        <div className=" p-4 text-[14px] grid grid-cols-3 ">
 
-                            <div className='flex justify-center'>
-                                <div className='flex flex-col items-end  '>
-                                    <div className='mb-2 '>
-                                        <p>&lt;p&gt;:</p>
-                                    </div>
-                                    <div className='mb-2'>
-                                        <p>&lt;strong&gt; or &lt;b&gt;:</p>
-                                    </div>
-                                    <div className='mb-2'>
-                                        <p>&lt;em&gt; or &lt;i&gt;:</p>
-                                    </div>
-                                    <div className='mb-2'>
-                                        <p>&lt;u&gt;:</p>
-                                    </div>
-                                    <div className='mb-2'>
-                                        <p>&lt;Link href=""&gt;:</p>
-                                    </div>
-                                    <div className='mb-2'>
-                                        <p>&lt;br&gt;:</p>
-                                    </div>
-                                </div>
+                    <div className="flex items-center mb-4">
+                        <input
+                            type="checkbox"
+                            id="toggleExamples"
+                            checked={showExamples}
+                            onChange={handleToggle}
+                            className="mr-2"
+                        />
+                        <label htmlFor="toggleExamples" className="text-[#313131]">
+                            Show Examples
+                        </label>
+                    </div>
+
+                    {showExamples && (
+                        <div className="grid grid-cols-3 gap-4">
+                            <div>
+                                <p className="mb-2">&lt;p&gt;:</p>
+                                <p className="mb-2">&lt;strong&gt; or &lt;b&gt;:</p>
+                                <p className="mb-2">&lt;em&gt; or &lt;i&gt;:</p>
+                                <p className="mb-2">&lt;u&gt;:</p>
+                                <p className="mb-2">&lt;Link href=""&gt;:</p>
+                                <p className="mb-2">&lt;br&gt;:</p>
                             </div>
 
                             <div>
-                                <p className="mb-2 ">
-                                    Defines a paragraph.
-                                </p>
-                                <p className="mb-2 ">
-                                    Defines bold text.
-                                </p>
-                                <p className="mb-2 ">
-                                    Defines italicized text.
-                                </p>
-                                <p className="mb-2">
-                                    Defines underlined text.
-                                </p>
-                                <p className="mb-2 ">
-                                    Defines a hyperlink.
-                                </p>
-                                <p className="mb-2 ">
-                                    Inserts a line break.
-                                </p>
+                                <p className="mb-2">Defines a paragraph.</p>
+                                <p className="mb-2">Defines bold text.</p>
+                                <p className="mb-2">Defines italicized text.</p>
+                                <p className="mb-2">Defines underlined text.</p>
+                                <p className="mb-2">Defines a hyperlink.</p>
+                                <p className="mb-2">Inserts a line break.</p>
                             </div>
 
-
                             <div>
-                                <div className='text-start mb-2'>
-                                    <p className="ml-2 ">This is a paragraph.</p>
+                                <div className="mb-2">
+                                    <p>This is a paragraph.</p>
                                 </div>
-                                <div className=' mb-2'>
-                                    <strong className="ml-2">This is bold text.</strong>
+                                <div className="mb-2">
+                                    <strong>This is bold text.</strong>
                                 </div>
-                                <div className='mb-2'>
-                                    <em className="ml-2 ">This is italicized text.</em>
+                                <div className="mb-2">
+                                    <em>This is italicized text.</em>
                                 </div>
-                                <div className='mb-2'>
-                                    <u className="ml-2 ">This is underlined text.</u>
+                                <div className="mb-2">
+                                    <u>This is underlined text.</u>
                                 </div>
-                                <div className='mb-2'>
-                                    <Link href="" className="ml-2">This is a link</Link>
+                                <div className="mb-2">
+                                    <Link href="">This is a link</Link>
                                 </div>
-                                <div className='mb-2'>
-                                    <p className="ml-2">This is the first line.<br />This is the second line.</p>
+                                <div className="mb-2">
+                                    <p>
+                                        This is the first line.
+                                        <br />
+                                        This is the second line.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
+                    )}
                 </div>
             </div>
         </>
