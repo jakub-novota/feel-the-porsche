@@ -1,7 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
-import FrontpageImage from './ImagesAndGallery/FrontpageImage';
 import CoverImages from './ImagesAndGallery/CoverImages';
 import GalleryImages from './ImagesAndGallery/GalleryImages';
 
@@ -52,12 +51,7 @@ export default function ImagesAndGallery({
         <div>
             <h2 className="text-2xl font-semibold mb-4">Images and Gallery</h2>
             <div className="border border-gray-300 rounded-lg p-4">
-                <FrontpageImage
-                    image={car.image}
-                    handleChange={handleChange}
-                    handleImageClick={() => handleImageClick(car.image)}
-                    handleDeleteImage={handleDeleteFrontpageImage}
-                />
+     
                 <CoverImages
                     imageCars={car.image_cars}
                     handleChange={handleChange}
