@@ -29,8 +29,11 @@ export default function Page() {
         fetchData();
     }, [carId]);
 
-    //console.log("DATA :", carData);
     const handleFormSubmit = (formData: Car) => {
+        //console.log("DATA :", carData);
+
+
+
         const { _id, ...updatedData } = formData;
 
         // Make the PUT request to the API

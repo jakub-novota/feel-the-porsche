@@ -1,5 +1,3 @@
-"use client"
-
 import { ChangeEvent, useState } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';

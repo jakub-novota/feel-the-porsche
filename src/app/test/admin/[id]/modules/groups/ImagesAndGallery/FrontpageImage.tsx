@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 
 interface FrontpageImageProps {
-    image: string | null; // Update the image prop type to accept null
+    image: string | null;
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
     handleImageClick: () => void;
     handleDeleteImage: () => void;
@@ -17,22 +17,21 @@ export default function FrontpageImage({
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [uploadStatus, setUploadStatus] = useState<string>('');
+    const [postUploadImages, setPostUploadImages] = useState<string[]>([]);
 
     const handleDeleteClick = () => {
         handleDeleteImage();
     };
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0) {
-            const file = event.target.files[0];
-            if (file.type !== 'image/png') {
-                setErrorMessage('Only PNG images are allowed.');
-                return;
-            }
-            setSelectedImage(file);
-            setErrorMessage('');
-            handleChange(event); // Forward the file change event to the parent component
+        const file = event.target.files?.[0];
+        if (file && file.type !== 'image/png') {
+            setErrorMessage('Only PNG images are allowed.');
+            return;
         }
+        setSelectedImage(file || null);
+        setErrorMessage('');
+        handleChange(event); // Forward the file change event to the parent component
     };
 
     const handleImageUpload = async (
@@ -54,14 +53,18 @@ export default function FrontpageImage({
             });
 
             if (response.ok) {
-                // Handle successful upload
-                const uploadedImage = await response.json(); // Assuming the response contains the uploaded image URL
+                const uploadedImage = await response.json();
                 setUploadStatus('Upload successful');
-                setSelectedImage(null); // Clear the selected image
-                handleChange(event as unknown as ChangeEvent<HTMLInputElement>); // Forward the file change event to the parent component
+                setSelectedImage(null);
+                handleChange({
+                    target: { name: 'image', value: '/uploads/' + uploadedImage.files[0].name },
+                } as ChangeEvent<HTMLInputElement>);
                 console.log('Image uploaded successfully.');
+
+                const uploadedImageName = uploadedImage.files[0].name;
+                console.log('Post-upload Image:', uploadedImageName);
+                setPostUploadImages(prevImages => [...prevImages, uploadedImageName]);
             } else {
-                // Handle upload failure
                 setUploadStatus('Upload failed');
                 console.error('Failed to upload image.');
             }
@@ -152,6 +155,16 @@ export default function FrontpageImage({
                             )}
                         </div>
                     )}
+                </div>
+            )}
+            {postUploadImages.length > 0 && (
+                <div>
+                    <h4>Post-upload Images:</h4>
+                    <ul>
+                        {postUploadImages.map((imageName, index) => (
+                            <li key={index}>{imageName}</li>
+                        ))}
+                    </ul>
                 </div>
             )}
         </div>
