@@ -5,6 +5,7 @@ import Details from './groups/Details';
 import ImagesAndGallery from './groups/ImagesAndGallery';
 import Link from 'next/link';
 import Description from './groups/Description';
+import Test from '../test/page';
 
 interface CarFormProps {
     car: Car;
@@ -24,11 +25,11 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(formData)
         onSubmit(formData);
+        window.location.reload(); // Refresh the page
     };
 
-
+    //console.log('Images:', car.image, car.image_cars, car.gallery);
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -48,7 +49,7 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                     >
                         Back To Admin
                     </Link>
-                    <h1 className="text-3xl font-bold ">Edit Car </h1>
+                    <h1 className="text-3xl font-bold ">Edit Car</h1>
                 </div>
             </div>
             <div className='mb-[20px]'>
@@ -60,20 +61,20 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                 </p>
             </div>
 
-
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className=' space-y-[40px]'>
+                    <div className='space-y-[40px]'>
                         <Description car={car} formData={formData} handleChange={handleChange} />
                         <Details car={car} formData={formData} handleChange={handleChange} />
                     </div>
-                    <div className=' '>
+                    <div className=''>
                         <div className='space-y-[40px]'>
                             <ImagesAndGallery car={car} formData={formData} handleChange={handleChange} />
+                            <Test car={car} formData={formData} handleChange={handleChange} />
                             <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
                         </div>
-                        <div className=' flex '>
-                            <div className='w-full flex justify-start '>
+                        <div className='flex'>
+                            <div className='w-full flex justify-start'>
                                 <button
                                     type="submit"
                                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
@@ -81,7 +82,7 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                                     Discard
                                 </button>
                             </div>
-                            <div className=' w-full flex justify-end '>
+                            <div className='w-full flex justify-end'>
                                 <button
                                     type="submit"
                                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
@@ -89,16 +90,10 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                                     Save
                                 </button>
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
-
             </form>
-
-
         </div>
     );
 }

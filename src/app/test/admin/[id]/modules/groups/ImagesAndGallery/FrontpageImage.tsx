@@ -21,7 +21,11 @@ export default function FrontpageImage({
 
     const handleDeleteClick = () => {
         handleDeleteImage();
+        setUploadStatus('');
+        setPostUploadImages([]);
+        handleChange({ target: { name: 'image', value: null } } as unknown as ChangeEvent<HTMLInputElement>);
     };
+
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -91,6 +95,7 @@ export default function FrontpageImage({
                         />
                     </div>
                     <button
+                        type="button" // Set the button type to prevent form submission
                         className="bg-red-500 text-white py-1 px-2 rounded-lg hover:bg-red-600"
                         onClick={handleDeleteClick}
                     >
@@ -102,13 +107,18 @@ export default function FrontpageImage({
                     {uploadStatus ? (
                         <div>
                             <h4>Image uploaded successfully!</h4>
-                            {image && (
-                                <Image
-                                    src={image}
-                                    alt="Uploaded Image"
-                                    width={200}
-                                    height={200}
-                                />
+                            {postUploadImages.length > 0 ? (
+                                postUploadImages.map((uploadedImageName, index) => (
+                                    <Image
+                                        key={index}
+                                        src={'/uploads/' + uploadedImageName}
+                                        alt="Uploaded Image"
+                                        width={200}
+                                        height={200}
+                                    />
+                                ))
+                            ) : (
+                                <p>No uploaded images available.</p>
                             )}
                         </div>
                     ) : (
@@ -147,6 +157,7 @@ export default function FrontpageImage({
                             )}
                             {selectedImage && (
                                 <button
+                                    type="button" // Set the button type to prevent form submission
                                     className="bg-green-500 text-white py-1 px-2 rounded-lg hover:bg-green-600"
                                     onClick={handleImageUpload}
                                 >
@@ -157,7 +168,7 @@ export default function FrontpageImage({
                     )}
                 </div>
             )}
-            {postUploadImages.length > 0 && (
+            {postUploadImages.length > 0 && !uploadStatus && (
                 <div>
                     <h4>Post-upload Images:</h4>
                     <ul>
