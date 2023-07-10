@@ -35,19 +35,21 @@ export default function GalleryImages({ gallery, handleChange, handleImageClick,
                     ))}
                 </div>
             ) : (
-                <div className="text-red-500">Minimum of 4 images required</div>
+                <div className="text-red-500 mb-[20px]">Minimum of 4 images required</div>
             )}
-            <label htmlFor="galleryImages" className="mt-2 cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                Upload Images
-                <input
-                    type="file"
-                    id="galleryImages"
-                    accept="image/*"
-                    multiple
-                    onChange={handleChange}
-                    className="hidden"
-                />
-            </label>
+            <div>
+                <label htmlFor="galleryImages" className="mt-2 cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                    Upload Images
+                    <input
+                        type="file"
+                        id="galleryImages"
+                        accept="image/*"
+                        multiple
+                        onChange={handleChange}
+                        className="hidden"
+                    />
+                </label>
+            </div>
         </div>
     );
 }
