@@ -14,18 +14,12 @@ export default function FrontpageImage({
     handleImageClick,
     handleDeleteImage,
 }: FrontpageImageProps): JSX.Element {
-    const [isImageVisible, setIsImageVisible] = useState(true);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [uploadStatus, setUploadStatus] = useState<string>('');
 
-    const handleDeleteClick = (
-        event: React.MouseEvent<HTMLButtonElement>
-    ) => {
-        event.preventDefault(); // Prevent form submission
+    const handleDeleteClick = () => {
         handleDeleteImage();
-        setIsImageVisible(false);
     };
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +35,9 @@ export default function FrontpageImage({
         }
     };
 
-    const handleImageUpload = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleImageUpload = async (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
         event.preventDefault(); // Prevent form submission
         if (!selectedImage) {
             setErrorMessage('No image selected.');
@@ -60,9 +56,7 @@ export default function FrontpageImage({
             if (response.ok) {
                 // Handle successful upload
                 const uploadedImage = await response.json(); // Assuming the response contains the uploaded image URL
-                setUploadedImageUrl(uploadedImage.url); // Store the uploaded image URL
                 setUploadStatus('Upload successful');
-                setIsImageVisible(false);
                 setSelectedImage(null); // Clear the selected image
                 handleChange(event as unknown as ChangeEvent<HTMLInputElement>); // Forward the file change event to the parent component
                 console.log('Image uploaded successfully.');
@@ -80,22 +74,18 @@ export default function FrontpageImage({
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">Frontpage Image</h3>
-            {isImageVisible ? (
+            {image ? (
                 <div>
                     <div
                         className="w-24 h-24 relative cursor-pointer rounded overflow-hidden"
                         onClick={handleImageClick}
                     >
-                        {image || uploadedImageUrl ? (
-                            <Image
-                                src={image || uploadedImageUrl}
-                                alt="Frontpage Image"
-                                fill
-                                className="object-cover w-full h-full"
-                            />
-                        ) : (
-                            <div>Image Placeholder</div>
-                        )}
+                        <Image
+                            src={image}
+                            alt="Frontpage Image"
+                            fill
+                            className="object-cover w-full h-full"
+                        />
                     </div>
                     <button
                         className="bg-red-500 text-white py-1 px-2 rounded-lg hover:bg-red-600"
@@ -109,26 +99,49 @@ export default function FrontpageImage({
                     {uploadStatus ? (
                         <div>
                             <h4>Image uploaded successfully!</h4>
-                            {uploadedImageUrl && (
-                                <Image src={uploadedImageUrl} alt="Uploaded Image" width={200} height={200} />
+                            {image && (
+                                <Image
+                                    src={image}
+                                    alt="Uploaded Image"
+                                    width={200}
+                                    height={200}
+                                />
                             )}
                         </div>
                     ) : (
                         <div>
-                            <input
-                                type="file"
-                                accept="image/png"
-                                onChange={handleFileChange}
-                                className="hidden"
-                                id="frontpage-image-input"
-                            />
-                            <label
-                                htmlFor="frontpage-image-input"
-                                className="block bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
-                            >
-                                Select Image
-                            </label>
-                            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                            {selectedImage ? (
+                                <div
+                                    className="w-24 h-24 relative cursor-pointer rounded overflow-hidden"
+                                    onClick={handleImageClick}
+                                >
+                                    <Image
+                                        src={URL.createObjectURL(selectedImage)}
+                                        alt="Frontpage Image"
+                                        fill
+                                        className="object-cover w-full h-full"
+                                    />
+                                </div>
+                            ) : (
+                                <div>
+                                    <input
+                                        type="file"
+                                        accept="image/png"
+                                        onChange={handleFileChange}
+                                        className="hidden"
+                                        id="frontpage-image-input"
+                                    />
+                                    <label
+                                        htmlFor="frontpage-image-input"
+                                        className="block bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+                                    >
+                                        Select Image
+                                    </label>
+                                </div>
+                            )}
+                            {errorMessage && (
+                                <p className="text-red-500">{errorMessage}</p>
+                            )}
                             {selectedImage && (
                                 <button
                                     className="bg-green-500 text-white py-1 px-2 rounded-lg hover:bg-green-600"
