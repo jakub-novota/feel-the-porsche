@@ -51,13 +51,6 @@ export default function ImagesAndGallery({
         <div>
             <h2 className="text-2xl font-semibold mb-4">Images and Gallery</h2>
             <div className="border border-gray-300 rounded-lg p-4">
-     
-                <CoverImages
-                    imageCars={car.image_cars}
-                    handleChange={handleChange}
-                    handleImageClick={handleImageClick}
-                    handleDeleteImage={handleDeleteCoverImage}
-                />
                 <GalleryImages
                     gallery={car.gallery}
                     handleChange={handleChange}
