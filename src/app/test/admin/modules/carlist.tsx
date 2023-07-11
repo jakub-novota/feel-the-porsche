@@ -84,7 +84,7 @@ export default function List(): JSX.Element {
         />
       </div>
       <div className="flex justify-center">
-        <table className="w-screen ">
+        <table className="w-screen">
           <thead>
             <tr>
               <th className="py-2 text-start">
@@ -108,7 +108,8 @@ export default function List(): JSX.Element {
               <th className="py-2 text-start">
                 <p
                   onClick={() => handleSortByField('year')}
-                  className="bg-transparent"            >
+                  className="bg-transparent"
+                >
                   Year
                 </p>
               </th>
@@ -118,16 +119,11 @@ export default function List(): JSX.Element {
           <tbody>
             {sortedData.map((car) => (
               <tr key={car._id} className="mx-auto">
-                <td className="py-2">
-                  {formatTime(car.createdAt)}
-                </td>
-                <td className="py-2 ">{car.name}</td>
-                <td className="py-2 ">{car.year}</td>
+                <td className="py-2">{formatTime(car.createdAt)}</td>
+                <td className="py-2">{car.name}</td>
+                <td className="py-2">{car.year}</td>
                 <td className="py-2 text-end">
-                  <Link
-                    href={`/test/admin/${car._id}`}
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                  >
+                  <Link href={`/test/admin/${car._id}`} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                     Edit
                   </Link>
                 </td>
@@ -135,6 +131,11 @@ export default function List(): JSX.Element {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-center mt-4">
+        <Link href="/test/admin/new" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+          Create New Car
+        </Link>
       </div>
     </div>
   );

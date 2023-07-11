@@ -10,12 +10,6 @@ export default function page() {
             <div>
                 <List />
             </div>
-            <div className="flex justify-center">
-                <ImageUploadForm />
-            </div>
-            <div>
-                <ImageGallery />
-            </div>
         </>
     )
 
