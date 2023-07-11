@@ -1,54 +1,258 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 
 interface GalleryImagesProps {
-    gallery: Record<string, string>;
-    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    handleImageClick: (image: string) => void;
-    handleDeleteImage: (key: string) => void;
+    car: Car;
+    formData: Car;
+    handleChange: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
 }
 
-export default function GalleryImages({ gallery, handleChange, handleImageClick, handleDeleteImage }: GalleryImagesProps): JSX.Element {
-    const imageCount = Object.keys(gallery).length;
-    const isMinimumImages = imageCount >= 4;
+export default function GalleryImages({ car, formData, handleChange }: GalleryImagesProps): JSX.Element {
+    const [selectedImages, setSelectedImages] = useState<Record<string, File | null>>({
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+    });
+    const [previewImages, setPreviewImages] = useState<Record<string, string | null>>({
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+    });
+    const [showImages, setShowImages] = useState<Record<string, boolean>>({
+        "1": Object.keys(car.gallery || {}).includes("1"),
+        "2": Object.keys(car.gallery || {}).includes("2"),
+        "3": Object.keys(car.gallery || {}).includes("3"),
+        "4": Object.keys(car.gallery || {}).includes("4"),
+    });
+    const [uploadStatus, setUploadStatus] = useState<Record<string, string | null>>({
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+    });
+    const [hasChanges, setHasChanges] = useState<boolean>(false);
+    const [warningMessage, setWarningMessage] = useState<string>("");
 
-    const handleDeleteClick = (key: string, event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault(); // Prevent form submission
-        handleDeleteImage(key);
+    useEffect(() => {
+        const hasImageChanges = Object.values(uploadStatus).some((status) => status !== null);
+        const hasImageDeletion = Object.values(showImages).some((showImage) => !showImage);
+        const hasImageUpload = Object.values(selectedImages).some((selectedImage) => selectedImage !== null);
+
+        if ((hasImageChanges || hasImageDeletion || hasImageUpload) && !hasChanges) {
+            setWarningMessage("Please save the changes to avoid losing them.");
+        } else if (Object.values(showImages).filter(Boolean).length !== 4) {
+            setWarningMessage("You need to upload exactly 4 images.");
+        } else {
+            setWarningMessage("Everything seems to be okay.");
+        }
+    }, [uploadStatus, showImages, selectedImages, hasChanges]);
+
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        handleChange({ target: { name, value } } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+        setHasChanges(true);
+    };
+
+    const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>, imageKey: string) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const renamedFile = new File([file], `${uuidv4()}.${file.name.split('.').pop()}`, { type: file.type });
+
+            setSelectedImages((prevSelectedImages) => ({
+                ...prevSelectedImages,
+                [imageKey]: renamedFile,
+            }));
+            setPreviewImages((prevPreviewImages) => ({
+                ...prevPreviewImages,
+                [imageKey]: URL.createObjectURL(renamedFile),
+            }));
+
+            try {
+                const formData = new FormData();
+                formData.append('file', renamedFile);
+
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const uploadedImage = await response.json();
+                    handleChange({
+                        target: {
+                            name: 'gallery',
+                            value: { ...car.gallery, [imageKey]: '/uploads/' + uploadedImage.files[0].name },
+                        },
+                    } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+                    setUploadStatus((prevUploadStatus) => ({
+                        ...prevUploadStatus,
+                        [imageKey]: 'Upload successful',
+                    }));
+                    setHasChanges(true);
+                } else {
+                    setUploadStatus((prevUploadStatus) => ({
+                        ...prevUploadStatus,
+                        [imageKey]: 'Upload failed',
+                    }));
+                    console.error('Failed to upload image.');
+                }
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                setUploadStatus((prevUploadStatus) => ({
+                    ...prevUploadStatus,
+                    [imageKey]: 'Upload failed',
+                }));
+            }
+        }
+    };
+
+    const handleImageDelete = (imageKey: string, imageUrl: string) => {
+        setSelectedImages((prevSelectedImages) => ({
+            ...prevSelectedImages,
+            [imageKey]: null,
+        }));
+        setPreviewImages((prevPreviewImages) => ({
+            ...prevPreviewImages,
+            [imageKey]: null,
+        }));
+        const updatedGallery = { ...car.gallery };
+        delete updatedGallery[imageKey as keyof typeof updatedGallery];
+        handleChange({
+            target: { name: 'gallery', value: updatedGallery },
+        } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+        setShowImages((prevShowImages) => ({
+            ...prevShowImages,
+            [imageKey]: false,
+        }));
+        setUploadStatus((prevUploadStatus) => ({
+            ...prevUploadStatus,
+            [imageKey]: null,
+        }));
+        setHasChanges(true);
+
+        handleDeleteImage(imageUrl, imageKey);
+    };
+
+    const handleDeleteImage = (imageUrl: string, imageKey: string) => {
+        fetch(imageUrl)
+            .then((response) => {
+                if (response.ok) {
+                    // Image exists, proceed with the deletion
+                    fetch('/api/upload', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ imageUrl }),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.success) {
+                                setShowImages((prevShowImages) => ({
+                                    ...prevShowImages,
+                                    [imageKey]: false,
+                                }));
+                                console.log('Image deleted:', imageUrl);
+                            } else {
+                                console.error('Error deleting image:', data.message);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error deleting image:', error);
+                        });
+                } else {
+                    // Image does not exist, remove it from the array
+                    const updatedGallery = { ...car.gallery };
+                    delete updatedGallery[imageKey as keyof typeof updatedGallery];
+                    handleChange({
+                        target: { name: 'gallery', value: updatedGallery },
+                    } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+                    setShowImages((prevShowImages) => ({
+                        ...prevShowImages,
+                        [imageKey]: false,
+                    }));
+                    console.log('Image not found:', imageUrl);
+                }
+            })
+            .catch((error) => {
+                console.error('Error checking image existence:', error);
+            });
+    };
+
+    const getBorderStyle = (imageKey: string): string => {
+        if (hasChanges) {
+            return 'border-orange-500';
+        } else if (
+            uploadStatus[imageKey] === 'Upload failed' ||
+            Object.values(uploadStatus).some((status) => status === 'Upload failed')
+        ) {
+            return 'border-red-500';
+        } else {
+            return 'border-green-500';
+        }
     };
 
     return (
-        <div>
+        <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">Gallery Images</h3>
-            {isMinimumImages ? (
-                <div className="flex flex-wrap">
-                    {Object.entries(gallery).map(([key, image]) => (
-                        <div key={key} className="relative w-24 h-24 m-2 cursor-pointer rounded overflow-hidden">
-                            <Image src={image} alt={`Gallery Image ${key}`} fill className="object-cover w-full h-full" />
-                            <button
-                                className="absolute top-0 right-0 bg-red-500 text-white py-1 px-2 rounded-lg hover:bg-red-600"
-                                onClick={(event) => handleDeleteClick(key, event)}
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    ))}
+            <div className="border rounded-lg p-4">
+                <div className="grid grid-cols-4 gap-4 mt-4">
+                    {Array.from(Array(4).keys()).map((index) => {
+                        const imageKey = (index + 1).toString();
+                        const imageUrl = car.gallery?.[imageKey as keyof typeof car.gallery];
+                        const showImage = showImages[imageKey];
+                        const selectedImage = selectedImages[imageKey];
+                        const previewImage = previewImages[imageKey];
+                        const status = uploadStatus[imageKey];
+
+                        const divBorderStyle = getBorderStyle(imageKey);
+
+                        return (
+                            <div key={imageKey} className={`relative ${divBorderStyle}`}>
+                                {showImage && imageUrl ? (
+                                    <>
+                                        <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
+                                            <Image src={imageUrl} alt={`Image ${imageKey}`} layout="fill" objectFit="cover" className="rounded" />
+                                        </div>
+                                        <button
+                                            onClick={() => handleImageDelete(imageKey, imageUrl)}
+                                            className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded"
+                                        >
+                                            Delete
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        {previewImage ? (
+                                            <div className="relative h-[100px] w-[150px] bg-gray-200 rounded">
+                                                <Image src={previewImage} alt="Selected Image" layout="fill" objectFit="cover" />
+                                            </div>
+                                        ) : (
+                                            <div className="relative h-[100px] w-[150px] bg-gray-200 rounded flex items-center justify-center">
+                                                <input
+                                                    id={`image-upload-${imageKey}`}
+                                                    type="file"
+                                                    accept="image/png, image/jpeg"
+                                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                                    onChange={(event) => handleImageUpload(event, imageKey)}
+                                                />
+                                                <label htmlFor={`image-upload-${imageKey}`} className="cursor-pointer">
+                                                    Choose Image
+                                                </label>
+                                            </div>
+                                        )}
+                                    </>
+                                )}
+                                {status && <p className="mt-2">{status}</p>}
+                            </div>
+                        );
+                    })}
                 </div>
-            ) : (
-                <div className="text-red-500 mb-[20px]">Minimum of 4 images required</div>
-            )}
-            <div>
-                <label htmlFor="galleryImages" className="mt-2 cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-                    Upload Images
-                    <input
-                        type="file"
-                        id="galleryImages"
-                        accept="image/*"
-                        multiple
-                        onChange={handleChange}
-                        className="hidden"
-                    />
-                </label>
+                {warningMessage && <p className="mt-4">{warningMessage}</p>}
             </div>
         </div>
     );

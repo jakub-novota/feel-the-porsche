@@ -8,6 +8,7 @@ import Description from './groups/Description';
 import Test from '../test/page';
 import FrontPageImage from './groups/ImagesAndGallery/FrontpageImage';
 import CoverImage from './groups/ImagesAndGallery/CoverImages';
+import GalleryImages from './groups/ImagesAndGallery/GalleryImages';
 
 interface CarFormProps {
     car: Car;
@@ -73,7 +74,7 @@ export default function CarForm({ car, onSubmit }: CarFormProps): JSX.Element {
                         <div className='space-y-[40px]'>
                             <FrontPageImage car={car} formData={formData} handleChange={handleChange} />
                             <CoverImage car={car} formData={formData} handleChange={handleChange} />
-                            <Test car={car} formData={formData} handleChange={handleChange} />
+                            <GalleryImages car={car} formData={formData} handleChange={handleChange} />
                             <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
                         </div>
                         <div className='flex'>
