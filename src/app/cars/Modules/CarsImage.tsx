@@ -26,7 +26,8 @@ const CarImages: React.FC<CarImagesProps> = ({ carImagesURL }) => {
     console.error('Error parsing carImagesURL:', error);
   }
 
-  const totalImages = imageUrls.length;
+  const filteredImageUrls = imageUrls.filter(url => url); // Filter out empty or undefined values
+  const totalImages = filteredImageUrls.length;
   const activeIndexRef = React.useRef<number>(0);
 
   const handleSlideChange = (swiper: any) => {
@@ -45,24 +46,30 @@ const CarImages: React.FC<CarImagesProps> = ({ carImagesURL }) => {
   return (
     <>
       <div className='relative'>
-        <Swiper slidesPerView={1} onSlideChange={handleSlideChange}>
-          {imageUrls.map((imageUrl, index) => (
-            <React.Fragment key={index}>
-              <SwiperSlide key={index}>
-                <div className="relative w-[353px] h-[280px] sm:w-[572px] sm:h-[386px]">
-                  <Image
-                    fill
-                    priority
-                    quality={100}
-                    src={imageUrl}
-                    alt={`Image ${index}`}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-              </SwiperSlide>
-            </React.Fragment>
-          ))}
-        </Swiper>
+        {filteredImageUrls.length === 0 ? (
+          <div className="relative w-[353px] h-[280px] sm:w-[572px] sm:h-[386px] flex items-center justify-center bg-gray-300">
+            <span>No image found</span>
+          </div>
+        ) : (
+          <Swiper slidesPerView={1} onSlideChange={handleSlideChange}>
+            {filteredImageUrls.map((imageUrl, index) => (
+              <React.Fragment key={index}>
+                <SwiperSlide key={index}>
+                  <div className="relative w-[353px] h-[280px] sm:w-[572px] sm:h-[386px]">
+                    <Image
+                      fill
+                      priority
+                      quality={100}
+                      src={imageUrl}
+                      alt={`Image ${index}`}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                </SwiperSlide>
+              </React.Fragment>
+            ))}
+          </Swiper>
+        )}
         <div className='absolute bottom-0 left-0 z-10 ml-[32px] mb-[24px]'>
           <Status quantity={totalImages} activePosition={activeIndex} />
         </div>
