@@ -21,6 +21,8 @@ const CarImages: React.FC<CarCardProps> = ({ car }) => {
     imageUrls = Array.isArray(car.image_cars) ? car.image_cars : Object.values(car.image_cars || {});
   }
 
+
+  console.log(imageUrls)
   const totalImages = imageUrls.length;
   const activeIndexRef = React.useRef<number>(0);
 
