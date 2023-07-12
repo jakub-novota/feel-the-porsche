@@ -7,7 +7,8 @@ import Details from './modules/Details';
 import PerformanceAndSpecs from './modules/PeformanceAndSpecs';
 import CoverImage from './modules/CoverImatges';
 import GalleryImages from './modules/GalleryImages';
-import Frontpage from './modules/FrontPageImage';
+import FrontpageImage from './modules/FrontPageImage';
+
 
 export default function CarForm(): JSX.Element {
     const [formData, setFormData] = useState<Car>({
@@ -94,17 +95,36 @@ export default function CarForm(): JSX.Element {
         }
     };
 
-    // Enable or disable the Save button based on form validation
     React.useEffect(() => {
-        const imageCarsUrls = Object.values(formData.image_cars);
-        const galleryUrls = Object.values(formData.gallery);
-        const isImageValid = formData.image.trim() !== '';
-        const isImageCarsValid = imageCarsUrls.filter(url => url.trim() !== '').length >= 2;
-        const isGalleryValid = galleryUrls.filter(url => url.trim() !== '').length >= 4;
-        setIsSaveDisabled(!(isImageValid && isImageCarsValid && isGalleryValid));
+        const { name, description, image, image_cars, gallery, model, body, fuel, transmission, drive, capacity, mileage, year } = formData;
+
+        // Check if name, description, model, body, fuel, transmission, drive, capacity, mileage, and year are given
+        const isNameValid = typeof name === 'string' && name.trim() !== '';
+        const isDescriptionValid = typeof description === 'string' && description.trim() !== '';
+        const isModelValid = typeof model === 'string' && model.trim() !== '';
+        const isBodyValid = typeof body === 'string' && body.trim() !== '';
+        const isFuelValid = typeof fuel === 'string' && fuel.trim() !== '';
+        const isTransmissionValid = typeof transmission === 'string' && transmission.trim() !== '';
+        const isDriveValid = typeof drive === 'string' && drive.trim() !== '';
+        const isCapacityValid = capacity > 0;
+        const isMileageValid = mileage > 0;
+        const isYearValid = year > 0;
+
+        // Check if image and image_cars have exactly 2 URLs
+        const imageCarsUrls = Object.values(image_cars);
+        const isImageCarsValid = imageCarsUrls.filter(url => url.trim() !== '').length === 2;
+
+        // Check if gallery has exactly 4 URLs
+        const galleryUrls = Object.values(gallery);
+        const isGalleryValid = galleryUrls.filter(url => url.trim() !== '').length === 4;
+
+        setIsSaveDisabled(!(isNameValid && isDescriptionValid && isModelValid && isBodyValid && isFuelValid && isTransmissionValid && isDriveValid && isCapacityValid && isImageCarsValid && isMileageValid && isYearValid && isGalleryValid));
     }, [formData]);
 
 
+    const handleDiscard = () => {
+        window.location.reload(); // Refresh the page
+    };
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -131,15 +151,16 @@ export default function CarForm(): JSX.Element {
                     <div className="">
                         <div className="space-y-[40px]">
                             <PerformanceAndSpecs formData={formData} handleChange={handleChange} />
-                            <Frontpage formData={formData} handleChange={handleChange} />
+                            <FrontpageImage formData={formData} handleChange={handleChange} />
                             <CoverImage formData={formData} handleChange={handleChange} />
                             <GalleryImages formData={formData} handleChange={handleChange} />
                         </div>
                         <div className="flex">
                             <div className="w-full flex justify-start">
                                 <button
-                                    type="submit"
-                                    className={`bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4 `}
+                                    type="button"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
+                                    onClick={handleDiscard}
                                 >
                                     Discard
                                 </button>
@@ -164,13 +185,13 @@ export default function CarForm(): JSX.Element {
                         )}
                         <div className="text-gray-500 mt-2">
                             <p className={formData.image.trim() !== '' ? 'text-green-500' : 'text-red-500'}>
-                                Number of image URLs in image: {formData.image.trim() !== '' ? '1' : '0'}/1
+                                Number Gallery Image: {formData.image.trim() !== '' ? '1' : '0'}/1
                             </p>
                             <p className={Object.values(formData.image_cars).filter(url => url.trim() !== '').length >= 2 ? 'text-green-500' : 'text-red-500'}>
-                                Number of image URLs in image_cars: {Object.values(formData.image_cars).filter(url => url.trim() !== '').length}/2
+                                Number of Cover Images: {Object.values(formData.image_cars).filter(url => url.trim() !== '').length}/2
                             </p>
                             <p className={Object.values(formData.gallery).filter(url => url.trim() !== '').length >= 4 ? 'text-green-500' : 'text-red-500'}>
-                                Number of image URLs in gallery: {Object.values(formData.gallery).filter(url => url.trim() !== '').length}/4
+                                Number of Gallery Images {Object.values(formData.gallery).filter(url => url.trim() !== '').length}/4
                             </p>
                         </div>
 
