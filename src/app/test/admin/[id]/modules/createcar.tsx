@@ -5,7 +5,6 @@ import Details from './groups/Details';
 import ImagesAndGallery from './groups/ImagesAndGallery';
 import Link from 'next/link';
 import Description from './groups/Description';
-import Test from '../test/page';
 import FrontPageImage from './groups/ImagesAndGallery/FrontpageImage';
 import CoverImage from './groups/ImagesAndGallery/CoverImages';
 import GalleryImages from './groups/ImagesAndGallery/GalleryImages';

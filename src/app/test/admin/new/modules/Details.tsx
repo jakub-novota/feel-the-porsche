@@ -43,12 +43,12 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                         <select
                             id="fuel"
                             name="fuel"
-                            value={formData.fuel}
                             onChange={handleChange}
-                            defaultValue={"Gasoline"}
+                            defaultValue={"default"}
                             className="border border-gray-300 rounded-[10px]  px-3 py-2 w-full"
                         >
-                            <option value="Gasoline" selected>Gasoline</option>
+                            <option disabled value={"default"} >Select Fuel</option>
+                            <option value="Gasoline" >Gasoline</option>
                             <option value="Diesel">Diesel</option>
                             <option value="Electric">Electric</option>
                         </select>
@@ -61,8 +61,10 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             id="transmission"
                             name="transmission"
                             onChange={handleChange}
+                            defaultValue={"default"}
                             className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
                         >
+                            <option disabled value={"default"} >Select Transmission</option>
                             <option value="Manual" >Manual</option>
                             <option value="Automatic">Automatic</option>
                         </select>
@@ -75,8 +77,10 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             id="drive"
                             name="drive"
                             onChange={handleChange}
+                            defaultValue={"default"}
                             className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
                         >
+                            <option disabled value={"default"} >Select Drive</option>
                             <option value="RWD">Rear-Wheel Drive (RWD)</option>
                             <option value="FWD">Front-Wheel Drive (FWD)</option>
                             <option value="AWD">All-Wheel Drive (AWD)</option>
@@ -126,7 +130,6 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             type="number"
                             id="year"
                             name="year"
-                            value={formData.year}
                             onChange={handleChange}
                             className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
                         />

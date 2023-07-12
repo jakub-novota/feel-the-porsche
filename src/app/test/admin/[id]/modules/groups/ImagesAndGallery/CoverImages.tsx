@@ -51,11 +51,6 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
         }
     }, [uploadStatus, showImages, selectedImages, hasChanges]);
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        handleChange({ target: { name, value } } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
-        setHasChanges(true);
-    };
 
     const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>, imageKey: string) => {
         const file = event.target.files?.[0];
