@@ -90,8 +90,9 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
         }
     };
 
+    const handleImageDelete = async (event: React.MouseEvent<HTMLButtonElement>, imageKey: string, imageUrl: string) => {
+        event.preventDefault(); // Prevent the default form submission behavior
 
-    const handleImageDelete = async (imageKey: string, imageUrl: string) => {
         // Updating the uploadStatus state to 'uploading' when the image deletion starts.
         setUploadStatus(prev => ({ ...prev, [imageKey]: 'uploading' }));
 
@@ -130,9 +131,6 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
             setUploadError(prev => ({ ...prev, [imageKey]: `Error deleting image: ${error}` }));
         }
     };
-
-
-
 
     return (
         <div className="mb-4">
@@ -180,7 +178,7 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                                 )}
                                 {(imageUrl || previewImage) && (
                                     <button
-                                        onClick={() => handleImageDelete(imageKey, imageUrl)}
+                                        onClick={(event) => handleImageDelete(event, imageKey, imageUrl)}
                                         className="absolute top-2 right-2 bg-red-500 hover:bg-red-700 transition duration-500 text-white px-2 py-1 rounded"
                                     >
                                         Delete
