@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
@@ -131,6 +131,41 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
             setUploadError(prev => ({ ...prev, [imageKey]: `Error deleting image: ${error}` }));
         }
     };
+
+    useEffect(() => {
+        const handleBeforeUnload = async () => {
+            const imageKeys = Object.keys(uploadStatus);
+            for (const imageKey of imageKeys) {
+                if (uploadStatus[imageKey] === 'success') {
+                    // Delete the uploaded image when the user refreshes the page
+                    const imageUrl = formData.gallery[imageKey as keyof typeof formData.gallery] || '';
+                    try {
+                        const response = await fetch('/api/upload', {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ imageUrl }),
+                        });
+
+                        if (response.ok) {
+                            console.log(`Image ${imageKey} deleted successfully`);
+                        } else {
+                            console.error(`Failed to delete image ${imageKey}`);
+                        }
+                    } catch (error) {
+                        console.error(`Error deleting image ${imageKey}:`, error);
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [uploadStatus, formData.gallery]);
 
     return (
         <div className="mb-4">

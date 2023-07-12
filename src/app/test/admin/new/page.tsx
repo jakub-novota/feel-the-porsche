@@ -121,14 +121,6 @@ export default function CarForm(): JSX.Element {
                     <h1 className="text-3xl font-bold ">Edit Car</h1>
                 </div>
             </div>
-            <div className="mb-[20px]">
-                <p className="">
-                    <span className="font-medium">Name:</span>
-                </p>
-                <p className="">
-                    <span className="font-medium">ID:</span>
-                </p>
-            </div>
 
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -147,9 +139,7 @@ export default function CarForm(): JSX.Element {
                             <div className="w-full flex justify-start">
                                 <button
                                     type="submit"
-                                    className={`bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4 ${isSaveDisabled ? 'opacity-50 cursor-not-allowed' : ''
-                                        }`}
-                                    disabled={isSaveDisabled}
+                                    className={`bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4 `}
                                 >
                                     Discard
                                 </button>

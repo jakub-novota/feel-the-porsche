@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
@@ -88,6 +88,39 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
         }
     };
 
+
+
+    useEffect(() => {
+        const handleBeforeUnload = async () => {
+            if (uploadStatus === 'success') {
+                // Delete the uploaded image when the user refreshes the page
+                const imageUrl = formData.image || '';
+                try {
+                    const response = await fetch('/api/upload', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ imageUrl }),
+                    });
+
+                    if (response.ok) {
+                        console.log('Image deleted successfully');
+                    } else {
+                        console.error('Failed to delete image');
+                    }
+                } catch (error) {
+                    console.error('Error deleting image:', error);
+                }
+            }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [uploadStatus, formData.image]);
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">Gallery Image</h3>
