@@ -2,7 +2,6 @@ import { useState, ChangeEvent } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import PeformanceAndSpecs from './groups/PerformanceAndSpecs';
 import Details from './groups/Details';
-import ImagesAndGallery from './groups/ImagesAndGallery';
 import Link from 'next/link';
 import Description from './groups/Description';
 import FrontPageImage from './groups/ImagesAndGallery/FrontpageImage';
