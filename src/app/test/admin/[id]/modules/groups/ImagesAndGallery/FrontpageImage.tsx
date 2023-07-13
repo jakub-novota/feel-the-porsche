@@ -1,3 +1,4 @@
+"use client"
 import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';

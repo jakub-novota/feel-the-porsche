@@ -69,15 +69,14 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                     setUploadStatus(prev => ({ ...prev, [imageKey]: 'success' }));
 
                     const uploadedImage = await response.json();
-                    const updatedImageCars = { ...formData.gallery, [imageKey]: '/uploads/' + renamedFile.name };
+                    const updatedGallery = { ...formData.gallery, [imageKey]: '/uploads/' + renamedFile.name };
                     handleChange({
                         target: {
-                            name: 'gallery', // this was 'gallery'
-                            value: updatedImageCars,
+                            name: 'gallery',
+                            value: updatedGallery,
                         },
                     } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
-                }
-                else {
+                } else {
                     // Updating the uploadStatus state to 'error' and uploadError state when the image upload fails.
                     setUploadStatus(prev => ({ ...prev, [imageKey]: 'error' }));
                     setUploadError(prev => ({ ...prev, [imageKey]: 'Failed to upload image.' }));
@@ -111,16 +110,15 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
             if (response.ok) {
                 setUploadStatus(prev => ({ ...prev, [imageKey]: 'deleted' }));
 
-                const updatedImageCars = { ...formData.gallery };
-                updatedImageCars[imageKey as keyof typeof updatedImageCars] = ''; // Clear the image URL
+                const updatedGallery = { ...formData.gallery };
+                updatedGallery[imageKey as keyof typeof updatedGallery] = ''; // Clear the image URL
                 handleChange({
                     target: {
-                        name: 'gallery', // this was 'gallery'
-                        value: updatedImageCars,
+                        name: 'gallery',
+                        value: updatedGallery,
                     },
                 } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
-            }
-            else {
+            } else {
                 // Updating the uploadStatus state to 'error' and uploadError state when the image deletion fails.
                 setUploadStatus(prev => ({ ...prev, [imageKey]: 'error' }));
                 setUploadError(prev => ({ ...prev, [imageKey]: 'Failed to delete image.' }));

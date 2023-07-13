@@ -88,12 +88,9 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
         }
     };
 
-
-
     useEffect(() => {
         const handleBeforeUnload = async () => {
             if (uploadStatus === 'success') {
-                // Delete the uploaded image when the user refreshes the page
                 const imageUrl = formData.image || '';
                 try {
                     const response = await fetch('/api/upload', {
@@ -121,13 +118,20 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
     }, [uploadStatus, formData.image]);
+
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">Gallery Image</h3>
             <div className="mt-4">
                 {previewImage ? (
                     <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
-                        <img src={previewImage} alt="Selected Image" className="w-full h-full object-cover rounded" />
+                        <Image
+                            src={previewImage}
+                            alt="Selected Image"
+                            layout="fill"
+                            objectFit="cover"
+                            className="rounded"
+                        />
                     </div>
                 ) : (
                     <div className="relative h-[100px] w-[150px] bg-gray-200 rounded flex items-center justify-center">

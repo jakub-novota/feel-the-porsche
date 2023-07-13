@@ -1,3 +1,4 @@
+"use client"
 import { ChangeEvent, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Car } from '@/app/cars/Modules/CarInterface';

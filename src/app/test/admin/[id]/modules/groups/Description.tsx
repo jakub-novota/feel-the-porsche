@@ -29,8 +29,6 @@ export default function Description({ car, formData, handleChange }: Description
         );
     };
 
-
-
     return (
         <>
             <div>
@@ -94,7 +92,7 @@ export default function Description({ car, formData, handleChange }: Description
                                 <p className="mb-2">&lt;strong&gt; or &lt;b&gt;:</p>
                                 <p className="mb-2">&lt;em&gt; or &lt;i&gt;:</p>
                                 <p className="mb-2">&lt;u&gt;:</p>
-                                <p className="mb-2">&lt;Link href=""&gt;:</p>
+                                <p className="mb-2">&lt;Link href=&quot;&quot;&gt;:</p>
                                 <p className="mb-2">&lt;br&gt;:</p>
                             </div>
 
@@ -133,8 +131,6 @@ export default function Description({ car, formData, handleChange }: Description
                             </div>
                         </div>
                     )}
-
-
 
                     {showDescriptionOutput && renderDescriptionOutput()}
                 </div>

@@ -1,4 +1,3 @@
-"use client"
 import { useEffect, useState } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Link from 'next/link';

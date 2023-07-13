@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, ChangeEvent } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import PeformanceAndSpecs from './groups/PerformanceAndSpecs';
@@ -87,7 +88,7 @@ export default function CarForm({ car }: CarFormProps): JSX.Element {
 
         // Check if image and image_cars have exactly 2 URLs
         const imageCarsUrls = Object.values(image_cars);
-        const isImageCarsValid = imageCarsUrls.filter(url => url.trim() !== '').length === 2;
+        const isImageCarsValid = imageCarsUrls.filter(url => url.trim() !== '').length >= 2;
 
         // Check if gallery has exactly 4 URLs
         const galleryUrls = Object.values(gallery);
