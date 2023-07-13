@@ -163,7 +163,7 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
-    }, [uploadStatus, formData.gallery]);
+    }, [uploadStatus, formData.gallery, formData]);
 
     return (
         <div className="mb-4">
@@ -192,7 +192,7 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                                             />
                                         )}
                                         {previewImage && (
-                                            <img src={previewImage} alt="Selected Image" className="w-full h-full object-cover rounded" />
+                                            <Image src={previewImage} alt="Selected Image" fill className="w-full h-full object-cover rounded" />
                                         )}
                                     </div>
                                 ) : (

@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Link from 'next/link';
@@ -195,7 +196,7 @@ export default function List(): JSX.Element {
       {showConfirmation && carToDelete && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded">
-            <p>Are you sure you want to delete the car "{carToDelete.name}"?</p>
+            <p>Are you sure you want to delete the car &quot;{carToDelete.name}&quot;?</p>
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleCancelDelete}
