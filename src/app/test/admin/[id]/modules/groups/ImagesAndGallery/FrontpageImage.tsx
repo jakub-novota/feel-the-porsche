@@ -67,7 +67,7 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
 
         try {
             const imageUrl = formData.image || car.image || '';
-             const response = await fetch('/api/upload', {
+            const response = await fetch('/api/upload', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -125,12 +125,18 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
         <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">Front Page Image</h3>
             <div className="mt-4">
-                {previewImage ? (
+                {previewImage && uploadStatus !== 'deleted' ? (
                     <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
-                        <img src={previewImage} alt="Selected Image" className="w-full h-full object-cover rounded" />
+                        <Image
+                            src={previewImage}
+                            alt="Selected Image"
+                            fill
+                            className="w-full h-full object-cover rounded"
+                            unoptimized={true}   // Add this line
+                        />
                         <button
                             onClick={handleImageDelete}
-                            className="mt-2 bg-red-500 hover:bg-red-700 transition duration-500 text-white px-2 py-1 rounded"
+                            className="mt-2 bg-red-500 hover:bg-red-700 transition duration-500 text-white px-2 py-1 rounded absolute bottom-2 right-2"
                         >
                             Delete
                         </button>
@@ -156,15 +162,17 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
                         </>
                     ) : (
                         <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
-                            <img
+                            <Image
                                 src={formData.image || car.image}
                                 onError={handleImageError}
+                                fill
                                 alt="Existing Image"
                                 className="w-full h-full object-cover rounded"
+                                unoptimized={true}   // Add this line
                             />
                             <button
                                 onClick={handleImageDelete}
-                                className="mt-2 bg-red-500 hover:bg-red-700 transition duration-500 text-white px-2 py-1 rounded"
+                                className="mt-2 bg-red-500 hover:bg-red-700 transition duration-500 text-white px-2 py-1 rounded absolute bottom-2 right-2"
                             >
                                 Delete
                             </button>
@@ -186,10 +194,10 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
                 )}
                 {uploadStatus && (
                     <p className="mt-2 text-xs text-center text-red-400">
-                        {uploadStatus === 'uploading' && 'Uploading...'}
-                        {uploadStatus === 'success' && 'Image uploaded successfully'}
-                        {uploadStatus === 'deleted' && 'Image deleted successfully'}
-                        {uploadStatus === 'error' && `Error: ${uploadError}`}
+                        {uploadStatus === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
+                        {uploadStatus === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
+                        {uploadStatus === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
+                        {uploadStatus === 'error' && <p className="text-xs mt-2 text-center text-red-500">Error: {uploadError}</p>}
                     </p>
                 )}
             </div>
