@@ -15,11 +15,23 @@ async function getData(): Promise<Car[]> {
   return data;
 }
 
+async function deleteCar(id: string): Promise<void> {
+  const response = await fetch(`/api/cars?id=${id}`, { method: 'DELETE' });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete car');
+  }
+
+  console.log('Car deleted successfully');
+}
+
 export default function List(): JSX.Element {
   const [data, setData] = useState<Car[]>([]);
   const [sortField, setSortField] = useState<string>('year');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [searchValue, setSearchValue] = useState<string>('');
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const [carToDelete, setCarToDelete] = useState<Car | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -71,6 +83,39 @@ export default function List(): JSX.Element {
     }
   });
 
+  const handleDelete = (car: Car) => {
+    setCarToDelete(car);
+    setShowConfirmation(true);
+    // Disable scrolling when the popup is active
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleConfirmDelete = async () => {
+    if (carToDelete) {
+      try {
+        await deleteCar(carToDelete._id);
+        // Update the data state after deletion
+        const updatedData = data.filter((car) => car._id !== carToDelete._id);
+        setData(updatedData);
+      } catch (error) {
+        console.error('Error deleting car:', error);
+        // Handle the error
+      } finally {
+        setShowConfirmation(false);
+        setCarToDelete(null);
+        // Enable scrolling when the popup is closed
+        document.body.style.overflow = 'auto';
+      }
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmation(false);
+    setCarToDelete(null);
+    // Enable scrolling when the popup is closed
+    document.body.style.overflow = 'auto';
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4 text-center">All Cars</h1>
@@ -113,7 +158,7 @@ export default function List(): JSX.Element {
                   Year
                 </p>
               </th>
-              <th className="py-2 text-end">Edit</th>
+              <th className="py-2 text-end">Edit / Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -123,9 +168,20 @@ export default function List(): JSX.Element {
                 <td className="py-2">{car.name}</td>
                 <td className="py-2">{car.year}</td>
                 <td className="py-2 text-end">
-                  <Link href={`/test/admin/${car._id}`} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    Edit
-                  </Link>
+                  <div className="flex justify-end space-x-2">
+                    <Link
+                      href={`/test/admin/${car._id}`}
+                      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(car)}
+                      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2 flex items-center"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -137,6 +193,27 @@ export default function List(): JSX.Element {
           Create New Car
         </Link>
       </div>
+      {showConfirmation && carToDelete && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded">
+            <p>Are you sure you want to delete the car "{carToDelete.name}"?</p>
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={handleCancelDelete}
+                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
