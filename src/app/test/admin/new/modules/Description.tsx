@@ -46,8 +46,7 @@ const Description = ({ formData, handleChange }: DescriptionProps): JSX.Element 
                             id="name"
                             name="name"
                             onChange={handleChange}
-                            className={`border ${formData.name.trim() === '' ? 'border-red-500' : 'border-gray-300'
-                                } rounded-lg px-3 py-2 w-full mt-2`}
+                            className={`border ${formData.name.trim() === '' ? 'border-red-500' : 'border-gray-300'} rounded-lg px-3 py-2 w-full mt-2`}
                         />
                     </div>
                     <div className="mb-4">

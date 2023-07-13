@@ -21,7 +21,7 @@ export default function PeformanceAndSpecs({ formData, handleChange }: Peformanc
                             id="acceleration"
                             name="acceleration"
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                            className={`border border-gray-300 rounded-[10px] px-3 py-2 w-full ${formData.acceleration <= 0 ? 'border-red-500' : 'border-gray-300'}`}
                         />
                         <span className="absolute top-2 right-8 text-gray-500">0-100km/h</span>
                     </div>
@@ -38,7 +38,7 @@ export default function PeformanceAndSpecs({ formData, handleChange }: Peformanc
                             id="cylinder_capacity"
                             name="cylinder_capacity"
                             onChange={handleChange}
-                            className="border border-gray-300 rounded px-3 py-2 w-full"
+                            className={`border border-gray-300 rounded px-3 py-2 w-full  ${formData.cylinder_capacity <= 0 ? 'border-red-500' : 'border-gray-300'}`}
                         />
                         <span className="absolute top-2 right-8 text-gray-500">liter</span>
                     </div>
@@ -56,7 +56,7 @@ export default function PeformanceAndSpecs({ formData, handleChange }: Peformanc
                                 id="power_PS"
                                 name="power_PS"
                                 onChange={handleChange}
-                                className="border border-gray-300  px-3 py-2 w-auto rounded-[10px]"
+                                className={`border border-gray-300  px-3 py-2 w-auto rounded-[10px]  ${formData.power_PS <= 0 ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             <span className="absolute top-2 right-8 text-gray-500">PS</span>
                         </div>
@@ -72,7 +72,7 @@ export default function PeformanceAndSpecs({ formData, handleChange }: Peformanc
                                 id="power_HP"
                                 name="power_HP"
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[10px] px-3 py-2 w-auto "
+                                className={`border border-gray-300 rounded-[10px] px-3 py-2 w-auto  ${formData.power_HP <= 0 ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             <span className="absolute top-2 right-8 text-gray-500">HP</span>
                         </div>
@@ -89,7 +89,7 @@ export default function PeformanceAndSpecs({ formData, handleChange }: Peformanc
                                 id="max_speed"
                                 name="max_speed"
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[10px] px-3 py-2 w-auto"
+                                className={`border border-gray-300 rounded-[10px] px-3 py-2 w-auto  ${formData.max_speed <= 0 ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             <span className="absolute top-2 right-8 text-gray-500">km/h</span>
                         </div>
