@@ -280,10 +280,14 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                 {Array.from(Array(4).keys()).map((index) => {
                     const imageKey = (index + 1).toString();
                     return (
-                        <div key={imageKey} className="relative">
-                            {renderImage(imageKey)}
-                            {uploadStatus[imageKey] && <p className="text-xs mt-2 text-center">{uploadStatus[imageKey]}</p>}
-                            {uploadError[imageKey] && <p className="text-xs mt-2 text-center text-red-500">{uploadError[imageKey]}</p>}
+                        <div key={imageKey} className="relative ">
+                            <div className='flex flex-col items-center'>
+                                {renderImage(imageKey)}
+                                {uploadStatus[imageKey] === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
+                                {uploadStatus[imageKey] === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
+                                {uploadStatus[imageKey] === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
+                                {uploadStatus[imageKey] === 'error' && <p className="text-xs mt-2 text-center text-red-500">Error: {uploadError[imageKey]}</p>}
+                            </div>
                         </div>
                     );
                 })}
