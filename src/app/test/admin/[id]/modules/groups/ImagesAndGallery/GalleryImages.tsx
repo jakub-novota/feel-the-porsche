@@ -45,6 +45,16 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
 
     const handleImageError = (imageKey: string) => {
         setImageLoadError(prev => ({ ...prev, [imageKey]: true }));
+
+        const imageUrl = formData.gallery?.[imageKey as keyof typeof formData.gallery] || '';
+        const updatedGallery = { ...formData.gallery };
+        delete updatedGallery[imageKey as keyof typeof updatedGallery];
+        handleChange({
+            target: {
+                name: 'gallery',
+                value: updatedGallery,
+            },
+        } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
     };
 
 
@@ -168,9 +178,6 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
 
                 // Reset error state for this image
                 setImageLoadError(prev => ({ ...prev, [imageKey]: false }));
-
-                // Add cache buster
-                setCacheBuster(uuidv4());
             } else {
                 throw new Error('Failed to delete image');
             }
@@ -186,10 +193,18 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                 ...prevUploadError,
                 [imageKey]: 'Failed to delete image. Please try again.',
             }));
+
+            // Remove the image from the gallery if it fails to delete
+            const updatedGallery = { ...formData.gallery };
+            delete updatedGallery[imageKey as keyof typeof updatedGallery];
+            handleChange({
+                target: {
+                    name: 'gallery',
+                    value: updatedGallery,
+                },
+            } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
         }
     };
-
-
 
 
 

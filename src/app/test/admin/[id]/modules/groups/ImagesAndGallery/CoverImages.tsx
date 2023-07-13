@@ -45,6 +45,16 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
 
     const handleImageError = (imageKey: string) => {
         setImageLoadError(prev => ({ ...prev, [imageKey]: true }));
+
+        const imageUrl = formData.image_cars?.[imageKey as keyof typeof formData.image_cars] || '';
+        const updatedImageCars = { ...formData.image_cars };
+        delete updatedImageCars[imageKey as keyof typeof updatedImageCars];
+        handleChange({
+            target: {
+                name: 'image_cars',
+                value: updatedImageCars,
+            },
+        } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
     };
 
 
@@ -168,9 +178,6 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
 
                 // Reset error state for this image
                 setImageLoadError(prev => ({ ...prev, [imageKey]: false }));
-
-                // Add cache buster
-                setCacheBuster(uuidv4());
             } else {
                 throw new Error('Failed to delete image');
             }
@@ -186,6 +193,16 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                 ...prevUploadError,
                 [imageKey]: 'Failed to delete image. Please try again.',
             }));
+
+            // Remove the image from the image_cars object if it fails to delete
+            const updatedImageCars = { ...formData.image_cars };
+            delete updatedImageCars[imageKey as keyof typeof updatedImageCars];
+            handleChange({
+                target: {
+                    name: 'image_cars',
+                    value: updatedImageCars,
+                },
+            } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
         }
     };
 
