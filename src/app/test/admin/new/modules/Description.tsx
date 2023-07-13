@@ -9,7 +9,7 @@ interface DescriptionProps {
     handleChange: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
 }
 
-export default function Description({ formData, handleChange }: DescriptionProps): JSX.Element {
+const Description = ({ formData, handleChange }: DescriptionProps): JSX.Element => {
     const [showExamples, setShowExamples] = useState(false);
     const [showDescriptionOutput, setShowDescriptionOutput] = useState(false);
 
@@ -39,14 +39,15 @@ export default function Description({ formData, handleChange }: DescriptionProps
                 <div className="border border-gray-300 rounded-lg p-4">
                     <div className="mb-4">
                         <label htmlFor="name" className="text-[#313131]">
-                            Car Name
+                            Car Name:
                         </label>
                         <input
                             type="text"
                             id="name"
                             name="name"
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-lg px-3 py-2 w-full mt-2"
+                            className={`border ${formData.name.trim() === '' ? 'border-red-500' : 'border-gray-300'
+                                } rounded-lg px-3 py-2 w-full mt-2`}
                         />
                     </div>
                     <div className="mb-4">
@@ -57,7 +58,8 @@ export default function Description({ formData, handleChange }: DescriptionProps
                             id="description"
                             name="description"
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-lg px-3 py-2 w-full min-h-[200px] mt-2"
+                            className={`border ${formData.description.trim() === '' ? 'border-red-500' : 'border-gray-300'
+                                } rounded-lg px-3 py-2 w-full min-h-[200px] mt-2`}
                         />
                     </div>
                     <div className="flex space-x-[20px]">
@@ -137,4 +139,6 @@ export default function Description({ formData, handleChange }: DescriptionProps
             </div>
         </>
     );
-}
+};
+
+export default Description;

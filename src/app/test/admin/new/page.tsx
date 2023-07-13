@@ -96,9 +96,28 @@ export default function CarForm(): JSX.Element {
     };
 
     React.useEffect(() => {
-        const { name, description, image, image_cars, gallery, model, body, fuel, transmission, drive, capacity, mileage, year } = formData;
+        const {
+            name,
+            description,
+            image,
+            image_cars,
+            gallery,
+            model,
+            body,
+            fuel,
+            transmission,
+            drive,
+            capacity,
+            mileage,
+            year,
+            acceleration,
+            cylinder_capacity,
+            power_PS,
+            power_HP,
+            max_speed
+        } = formData;
 
-        // Check if name, description, model, body, fuel, transmission, drive, capacity, mileage, and year are given
+        // Check if name, description, model, body, fuel, transmission, drive, capacity, mileage, year, acceleration, cylinder_capacity, power_PS, power_HP, and max_speed are given
         const isNameValid = typeof name === 'string' && name.trim() !== '';
         const isDescriptionValid = typeof description === 'string' && description.trim() !== '';
         const isModelValid = typeof model === 'string' && model.trim() !== '';
@@ -109,6 +128,11 @@ export default function CarForm(): JSX.Element {
         const isCapacityValid = capacity > 0;
         const isMileageValid = mileage > 0;
         const isYearValid = year > 0;
+        const isAccelerationValid = acceleration > 0;
+        const isCylinderCapacityValid = cylinder_capacity > 0;
+        const isPowerPSValid = power_PS > 0;
+        const isPowerHPValid = power_HP > 0;
+        const isMaxSpeedValid = max_speed > 0;
 
         // Check if image and image_cars have exactly 2 URLs
         const imageCarsUrls = Object.values(image_cars);
@@ -118,8 +142,29 @@ export default function CarForm(): JSX.Element {
         const galleryUrls = Object.values(gallery);
         const isGalleryValid = galleryUrls.filter(url => url.trim() !== '').length === 4;
 
-        setIsSaveDisabled(!(isNameValid && isDescriptionValid && isModelValid && isBodyValid && isFuelValid && isTransmissionValid && isDriveValid && isCapacityValid && isImageCarsValid && isMileageValid && isYearValid && isGalleryValid));
+        setIsSaveDisabled!(
+            !(
+                isNameValid &&
+                isDescriptionValid &&
+                isModelValid &&
+                isBodyValid &&
+                isFuelValid &&
+                isTransmissionValid &&
+                isDriveValid &&
+                isCapacityValid &&
+                isMileageValid &&
+                isYearValid &&
+                isAccelerationValid &&
+                isCylinderCapacityValid &&
+                isPowerPSValid &&
+                isPowerHPValid &&
+                isMaxSpeedValid &&
+                isImageCarsValid &&
+                isGalleryValid
+            )
+        );
     }, [formData]);
+
 
 
     const handleDiscard = () => {

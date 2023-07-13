@@ -20,7 +20,8 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                         id="model"
                         name="model"
                         onChange={handleChange}
-                        className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                        className={`border ${formData.model.trim() === '' ? 'border-red-500' : 'border-gray-300'
+                            } rounded-lg px-3 py-2 w-full mt-2`}
                     />
                 </div>
                 <div className="space-y-[10px]">
@@ -80,7 +81,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             defaultValue={"default"}
                             className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
                         >
-                            <option disabled value={"default"} >Select Drive</option>
+                            <option disabled value={"default"} >Select drive</option>
                             <option value="RWD">Rear-Wheel Drive (RWD)</option>
                             <option value="FWD">Front-Wheel Drive (FWD)</option>
                             <option value="AWD">All-Wheel Drive (AWD)</option>
@@ -130,6 +131,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             type="number"
                             id="year"
                             name="year"
+                            value={formData.year}
                             onChange={handleChange}
                             className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
                         />
