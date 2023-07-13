@@ -1,5 +1,5 @@
 "use client"
-import CarForm from "./modules/createcar";
+import CarForm from "./modules/EditCar";
 import React, { useEffect, useState } from 'react';
 import { Car } from "@/app/cars/Modules/CarInterface";
 import { useParams } from 'next/navigation';
@@ -29,37 +29,11 @@ export default function Page() {
         fetchData();
     }, [carId]);
 
-    const handleFormSubmit = (formData: Car) => {
-        //console.log("DATA :", carData);
-
-
-
-        const { _id, ...updatedData } = formData;
-
-        // Make the PUT request to the API
-        fetch(`/api/cars/${_id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedData),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // Handle the response from the API
-                console.log('Updated car:', data);
-            })
-            .catch((error) => {
-                // Handle any errors that occur during the request
-                console.error('Error updating car:', error);
-            });
-    };
-
 
     return (
         <>
             {carData && (
-                <CarForm car={carData} onSubmit={handleFormSubmit} />
+                <CarForm car={carData} />
             )}
         </>
     )

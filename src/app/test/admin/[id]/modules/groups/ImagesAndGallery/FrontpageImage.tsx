@@ -1,119 +1,197 @@
-import { ChangeEvent, useState } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
+import { v4 as uuidv4 } from 'uuid';
 
 interface FrontPageImageProps {
-    car: Car;
     formData: Car;
     handleChange: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+    car: Car;
 }
 
-export default function FrontPageImage({ car, formData, handleChange }: FrontPageImageProps): JSX.Element {
+export default function FrontPageImage({ formData, handleChange, car }: FrontPageImageProps): JSX.Element {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
-    const [showImage, setShowImage] = useState<boolean>(car.image ? true : false);
-    const [imageChanged, setImageChanged] = useState<boolean>(false);
-    const [uploadStatus, setUploadStatus] = useState<string>('');
-    const [postUploadImages, setPostUploadImages] = useState<string[]>([]);
+    const [uploadStatus, setUploadStatus] = useState<'uploading' | 'success' | 'deleted' | 'error' | null>(null);
+    const [uploadError, setUploadError] = useState<string | null>(null);
+    const [imageLoadError, setImageLoadError] = useState<boolean>(false);
+
+    const handleImageError = () => {
+        setImageLoadError(true);
+    };
 
     const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
+            setUploadStatus('uploading');
             setSelectedImage(file);
-            setUploadStatus('Uploading...');
-            setPreviewImage(URL.createObjectURL(file));
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreviewImage(e.target?.result as string);
+            };
+            reader.readAsDataURL(file);
 
             try {
-                const formData = new FormData();
-                formData.append('file', file);
+                const renamedFile = new File([file], `${uuidv4()}.${file.name.split('.').pop()}`, { type: file.type });
+                const uploadData = new FormData();
+                uploadData.append('file', renamedFile);
 
                 const response = await fetch('/api/upload', {
                     method: 'POST',
-                    body: formData,
+                    body: uploadData,
                 });
 
                 if (response.ok) {
+                    setUploadStatus('success');
                     const uploadedImage = await response.json();
-                    setUploadStatus('Upload successful');
-                    setSelectedImage(null);
-                    handleChange({ target: { name: 'image', value: '/uploads/' + uploadedImage.files[0].name } } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
-                    setPostUploadImages([uploadedImage.files[0].name]);
-                    setShowImage(true); // Show the uploaded image
+                    handleChange({
+                        target: {
+                            name: 'image',
+                            value: '/uploads/' + renamedFile.name,
+                        },
+                    } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
                 } else {
-                    setUploadStatus('Upload failed');
-                    console.error('Failed to upload image.');
+                    setUploadStatus('error');
+                    setUploadError('Failed to upload image.');
                 }
             } catch (error) {
-                console.error('Error uploading image:', error);
-                setUploadStatus('Upload failed');
+                setUploadStatus('error');
+                setUploadError(`Error uploading image: ${error}`);
             }
         }
     };
 
-    const handleImageDelete = () => {
-        setSelectedImage(null);
-        setPreviewImage(null);
-        handleChange({ target: { name: 'image', value: '' } } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
-        setShowImage(false);
-        setImageChanged(true);
-        setPostUploadImages([]);
+    const handleImageDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault(); // Prevent form submission
+        setUploadStatus('uploading');
+
+        try {
+            const imageUrl = formData.image || car.image || '';
+            const response = await fetch('/api/upload', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ imageUrl }),
+            });
+
+            if (response.ok) {
+                setUploadStatus('deleted');
+                handleChange({
+                    target: {
+                        name: 'image',
+                        value: '',
+                    },
+                } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+            } else {
+                setUploadStatus('error');
+                setUploadError('No Image was found. Please upload an image.');
+            }
+        } catch (error) {
+            console.error('Error deleting image:', error);
+            setUploadStatus('error');
+            setUploadError('No Image was found. Please upload an image.');
+        }
     };
+
+
+    useEffect(() => {
+        const handleBeforeUnload = async () => {
+            if (uploadStatus === 'success') {
+                // Delete the uploaded image when the user refreshes the page
+                const imageUrl = formData.image || car.image || '';
+                try {
+                    const response = await fetch(`/api/upload?imageUrl=${encodeURIComponent(imageUrl)}`, {
+                        method: 'DELETE',
+                    });
+
+                    if (response.ok) {
+                        console.log('Image deleted successfully');
+                    } else {
+                        console.error('Failed to delete image');
+                    }
+                } catch (error) {
+                    console.error('Error deleting image:', error);
+                }
+            }
+        };
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [uploadStatus, formData.image, car.image]);
 
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">Front Page Image</h3>
-            <div className={`border rounded-lg p-4 ${imageChanged ? 'border-orange-500' : 'border-green-500'}`}>
-                <div className="mb-4">
-                    {imageChanged && <p className="text-orange-500 mt-1">Please save the changes.</p>}
-                </div>
-                <div>
-                    {showImage ? (
-                        <div className="mb-4">
-                            {previewImage && (
-                                <div>
-                                    <p className="text-gray-700 font-medium">Selected Image:</p>
-                                    <Image src={previewImage} alt="Selected Image" width={200} height={200} />
-                                </div>
-                            )}
-                            {car.image && !previewImage && (
-                                <div>
-                                    <p className="text-gray-700 font-medium">Current Image:</p>
-                                    <Image src={car.image} alt="Current Image" width={200} height={200} />
-                                </div>
-                            )}
+            <div className="mt-4">
+                {previewImage ? (
+                    <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
+                        <img src={previewImage} alt="Selected Image" className="w-full h-full object-cover rounded" />
+                        <button
+                            onClick={handleImageDelete}
+                            className="mt-2 bg-red-500 hover:bg-red-700 transition duration-500 text-white px-2 py-1 rounded"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                ) : formData.image || car.image ? (
+                    imageLoadError ? (
+                        <>
+                            <div className="relative h-[100px] w-[150px] bg-gray-200 rounded flex items-center justify-center mt-4">
+                                <input
+                                    id="image-upload"
+                                    type="file"
+                                    accept="image/png, image/jpeg"
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    onChange={handleImageUpload}
+                                />
+                                <label htmlFor="image-upload" className="cursor-pointer">
+                                    Choose Image
+                                </label>
+                            </div>
+                            <div className="relative aspect-w-1 runded flex items-center justify-center">
+                                <span>No Image was found. Please upload an image.</span>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
+                            <img
+                                src={formData.image || car.image}
+                                onError={handleImageError}
+                                alt="Existing Image"
+                                className="w-full h-full object-cover rounded"
+                            />
                             <button
                                 onClick={handleImageDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                className="mt-2 bg-red-500 hover:bg-red-700 transition duration-500 text-white px-2 py-1 rounded"
                             >
                                 Delete
                             </button>
                         </div>
-                    ) : (
-                        <div className="mb-4">
-                            <label htmlFor="file-upload" className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
-                                Choose File
-                            </label>
-                            <input
-                                type="file"
-                                id="file-upload"
-                                accept="image/png, image/jpeg"
-                                onChange={handleImageUpload}
-                                className="hidden"
-                            />
-                        </div>
-                    )}
-                    {uploadStatus && <p className="text-gray-700">{uploadStatus}</p>}
-                    {postUploadImages.length > 0 && (
-                        <div>
-                            <h4 className="text-gray-700 font-medium">Post-upload Images:</h4>
-                            <ul>
-                                {postUploadImages.map((imageName, index) => (
-                                    <li key={index}>{imageName}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
+                    )
+                ) : (
+                    <div className="relative h-[100px] w-[150px] bg-gray-200 rounded flex items-center justify-center">
+                        <input
+                            id="image-upload"
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            onChange={handleImageUpload}
+                        />
+                        <label htmlFor="image-upload" className="cursor-pointer">
+                            Choose Image
+                        </label>
+                    </div>
+                )}
+                {uploadStatus && (
+                    <p className="mt-2 text-xs text-center text-red-400">
+                        {uploadStatus === 'uploading' && 'Uploading...'}
+                        {uploadStatus === 'success' && 'Image uploaded successfully'}
+                        {uploadStatus === 'deleted' && 'Image deleted successfully'}
+                        {uploadStatus === 'error' && `Error: ${uploadError}`}
+                    </p>
+                )}
             </div>
         </div>
     );
