@@ -67,7 +67,7 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
 
         try {
             const imageUrl = formData.image || car.image || '';
-            const response = await fetch('/api/upload', {
+             const response = await fetch('/api/upload', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
