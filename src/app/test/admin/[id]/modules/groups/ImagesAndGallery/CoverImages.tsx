@@ -34,6 +34,19 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
         "3": null,
         "4": null,
     });
+    const [imageLoadError, setImageLoadError] = useState<Record<string, boolean>>({
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+    });
+    const [cacheBuster, setCacheBuster] = useState<string | null>(null);
+
+
+    const handleImageError = (imageKey: string) => {
+        setImageLoadError(prev => ({ ...prev, [imageKey]: true }));
+    };
+
 
     const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>, imageKey: string) => {
         const file = event.target.files?.[0];
@@ -78,6 +91,7 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                             value: updatedImageCars,
                         },
                     } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+                    setCacheBuster(uuidv4());
                 } else {
                     // Updating the uploadStatus state to 'error' and uploadError state when the image upload fails.
                     setUploadStatus(prev => ({ ...prev, [imageKey]: 'error' }));
@@ -89,39 +103,141 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                 setUploadError(prev => ({ ...prev, [imageKey]: `Error uploading image: ${error}` }));
             }
         }
+
     };
 
-    const handleImageDelete = (imageKey: string) => {
+    const handleImageDelete = async (event: React.MouseEvent<HTMLButtonElement>, imageKey: string) => {
+        event.preventDefault();
+        // Clear selected image
         setSelectedImages(prevSelectedImages => ({
             ...prevSelectedImages,
             [imageKey]: null,
         }));
 
-        const updatedImageCars = { ...formData.image_cars };
-        updatedImageCars[imageKey as keyof typeof updatedImageCars] = ''; // Clear the image URL
-        handleChange({
-            target: {
-                name: 'image_cars',
-                value: updatedImageCars,
-            },
-        } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+        // Clear preview image
+        setPreviewImages(prevPreviewImages => ({
+            ...prevPreviewImages,
+            [imageKey]: null,
+        }));
+
+        // Set upload status to 'uploading'
+        setUploadStatus(prevUploadStatus => ({
+            ...prevUploadStatus,
+            [imageKey]: 'uploading',
+        }));
+
+        // Clear upload error
+        setUploadError(prevUploadError => ({
+            ...prevUploadError,
+            [imageKey]: null,
+        }));
+
+        // Clear image load error
+        setImageLoadError(prevImageLoadError => ({
+            ...prevImageLoadError,
+            [imageKey]: false,
+        }));
+
+        const imageUrl = formData.image_cars?.[imageKey as keyof typeof formData.image_cars] || '';
+
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ imageUrl }),
+            });
+
+            if (response.ok) {
+                // Clear the image URL in formData
+                const updatedImageCars = { ...formData.image_cars };
+                delete updatedImageCars[imageKey as keyof typeof updatedImageCars];
+                handleChange({
+                    target: {
+                        name: 'image_cars',
+                        value: updatedImageCars,
+                    },
+                } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+
+                // Set upload status to 'deleted'
+                setUploadStatus(prevUploadStatus => ({
+                    ...prevUploadStatus,
+                    [imageKey]: 'deleted',
+                }));
+
+                // Reset error state for this image
+                setImageLoadError(prev => ({ ...prev, [imageKey]: false }));
+
+                // Add cache buster
+                setCacheBuster(uuidv4());
+            } else {
+                throw new Error('Failed to delete image');
+            }
+        } catch (error) {
+            // Set upload status to 'error'
+            setUploadStatus(prevUploadStatus => ({
+                ...prevUploadStatus,
+                [imageKey]: 'error',
+            }));
+
+            // Set upload error
+            setUploadError(prevUploadError => ({
+                ...prevUploadError,
+                [imageKey]: 'Failed to delete image. Please try again.',
+            }));
+        }
     };
 
 
 
-   
+
 
 
     const renderImage = (imageKey: string) => {
         const imageUrl = formData.image_cars?.[imageKey as keyof typeof formData.image_cars];
         const imageExists = imageUrl !== undefined && imageUrl !== '';
+        const previewUrl = previewImages[imageKey];
 
-        if (imageExists) {
+        if (imageLoadError[imageKey] && previewUrl) {
             return (
                 <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
-                    <Image src={imageUrl} alt={`Image ${imageKey}`} layout="fill" objectFit="cover" className="rounded" />
+                    <Image
+                        src={`${imageUrl}?v=${cacheBuster}`}  // Add cache-busting query here
+                        alt={`Image ${imageKey}`}
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded"
+                        unoptimized={true}   // Add this line
+                        onError={() => handleImageError(imageKey)}
+                    />
                     <button
-                        onClick={() => handleImageDelete(imageKey)}
+                        onClick={(event) => handleImageDelete(event, imageKey)}
+                        className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded"
+                    >
+                        Delete
+                    </button>
+                </div>
+            );
+        }
+
+        if (imageExists && !imageLoadError[imageKey]) {
+            return (
+                <div className="relative aspect-w-1 aspect-h-1 w-[150px] h-[100px] bg-gray-200 rounded">
+                    <Image
+                        src={`${imageUrl}?v=${cacheBuster}`}  // Add cache-busting query here
+                        alt={`Image ${imageKey}`}
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded"
+                        unoptimized={true}   // Add this line
+                        onError={() => {
+                            handleImageError(imageKey);
+                            setCacheBuster(uuidv4()); // Add this line
+                        }}
+                    />
+                    <button
+                        onClick={(event) => handleImageDelete(event, imageKey)}
                         className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded"
                     >
                         Delete
@@ -130,22 +246,32 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
             );
         } else {
             return (
-                <div className="relative h-[100px] w-[150px] bg-gray-200 rounded flex flex-col items-center justify-center">
-                    <input
-                        id={`image-upload-${imageKey}`}
-                        type="file"
-                        accept="image/png, image/jpeg"
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                        onChange={(event) => handleImageUpload(event, imageKey)}
-                    />
-                    <label htmlFor={`image-upload-${imageKey}`} className="cursor-pointer">
-                        Choose Image
-                    </label>
-                    <p className="text-xs mt-2 text-center">Image {imageKey}</p>
-                </div>
+                <>
+                    <div className='  w-[150px]'>
+                        <div className="relative  h-[100px] w-[150px] bg-gray-200 rounded flex flex-col items-center justify-center">
+                            <input
+                                id={`image-upload-${imageKey}`}
+                                type="file"
+                                accept="image/png, image/jpeg"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                onChange={(event) => handleImageUpload(event, imageKey)}
+                            />
+                            <label htmlFor={`image-upload-${imageKey}`} className="cursor-pointer">
+                                Choose Image
+                            </label>
+                            <p className="text-xs mt-2 text-center">Image {imageKey}</p>
+
+                        </div>
+                        <div>
+                            {imageLoadError[imageKey] && <p className="text-xs mt-2 text-center text-red-500">Image was not loaded correctly. Please upload a new one.</p>}
+                        </div>
+                    </div>
+                </>
             );
         }
     };
+
+
 
     return (
         <div className="mb-4">
