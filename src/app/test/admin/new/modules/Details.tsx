@@ -33,7 +33,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                         id="body"
                         name="body"
                         onChange={handleChange}
-                        className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                        className={`border border-gray-300 rounded-[10px] px-3 py-2 w-full ${formData.body.trim() === '' ? 'border-red-500' : 'border-gray-300'}`}
                     />
                 </div>
                 <div className="flex justify-between space-x-[20px]">
@@ -46,7 +46,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             name="fuel"
                             onChange={handleChange}
                             defaultValue={"default"}
-                            className="border border-gray-300 rounded-[10px]  px-3 py-2 w-full"
+                            className={`border border-gray-300 rounded-[10px]  px-3 py-2 w-full ${formData.fuel.trim() === '' ? 'border-red-500' : 'border-gray-300'}`}
                         >
                             <option disabled value={"default"} >Select Fuel</option>
                             <option value="Gasoline" >Gasoline</option>
@@ -63,7 +63,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             name="transmission"
                             onChange={handleChange}
                             defaultValue={"default"}
-                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                            className={`border border-gray-300 rounded-[10px] px-3 py-2 w-full ${formData.transmission.trim() === '' ? 'border-red-500' : 'border-gray-300'}`}
                         >
                             <option disabled value={"default"} >Select Transmission</option>
                             <option value="Manual" >Manual</option>
@@ -79,7 +79,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             name="drive"
                             onChange={handleChange}
                             defaultValue={"default"}
-                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                            className={`border border-gray-300 rounded-[10px] px-3 py-2 w-full ${formData.drive.trim() === '' ? 'border-red-500' : 'border-gray-300'}`}
                         >
                             <option disabled value={"default"} >Select drive</option>
                             <option value="RWD">Rear-Wheel Drive (RWD)</option>
@@ -103,7 +103,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                                 id="capacity"
                                 name="capacity"
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                                className={`border border-gray-300 rounded-[10px] px-3 py-2 w-full ${formData.capacity <= 0 ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             <span className="absolute top-2 right-8 text-gray-500">pers</span>
                         </div>
@@ -118,7 +118,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                                 id="mileage"
                                 name="mileage"
                                 onChange={handleChange}
-                                className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                                className={`border border-gray-300 rounded-[10px] px-3 py-2 w-full ${formData.mileage <= 0 ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             <span className="absolute top-2 right-2 text-gray-500">km</span>
                         </div>
@@ -133,7 +133,7 @@ export default function Details({ formData, handleChange }: DetailsProps): JSX.E
                             name="year"
                             value={formData.year}
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-[10px] px-3 py-2 w-full"
+                            className={`border border-gray-300 rounded-[10px] px-3 py-2 w-full ${formData.year <= 0  ? 'border-red-500' : 'border-gray-300'}`}
                         />
                     </div>
                 </div>
