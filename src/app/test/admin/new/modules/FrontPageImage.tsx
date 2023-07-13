@@ -153,9 +153,9 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
                 )}
                 {uploadStatus && (
                     <p className="mt-2 text-xs text-center text-red-400">
-                        {uploadStatus === 'uploading' && 'Uploading...'}
-                        {uploadStatus === 'success' && 'Image uploaded successfully'}
-                        {uploadStatus === 'deleted' && 'Image deleted successfully'}
+                        {uploadStatus === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
+                        {uploadStatus === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
+                        {uploadStatus === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
                         {uploadStatus === 'error' && `Error: ${uploadError}`}
                     </p>
                 )}

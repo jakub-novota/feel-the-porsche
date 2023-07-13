@@ -221,9 +221,9 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                                 )}
                             </div>
                             <p className="mt-2 text-xs text-center text-red-400">
-                                {currentUploadStatus === 'uploading' && 'Uploading...'}
-                                {currentUploadStatus === 'success' && 'Image uploaded successfully'}
-                                {currentUploadStatus === 'deleted' && 'Image deleted successfully'}
+                                {currentUploadStatus === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
+                                {currentUploadStatus === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
+                                {currentUploadStatus === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
                                 {currentUploadStatus === 'error' && `Error: ${currentUploadError}`}
                             </p>
                         </div>
