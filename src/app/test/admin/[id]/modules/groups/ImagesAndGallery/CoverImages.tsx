@@ -160,7 +160,7 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                     <Image
                         src={previewUrl}
                         alt={`Image ${imageKey}`}
-                        layout="fill"
+                        fill
                         objectFit="cover"
                         className="rounded"
                         unoptimized={true}

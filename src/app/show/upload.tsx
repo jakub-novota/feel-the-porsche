@@ -1,5 +1,7 @@
+"use client"
 import { useState, ChangeEvent, useEffect } from 'react';
 import Image from 'next/image';
+import API_BASE_URL from '../config';
 
 export default function ImageGallery() {
   const [file, setFile] = useState<File | null>(null);
@@ -28,7 +30,7 @@ export default function ImageGallery() {
     formData.append('photo', file);
 
     try {
-      const response = await fetch('http://localhost:3001/photos/upload', {
+      const response = await fetch(`${API_BASE_URL}/photos/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -48,7 +50,7 @@ export default function ImageGallery() {
 
   const handleDelete = async (filename: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/photos/${filename}`, {
+      const response = await fetch(`${API_BASE_URL}/photos/${filename}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -67,7 +69,7 @@ export default function ImageGallery() {
 
   const fetchImages = async () => {
     try {
-      const response = await fetch('http://localhost:3001/photos');
+      const response = await fetch(`${API_BASE_URL}/photos`);
       if (response.ok) {
         const data = await response.json();
         setImages(data.photos);
@@ -77,7 +79,7 @@ export default function ImageGallery() {
       }
     } catch (error) {
       console.log('Error fetching images:', error);
-      setErrorMessage('Error fetching images.');
+      setErrorMessage(`Error fetching images: ${(error as Error).message}`);
     }
   };
 
@@ -96,11 +98,12 @@ export default function ImageGallery() {
       {errorMessage && (
         <p className="bg-red-200 text-red-800 py-2 px-4 rounded mb-4">{errorMessage}</p>
       )}
+
       <div className="grid grid-cols-3 gap-4">
         {images.map((filename, index) => (
           <div key={filename} className="relative">
             <Image
-              src={`http://localhost:3001/photos/${filename}`}
+              src={`${API_BASE_URL}/photos/${filename}`}
               width={500}
               height={350}
               objectFit="cover"
