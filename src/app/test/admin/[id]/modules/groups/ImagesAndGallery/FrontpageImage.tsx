@@ -3,6 +3,7 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
+import API_BASE_URL from '@/app/config';
 
 interface FrontPageImageProps {
     formData: Car;
@@ -35,9 +36,9 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
             try {
                 const renamedFile = new File([file], `${uuidv4()}.${file.name.split('.').pop()}`, { type: file.type });
                 const uploadData = new FormData();
-                uploadData.append('file', renamedFile);
+                uploadData.append('photo', renamedFile);
 
-                const response = await fetch('/api/upload', {
+                const response = await fetch(`${API_BASE_URL}/photos/upload`, {
                     method: 'POST',
                     body: uploadData,
                 });
@@ -48,7 +49,7 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
                     handleChange({
                         target: {
                             name: 'image',
-                            value: '/uploads/' + renamedFile.name,
+                            value: renamedFile.name,
                         },
                     } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
                 } else {
@@ -67,14 +68,12 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
         setUploadStatus('uploading');
 
         try {
-            const imageUrl = formData.image || car.image || '';
-            const response = await fetch('/api/upload', {
+            const imageUrl = formData.image || '';
+            //console.log("The URL of the image ", imageUrl)
+            const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, {
                 method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ imageUrl }),
             });
+
 
             if (response.ok) {
                 setUploadStatus('deleted');
@@ -95,32 +94,27 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
         }
     };
 
-
     useEffect(() => {
-        const handleBeforeUnload = async () => {
-            if (uploadStatus === 'success') {
-                // Delete the uploaded image when the user refreshes the page
-                const imageUrl = formData.image || car.image || '';
+        const fetchPreviewImage = async () => {
+            if (formData.image || car.image) {
                 try {
-                    const response = await fetch(`/api/upload?imageUrl=${encodeURIComponent(imageUrl)}`, {
-                        method: 'DELETE',
-                    });
-
+                    const imageUrl = formData.image || car.image;
+                    const response = await fetch(`${API_BASE_URL}/photos/${encodeURIComponent(imageUrl)}`);
                     if (response.ok) {
-                        console.log('Image deleted successfully');
+                        const blob = await response.blob();
+                        const url = URL.createObjectURL(blob);
+                        setPreviewImage(url);
                     } else {
-                        console.error('Failed to delete image');
+                        setPreviewImage(null);
                     }
                 } catch (error) {
-                    console.error('Error deleting image:', error);
+                    console.error('Error fetching image:', error);
+                    setPreviewImage(null);
                 }
             }
         };
-        window.addEventListener('beforeunload', handleBeforeUnload);
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
-    }, [uploadStatus, formData.image, car.image]);
+        fetchPreviewImage();
+    }, [formData.image, car.image]);
 
     return (
         <div className="mb-4">
