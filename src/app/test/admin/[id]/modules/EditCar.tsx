@@ -8,6 +8,7 @@ import Description from './groups/Description';
 import FrontPageImage from './groups/ImagesAndGallery/FrontpageImage';
 import CoverImage from './groups/ImagesAndGallery/CoverImages';
 import GalleryImages from './groups/ImagesAndGallery/GalleryImages';
+import Test from './groups/ImagesAndGallery/test';
 
 interface CarFormProps {
     car: Car;
@@ -150,22 +151,31 @@ export default function CarForm({ car }: CarFormProps): JSX.Element {
             <form onSubmit={() => handleFormSubmit(formData)}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className='space-y-[40px]'>
-                        <Description car={car} formData={formData} handleChange={handleChange} />
-                        <Details car={car} formData={formData} handleChange={handleChange} />
+                        {
+                            // <Description car={car} formData={formData} handleChange={handleChange} />
+                        }
+                        {
+                            // <Details car={car} formData={formData} handleChange={handleChange} />
+                        }
                     </div>
                     <div className=''>
                         <div className='space-y-[40px]'>
                             {
-                                <FrontPageImage car={car} formData={formData} handleChange={handleChange} />
-                            }                            {
-                                <CoverImage car={car} formData={formData} handleChange={handleChange} />
+                                //<FrontPageImage car={car} formData={formData} handleChange={handleChange} />
                             }
                             {
-                                <GalleryImages car={car} formData={formData} handleChange={handleChange} />
+                                //<CoverImage car={car} formData={formData} handleChange={handleChange} />
                             }
                             {
-                                <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
-                            }                        </div>
+                                // <GalleryImages car={car} formData={formData} handleChange={handleChange} />
+                            }
+                            {
+                                // <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
+                            }
+                            {
+                                <Test car={car} formData={formData} handleChange={handleChange} />
+                            }
+                        </div>
                         <div className='flex'>
                             <div className='w-full flex justify-start'>
                                 <button
