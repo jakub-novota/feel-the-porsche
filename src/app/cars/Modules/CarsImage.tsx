@@ -60,7 +60,7 @@ const CarImages: React.FC<CarImagesProps> = ({ carImagesURL }) => {
                       fill
                       priority
                       quality={100}
-                      src={imageUrl}
+                      src={`http://localhost:3001/photos/${imageUrl}`}
                       alt={`Image ${index}`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />

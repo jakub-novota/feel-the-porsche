@@ -173,16 +173,6 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                             <div className="relative w-full h-32">
                                 {(imageUrl || previewImage) ? (
                                     <div className="relative w-full h-full">
-                                        {imageUrl && !selectedImage && (
-                                            <Image
-                                                src={imageUrl.startsWith('/uploads/') ? imageUrl : `/uploads/${imageUrl}`}
-                                                alt={`Image ${imageKey}`}
-                                                layout="fill"
-                                                objectFit="cover"
-                                                className="rounded"
-                                                onError={(e) => { (e.target as any).src = '/images/fallback.png' }}
-                                            />
-                                        )}
                                         {previewImage && (
                                             <Image src={previewImage} alt="Selected Image" fill className="w-full h-full object-cover rounded" />
                                         )}
@@ -211,9 +201,9 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                                 )}
                             </div>
                             <p className="mt-2 text-xs text-center text-red-400">
-                                {currentUploadStatus === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
-                                {currentUploadStatus === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
-                                {currentUploadStatus === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
+                                {currentUploadStatus === 'uploading' && <span className="text-xs mt-2 text-center text-blue-400">Uploading...</span>}
+                                {currentUploadStatus === 'success' && <span className="text-xs mt-2 text-center text-green-400">Uploaded successfully</span>}
+                                {currentUploadStatus === 'deleted' && <span className="text-xs mt-2 text-center text-green-400">Deleted successfully</span>}
                                 {currentUploadStatus === 'error' && `Error: ${currentUploadError}`}
                             </p>
                         </div>
