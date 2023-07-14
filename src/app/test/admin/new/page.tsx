@@ -215,7 +215,7 @@ export default function CarForm(): JSX.Element {
                                     type="submit"
                                     className={`bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4 ${isSaveDisabled ? 'opacity-50 cursor-not-allowed' : ''
                                         }`}
-                                    disabled={isSaveDisabled}
+                                    disabled={false}
                                 >
                                     Save
                                 </button>

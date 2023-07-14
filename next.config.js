@@ -3,7 +3,7 @@ const nextConfig = {}
 
 // next.config.js
 module.exports = {
-    images: {
-        domains: ['localhost'],
-    },
+  images: {
+    domains: ['localhost'],
+  },
 };

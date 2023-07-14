@@ -28,9 +28,9 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
             try {
                 const renamedFile = new File([file], `${uuidv4()}.${file.name.split('.').pop()}`, { type: file.type });
                 const uploadData = new FormData();
-                uploadData.append('file', renamedFile);
+                uploadData.append('photo', renamedFile);
 
-                const response = await fetch('/api/upload', {
+                const response = await fetch('http://localhost:3001/photos/upload', {
                     method: 'POST',
                     body: uploadData,
                 });
@@ -41,7 +41,7 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
                     handleChange({
                         target: {
                             name: 'image',
-                            value: '/uploads/' + renamedFile.name,
+                            value: uploadedImage.fileName,
                         },
                     } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
                 } else {
@@ -55,19 +55,16 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
         }
     };
 
+
     const handleImageDelete = async () => {
         setUploadStatus('uploading');
         setSelectedImage(null);
         setPreviewImage(null);
-
         try {
             const imageUrl = formData.image || '';
-            const response = await fetch('/api/upload', {
+            //console.log("The URL of the image ", imageUrl)
+            const response = await fetch(`http://localhost:3001/photos/${imageUrl}`, {
                 method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ imageUrl }),
             });
 
             if (response.ok) {
@@ -79,14 +76,17 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
                     },
                 } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
             } else {
+                const errorData = await response.json();
                 setUploadStatus('error');
-                setUploadError('Failed to delete image.');
+                setUploadError(errorData.message || 'Failed to delete image.');
             }
         } catch (error) {
             setUploadStatus('error');
             setUploadError(`Error deleting image: ${error}`);
         }
     };
+
+
 
     useEffect(() => {
         const handleBeforeUnload = async () => {
@@ -156,14 +156,15 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
                     </button>
                 )}
                 {uploadStatus && (
-                    <p className="mt-2 text-xs text-center text-red-400">
-                        {uploadStatus === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
-                        {uploadStatus === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
-                        {uploadStatus === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
-                        {uploadStatus === 'error' && `Error: ${uploadError}`}
-                    </p>
+                    <div className="mt-2 text-xs text-center text-red-400">
+                        {uploadStatus === 'uploading' && <p className="text-xs mt-2 text-blue-400">Uploading...</p>}
+                        {uploadStatus === 'success' && <p className="text-xs mt-2 text-green-400">Uploaded successfully</p>}
+                        {uploadStatus === 'deleted' && <p className="text-xs mt-2 text-green-400">Deleted successfully</p>}
+                        {uploadStatus === 'error' && <p className="text-xs mt-2 text-red-500">Error: {uploadError}</p>}
+                    </div>
                 )}
             </div>
         </div>
+
     );
 }

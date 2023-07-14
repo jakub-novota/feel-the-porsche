@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
         const buffer = Buffer.from(fileBuffer);
 
         // Specify the destination directory within the public folder
-        const directory = join(process.cwd(), '/images');
+        const directory = join(process.cwd(), 'public/uploads');
         // Specify the file path within the directory
         const filePath = join(directory, file.name);
 
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
     // Specify the directory where the uploaded images are stored
-    const directory = join(process.cwd(), '/images');
+    const directory = join(process.cwd(), 'public/uploads');
 
     try {
         // Read the contents of the directory
@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
         );
 
         // Map the file names to their full URLs
-        const imageUrls = imageFiles.map((file) => `/images/${file}`);
+        const imageUrls = imageFiles.map((file) => `public/uploads/${file}`);
 
         // Return the response with the image URLs
         return NextResponse.json({ success: true, images: imageUrls });

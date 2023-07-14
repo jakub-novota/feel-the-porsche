@@ -11,7 +11,17 @@ const storage = multer.diskStorage({
         cb(null, file.originalname);
     },
 });
-const upload = multer({ storage });
+
+// File filter function to only allow image files
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+    } else {
+        cb(new Error('Invalid file type. Only image files are allowed.'));
+    }
+};
+
+const upload = multer({ storage, fileFilter });
 
 // Enable CORS
 app.use(cors());
@@ -39,7 +49,16 @@ app.post('/photos/upload', upload.single('photo'), (req, res) => {
 app.get('/photos/:filename', (req, res) => {
     const filename = req.params.filename;
     // Read the photo file from storage and send it as the response
-    res.sendFile(path.join(__dirname, 'uploads', filename));
+    const filePath = path.join(__dirname, 'uploads', filename);
+
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+            res.status(404).json({ success: false, message: 'Image not found.' });
+            return;
+        }
+
+        res.sendFile(filePath);
+    });
 });
 
 app.get('/photos', (req, res) => {
@@ -50,6 +69,28 @@ app.get('/photos', (req, res) => {
             return;
         }
         res.status(200).json({ success: true, photos: files });
+    });
+});
+
+app.delete('/photos/:filename', (req, res) => {
+    const filename = req.params.filename;
+    const filePath = path.join(__dirname, 'uploads', filename);
+
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+            res.status(404).json({ success: false, message: 'Image not found.' });
+            return;
+        }
+
+        fs.unlink(filePath, (err) => {
+            if (err) {
+                console.error('Error deleting image:', err);
+                res.status(500).json({ success: false, message: 'Failed to delete image.' });
+                return;
+            }
+
+            res.status(200).json({ success: true, message: 'Image deleted successfully.' });
+        });
     });
 });
 
