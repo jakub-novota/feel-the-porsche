@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import API_BASE_URL from '@/app/config';
 
 interface GaleryProps {
   carGalleryURL: string; // Update prop name and type to receive a single string
@@ -29,7 +30,7 @@ export default function Galery({ carGalleryURL }: GaleryProps) {
           <div className="w-full md:w-1/2" key={index}>
             <div className="bg-white relative w-full h-[275px] sm:h-[503px]">
               <Image
-                src={imageUrl}
+                src={`${API_BASE_URL}/photos/${imageUrl}`}
                 alt={`Image ${index + 1}`}
                 priority
                 quality={100}

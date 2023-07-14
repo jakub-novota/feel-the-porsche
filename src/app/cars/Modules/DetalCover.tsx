@@ -9,6 +9,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import API_BASE_URL from '@/app/config';
+
 
 interface GalleryProps {
     carImagesURL: string;
@@ -25,9 +27,9 @@ export default function Gallery({ carImagesURL }: GalleryProps) {
     try {
         const parsedCarImagesURL = JSON.parse(carImagesURL);
         if (Array.isArray(parsedCarImagesURL)) {
-            imageUrls = parsedCarImagesURL.map((imageUrl) => `/uploads/${imageUrl}`);
+            imageUrls = parsedCarImagesURL.map((imageUrl) => `${imageUrl}`);
         } else if (typeof parsedCarImagesURL === 'object' && parsedCarImagesURL !== null) {
-            imageUrls = Object.values(parsedCarImagesURL).map((imageUrl) => `/uploads/${imageUrl}`);
+            imageUrls = Object.values(parsedCarImagesURL).map((imageUrl) => `${imageUrl}`);
         }
     } catch (error) {
         console.error('Error parsing carImagesURL:', error);
@@ -70,7 +72,7 @@ export default function Gallery({ carImagesURL }: GalleryProps) {
                             <SwiperSlide key={(index + "cover")}>
                                 <div className='z-10 relative w-full h-[334px] sm:h-[660px]'>
                                     <Image
-                                        src={imageUrl}
+                                        src={`${API_BASE_URL}/photos/${imageUrl}`}
                                         alt={`Image ${index + 1}`}
                                         priority
                                         quality={100}

@@ -95,7 +95,8 @@ export default function CarForm(): JSX.Element {
         }
     };
 
-    console.log(formData)
+
+    //console.log(formData)
 
     React.useEffect(() => {
         const {

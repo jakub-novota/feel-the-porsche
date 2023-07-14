@@ -5,6 +5,7 @@ import "swiper/css";
 import SwiperCore, { Pagination } from "swiper";
 import Status from "../../Modules/Svg_Module/Status";
 import { Car } from "../Modules/CarInterface";
+import API_BASE_URL from '@/app/config';
 
 
 
@@ -49,7 +50,7 @@ const CarImages: React.FC<CarCardProps> = ({ car }) => {
                     fill
                     priority
                     quality={100}
-                    src={imageUrl}
+                    src={`${API_BASE_URL}/photos/${imageUrl}`}
                     alt={`Image ${index}`}
                     sizes="100vw"
                   />
