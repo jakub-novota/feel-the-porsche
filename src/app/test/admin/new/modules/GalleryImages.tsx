@@ -2,6 +2,7 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
+import API_BASE_URL from '@/app/config';
 
 interface GalleryImageProps {
     formData: Car;
@@ -56,11 +57,10 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
 
             try {
                 const renamedFile = new File([file], `${uuidv4()}.${file.name.split('.').pop()}`, { type: file.type });
-
                 const uploadData = new FormData();
-                uploadData.append('file', renamedFile);
+                uploadData.append('photo', renamedFile);
 
-                const response = await fetch('/api/upload', {
+                const response = await fetch(`${API_BASE_URL}/photos/upload`, {
                     method: 'POST',
                     body: uploadData,
                 });
@@ -69,7 +69,7 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                     setUploadStatus(prev => ({ ...prev, [imageKey]: 'success' }));
 
                     const uploadedImage = await response.json();
-                    const updatedGallery = { ...formData.gallery, [imageKey]: '/uploads/' + renamedFile.name };
+                    const updatedGallery = { ...formData.gallery, [imageKey]: renamedFile.name };
                     handleChange({
                         target: {
                             name: 'gallery',
@@ -99,12 +99,8 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
         setPreviewImages(prev => ({ ...prev, [imageKey]: null }));
 
         try {
-            const response = await fetch('/api/upload', {
+            const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, {
                 method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ imageUrl }),
             });
 
             if (response.ok) {
@@ -138,12 +134,8 @@ export default function GalleryImages({ formData, handleChange }: GalleryImagePr
                     // Delete the uploaded image when the user refreshes the page
                     const imageUrl = formData.gallery[imageKey as keyof typeof formData.gallery] || '';
                     try {
-                        const response = await fetch('/api/upload', {
+                        const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, {
                             method: 'DELETE',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ imageUrl }),
                         });
 
                         if (response.ok) {

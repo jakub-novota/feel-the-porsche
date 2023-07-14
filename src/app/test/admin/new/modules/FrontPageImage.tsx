@@ -95,12 +95,8 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
             if (uploadStatus === 'success') {
                 const imageUrl = formData.image || '';
                 try {
-                    const response = await fetch('/api/upload', {
+                    const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, {
                         method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ imageUrl }),
                     });
 
                     if (response.ok) {

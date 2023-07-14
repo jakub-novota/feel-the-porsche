@@ -127,14 +127,9 @@ export default function CoverImage({ formData, handleChange }: CoverImageProps):
                 if (uploadStatus[imageKey] === 'success') {
                     const imageUrl = formData.image_cars[imageKey as keyof typeof formData.image_cars] || '';
                     try {
-                        const response = await fetch('/api/upload', {
+                        const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, {
                             method: 'DELETE',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ imageUrl }),
                         });
-
                         if (response.ok) {
                             console.log(`Image ${imageKey} deleted successfully`);
                         } else {
