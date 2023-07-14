@@ -29,6 +29,21 @@ app.use(cors());
 // Set up static file serving
 app.use('/photos', express.static(path.join(__dirname, 'uploads')));
 
+// Create a write stream for the log file
+const logStream = fs.createWriteStream('logs.txt', { flags: 'a' });
+
+// Log middleware function
+const logRequest = (req, res, next) => {
+    const { method, originalUrl } = req;
+    const timestamp = new Date().toISOString();
+    const logEntry = `${timestamp} - ${method} ${originalUrl}`;
+    logStream.write(logEntry + '\n');
+    next();
+};
+
+// Register the log middleware
+app.use(logRequest);
+
 app.post('/photos/upload', upload.single('photo'), (req, res) => {
     if (!req.file) {
         res.status(400).json({ success: false, message: 'No photo provided.' });
@@ -39,12 +54,19 @@ app.post('/photos/upload', upload.single('photo'), (req, res) => {
     // Process and save the file as needed
     const fileName = req.file.filename;
 
+    // Log the request with the filename
+    const { method, originalUrl } = req;
+    const timestamp = new Date().toISOString();
+    const logEntry = `${timestamp} - ${method} ${originalUrl}/${fileName}`;
+    logStream.write(logEntry + '\n');
+
     res.status(200).json({
         success: true,
         message: 'Photo uploaded successfully.',
         fileName,
     });
 });
+
 
 app.get('/photos/:filename', (req, res) => {
     const filename = req.params.filename;

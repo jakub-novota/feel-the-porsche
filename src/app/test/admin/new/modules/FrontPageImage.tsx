@@ -2,6 +2,8 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
+import API_BASE_URL from '@/app/config';
+
 
 interface FrontPageImageProps {
     formData: Car;
@@ -30,7 +32,7 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
                 const uploadData = new FormData();
                 uploadData.append('photo', renamedFile);
 
-                const response = await fetch('http://localhost:3001/photos/upload', {
+                const response = await fetch(`${API_BASE_URL}/photos/upload`, {
                     method: 'POST',
                     body: uploadData,
                 });
@@ -63,7 +65,7 @@ export default function FrontPageImage({ formData, handleChange }: FrontPageImag
         try {
             const imageUrl = formData.image || '';
             //console.log("The URL of the image ", imageUrl)
-            const response = await fetch(`http://localhost:3001/photos/${imageUrl}`, {
+            const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, {
                 method: 'DELETE',
             });
 

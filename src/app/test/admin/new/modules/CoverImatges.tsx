@@ -2,6 +2,7 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
+import API_BASE_URL from '@/app/config';
 
 interface CoverImageProps {
     formData: Car;
@@ -55,11 +56,10 @@ export default function CoverImage({ formData, handleChange }: CoverImageProps):
 
             try {
                 const renamedFile = new File([file], `${uuidv4()}.${file.name.split('.').pop()}`, { type: file.type });
-
                 const uploadData = new FormData();
-                uploadData.append('file', renamedFile);
+                uploadData.append('photo', renamedFile);
 
-                const response = await fetch('/api/upload', {
+                const response = await fetch(`${API_BASE_URL}/photos/upload`, {
                     method: 'POST',
                     body: uploadData,
                 });
@@ -68,7 +68,7 @@ export default function CoverImage({ formData, handleChange }: CoverImageProps):
                     setUploadStatus(prev => ({ ...prev, [imageKey]: 'success' }));
 
                     const uploadedImage = await response.json();
-                    const updatedImageCars = { ...formData.image_cars, [imageKey]: '/uploads/' + renamedFile.name };
+                    const updatedImageCars = { ...formData.image_cars, [imageKey]: renamedFile.name };
                     handleChange({
                         target: {
                             name: 'image_cars',
@@ -95,12 +95,8 @@ export default function CoverImage({ formData, handleChange }: CoverImageProps):
         setPreviewImages(prev => ({ ...prev, [imageKey]: null }));
 
         try {
-            const response = await fetch('/api/upload', {
+            const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, {
                 method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ imageUrl }),
             });
 
             if (response.ok) {
@@ -174,16 +170,6 @@ export default function CoverImage({ formData, handleChange }: CoverImageProps):
                             <div className="relative w-full h-32">
                                 {(imageUrl || previewImage) ? (
                                     <div className="relative w-full h-full">
-                                        {imageUrl && !selectedImage && (
-                                            <Image
-                                                src={imageUrl.startsWith('/uploads/') ? imageUrl : `/uploads/${imageUrl}`}
-                                                alt={`Image ${imageKey}`}
-                                                layout="fill"
-                                                objectFit="cover"
-                                                className="rounded"
-                                                onError={(e) => { (e.target as any).src = '/images/fallback.png'; }}
-                                            />
-                                        )}
                                         {previewImage && (
                                             <Image
                                                 src={previewImage}
@@ -217,12 +203,12 @@ export default function CoverImage({ formData, handleChange }: CoverImageProps):
                                     </button>
                                 )}
                             </div>
-                            <p className="mt-2 text-xs text-center text-red-400">
-                                {currentUploadStatus === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
-                                {currentUploadStatus === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
-                                {currentUploadStatus === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
+                            <div className="mt-2 text-xs text-center text-red-400">
+                                {currentUploadStatus === 'uploading' && <span className="text-xs mt-2 text-center text-blue-400">Uploading...</span>}
+                                {currentUploadStatus === 'success' && <span className="text-xs mt-2 text-center text-green-400">Uploaded successfully</span>}
+                                {currentUploadStatus === 'deleted' && <span className="text-xs mt-2 text-center text-green-400">Deleted successfully</span>}
                                 {currentUploadStatus === 'error' && `Error: ${currentUploadError}`}
-                            </p>
+                            </div>
                         </div>
                     );
                 })}
