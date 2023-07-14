@@ -126,7 +126,6 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
                             alt="Selected Image"
                             fill
                             className="w-full h-full object-cover rounded"
-                            unoptimized={true}   // Add this line
                         />
                         <button
                             onClick={handleImageDelete}
