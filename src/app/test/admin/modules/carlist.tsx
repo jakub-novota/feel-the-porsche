@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Link from 'next/link';
+import API_BASE_URL from '@/app/config';
 
 async function getData(): Promise<Car[]> {
   const response = await fetch('/api/cars');
@@ -22,7 +23,17 @@ async function deleteCar(id: string): Promise<void> {
     throw new Error('Failed to delete car');
   }
 
-  console.log('Car deleted successfully');
+  //console.log('Car deleted successfully');
+}
+
+async function deleteImage(imageUrl: string): Promise<void> {
+  const response = await fetch(`${API_BASE_URL}/photos/${imageUrl}`, { method: 'DELETE' });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete image');
+  }
+
+  //console.log('Image deleted successfully');
 }
 
 export default function List(): JSX.Element {
@@ -88,12 +99,34 @@ export default function List(): JSX.Element {
     setShowConfirmation(true);
     // Disable scrolling when the popup is active
     document.body.style.overflow = 'hidden';
+
+    // Log the images of the car
+    //console.log('Images to be deleted:', car.gallery, car.image, car.image_cars);
+
   };
 
   const handleConfirmDelete = async () => {
     if (carToDelete) {
       try {
         await deleteCar(carToDelete._id);
+
+        // Delete images from car.gallery
+        const galleryImages = Object.values(carToDelete.gallery).filter(Boolean);
+        for (const imageUrl of galleryImages) {
+          await deleteImage(imageUrl);
+        }
+
+        // Delete images from car.image
+        if (carToDelete.image) {
+          await deleteImage(carToDelete.image);
+        }
+
+        // Delete images from car.image_cars
+        const imageCars = Object.values(carToDelete.image_cars).filter(Boolean);
+        for (const imageUrl of imageCars) {
+          await deleteImage(imageUrl);
+        }
+
         // Update the data state after deletion
         const updatedData = data.filter((car) => car._id !== carToDelete._id);
         setData(updatedData);
@@ -108,6 +141,7 @@ export default function List(): JSX.Element {
       }
     }
   };
+
 
   const handleCancelDelete = () => {
     setShowConfirmation(false);

@@ -40,7 +40,7 @@ export default function Page() {
     }
 
     if (!car) {
-        return <div className='h-screen w-screen flex justify-center items-center'>Car does not exist.</div>;
+        return <div className='h-screen w-screen flex justify-center items-center text-center'><p>Apologies, the car does not exist.<br /> Please verify the details or contact support for assistance. </p></div>;
     }
     //console.log(car)
     return (
