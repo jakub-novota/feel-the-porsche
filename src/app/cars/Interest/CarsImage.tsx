@@ -7,8 +7,6 @@ import Status from "../../Modules/Svg_Module/Status";
 import { Car } from "../Modules/CarInterface";
 import API_BASE_URL from '@/app/config';
 
-
-
 SwiperCore.use([Pagination]);
 
 interface CarCardProps {
@@ -22,8 +20,9 @@ const CarImages: React.FC<CarCardProps> = ({ car }) => {
     imageUrls = Array.isArray(car.image_cars) ? car.image_cars : Object.values(car.image_cars || {});
   }
 
+  // Filter out empty imageUrl and trim any white space
+  imageUrls = imageUrls.filter(imageUrl => imageUrl && imageUrl.trim());
 
-  console.log(imageUrls)
   const totalImages = imageUrls.length;
   const activeIndexRef = React.useRef<number>(0);
 
@@ -37,7 +36,11 @@ const CarImages: React.FC<CarCardProps> = ({ car }) => {
     // Dummy state update to trigger a re-render
     setActiveIndex(activeIndexRef.current);
   };
+
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
+
+ 
+
   return (
     <>
       <div className='relative'>
@@ -50,7 +53,7 @@ const CarImages: React.FC<CarCardProps> = ({ car }) => {
                     fill
                     priority
                     quality={100}
-                    src={`${API_BASE_URL}/photos/${imageUrl}`}
+                    src={`${API_BASE_URL}/photos/${imageUrl.trim()}`}
                     alt={`Image ${index}`}
                     sizes="100vw"
                   />
