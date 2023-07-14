@@ -1,4 +1,3 @@
-"use client"
 import { useState, ChangeEvent, useEffect } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
@@ -189,10 +188,10 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
                 )}
                 {uploadStatus && (
                     <p className="mt-2 text-xs text-center text-red-400">
-                        {uploadStatus === 'uploading' && <p className="text-xs mt-2 text-center text-blue-400">Uploading...</p>}
-                        {uploadStatus === 'success' && <p className="text-xs mt-2 text-center text-green-400">Uploaded successfully</p>}
-                        {uploadStatus === 'deleted' && <p className="text-xs mt-2 text-center text-green-400">Deleted successfully</p>}
-                        {uploadStatus === 'error' && <p className="text-xs mt-2 text-center text-red-500">Error: {uploadError}</p>}
+                        {uploadStatus === 'uploading' && <span className="text-xs mt-2 text-center text-blue-400">Uploading...</span>}
+                        {uploadStatus === 'success' && <span className="text-xs mt-2 text-center text-green-400">Uploaded successfully</span>}
+                        {uploadStatus === 'deleted' && <span className="text-xs mt-2 text-center text-green-400">Deleted successfully</span>}
+                        {uploadStatus === 'error' && <span className="text-xs mt-2 text-center text-red-500">Error: {uploadError}</span>}
                     </p>
                 )}
             </div>
