@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Car } from '@/app/cars/Modules/CarInterface';
+import API_BASE_URL from '@/app/config';
 
 interface CarCardProps {
     car: Car;
@@ -24,7 +25,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                         fill
                         priority
                         quality={100}
-                        src={car.image}
+                        src={`${API_BASE_URL}/photos/${car.image}`}
                         alt={car.name}
                         sizes="() 100vw"
                     />
