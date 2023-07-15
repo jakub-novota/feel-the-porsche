@@ -3,6 +3,7 @@ import CarFormGallery from './CarFormGallery';
 import CarFormImageCars from './CarFormImageCars';
 import CarFormImage from './CarFormImage';
 import CarFormDetails from './CarFormDetails';
+import Gallery from '@/app/cars/Modules/DetalCover';
 
 
 interface Car {
@@ -64,6 +65,7 @@ const CarFormContent: React.FC = () => {
     });
 
     const [errorMessage, setErrorMessage] = useState('');
+    const [deletedFiles, setDeletedFiles] = useState<string[]>([]); //Ukaze vymazane obrazky
 
     const handleGalleryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name } = event.target;
@@ -87,17 +89,60 @@ const CarFormContent: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
+
+        //Tu vypiše ako array deleted files podla tohot potom sa bude dat deeltnut s apiny !!!!
+        // rest of the code ...
+
+        console.log('Deleted files:', deletedFiles);
+        deletedFiles.forEach((file, index) => {
+            console.log(`Deleted file ${index + 1}:`, file);
+        });
+
+
+        // Clear the deletedFiles array after submission
+        setDeletedFiles([]);
+
         try {
-            const updatedGallery = { ...carData.gallery };
-            for (const key in updatedGallery) {
-                if (!updatedGallery[key]) {
-                    updatedGallery[key] = carData.gallery?.[key] || '';
+
+
+            // Tu ukaze vsetky nove selected subory /obrazky podla tohoto s bude dat upludnut nove obrazky na apinu !!!
+            for (const key in carData.gallery) {
+                if (carData.gallery.hasOwnProperty(key)) {
+                    const fileInput = document.querySelector(`input[name="${key}"]`) as HTMLInputElement;
+                    if (fileInput?.files && fileInput.files.length > 0) {
+                        const selectedFile = fileInput.files[0];
+                        console.log(`Selected file for ${key}:`, selectedFile);
+                    }
                 }
             }
+
+            console.log('Car data:', carData);
+
+            const originalGallery = { ...carData.gallery };
+            const originalImageCars = { ...carData.image_cars };
+            const originalImage = carData.image || '';
+
+            const updatedGallery = { ...originalGallery };
+            const updatedImageCars = { ...originalImageCars };
+            let updatedImage: string | undefined = originalImage;
+
+            // Log selected files
+            for (const key in carData.gallery) {
+                if (carData.gallery.hasOwnProperty(key)) {
+                    const fileInput = document.querySelector(`input[name="${key}"]`) as HTMLInputElement;
+                    if (fileInput?.files && fileInput.files.length > 0) {
+                        const selectedFile = fileInput.files[0];
+                        console.log(`Selected file for ${key}:`, selectedFile.name);
+                    }
+                }
+            }
+
 
             const updatedCarData = {
                 ...carData,
                 gallery: updatedGallery,
+                image_cars: updatedImageCars,
+                image: updatedImage,
             };
 
             const response = await fetch('/api/cars/64b16552ab5e5b22d7d249c1', {
@@ -113,8 +158,9 @@ const CarFormContent: React.FC = () => {
                 throw new Error(errorData.message);
             }
 
-            const responseData = await response.json();
-            console.log('Car updated successfully:', responseData.car);
+            console.log('Car updated successfully');
+
+            // Rest of the code for uploading images...
         } catch (error) {
             const errorMessage = (error as Error).message;
             setErrorMessage('Error updating car: ' + errorMessage);
@@ -122,25 +168,29 @@ const CarFormContent: React.FC = () => {
     };
 
 
-
     const handleDelete = (key: string, type: 'gallery' | 'image_cars') => {
         setCarData((prevData) => {
             const updatedGallery = { ...prevData.gallery };
             const updatedImageCars = { ...prevData.image_cars };
 
-            // Clear the value from the corresponding input field
+            let deletedFile = '';
+
             if (type === 'gallery') {
+                deletedFile = prevData.gallery?.[key] || '';
                 updatedGallery[key] = '';
             } else if (type === 'image_cars') {
+                deletedFile = prevData.image_cars?.[key] || '';
                 updatedImageCars[key] = '';
 
-                // Reset the file input field value for image_cars only
                 const inputField = document.querySelector(`input[name="${key}"]`) as HTMLInputElement;
                 if (inputField) {
                     inputField.value = '';
                     updatedImageCars[key] = inputField.dataset.previousValue || '';
                 }
             }
+
+            setDeletedFiles(prevDeletedFiles => [...prevDeletedFiles, deletedFile]);
+            console.log(`Deleted file ${key}:`, deletedFile);
 
             return {
                 ...prevData,
@@ -149,6 +199,10 @@ const CarFormContent: React.FC = () => {
             };
         });
     };
+
+
+
+
 
 
     const carId = '64b16552ab5e5b22d7d249c1';
@@ -228,7 +282,7 @@ const CarFormContent: React.FC = () => {
             <CarFormGallery
                 carData={carData}
                 handleGalleryChange={handleGalleryChange}
-                handleDelete={(key: string) => handleDelete(key, 'image_cars')}
+                handleDelete={handleDelete}
             />
 
             <h2 className="text-2xl font-bold mb-2">Image Cars:</h2>
