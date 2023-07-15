@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import CarFormInput from './CarFormInput';
 import CarFormGallery from './CarFormGallery';
 import CarFormImageCars from './CarFormImageCars';
 import CarFormImage from './CarFormImage';
-
+import CarFormDetails from './CarFormDetails';
 
 
 interface Car {
@@ -202,7 +201,7 @@ const CarFormContent: React.FC = () => {
         }));
     };
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setCarData((prevData) => ({
             ...prevData,
@@ -210,16 +209,13 @@ const CarFormContent: React.FC = () => {
         }));
     };
 
-
     return (
         <form onSubmit={handleSubmit}>
-
             <CarFormImage
                 carData={carData}
                 handleImageChange={handleImageChange}
                 handleDeleteImage={() => setCarData((prevData) => ({ ...prevData, image: '' }))}
             />
-
 
             <h2 className="text-2xl font-bold mb-2">Gallery:</h2>
             <CarFormGallery
@@ -235,16 +231,9 @@ const CarFormContent: React.FC = () => {
                 handleDelete={handleDelete}
             />
 
-            <h2 className="text-2xl font-bold mb-2">Car Details:</h2>
-            <CarFormInput
-                label="Name"
-                name="name"
-                value={carData.name}
-                onChange={handleInputChange}
-            />
+            <CarFormDetails carData={carData} handleInputChange={handleInputChange} />
 
 
-            {/* Add other input fields for car details */}
 
             <button
                 type="submit"
