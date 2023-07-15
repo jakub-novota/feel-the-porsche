@@ -1,7 +1,4 @@
 import React from 'react';
-
-
-
 interface Car {
     id?: number;
     name?: string;

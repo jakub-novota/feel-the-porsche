@@ -25,11 +25,13 @@ interface Car {
         [key: string]: string | undefined;
     };
 }
+type HandleDeleteFunction = (key: string, type: 'gallery' | 'image_cars') => void;
+
 
 interface CarFormImageCarsProps {
     carData: Car;
     handleImageCarsChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleDelete: (key: string) => void;
+    handleDelete: HandleDeleteFunction;
 }
 
 const CarFormImageCars: React.FC<CarFormImageCarsProps> = ({ carData, handleImageCarsChange, handleDelete }) => {
@@ -52,7 +54,7 @@ const CarFormImageCars: React.FC<CarFormImageCarsProps> = ({ carData, handleImag
                         {value && (
                             <button
                                 type="button"
-                                onClick={() => handleDelete(key)}
+                                onClick={() => handleDelete(key, 'image_cars')}
                                 disabled={!value}
                                 className="text-red-500 mt-2"
                             >

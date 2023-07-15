@@ -83,6 +83,7 @@ const CarFormContent: React.FC = () => {
         }));
     };
 
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -120,20 +121,25 @@ const CarFormContent: React.FC = () => {
         }
     };
 
-    const handleDelete = (key: string) => {
+
+
+    const handleDelete = (key: string, type: 'gallery' | 'image_cars') => {
         setCarData((prevData) => {
             const updatedGallery = { ...prevData.gallery };
             const updatedImageCars = { ...prevData.image_cars };
 
             // Clear the value from the corresponding input field
-            updatedGallery[key] = '';
-            updatedImageCars[key] = '';
+            if (type === 'gallery') {
+                updatedGallery[key] = '';
+            } else if (type === 'image_cars') {
+                updatedImageCars[key] = '';
 
-            // Reset the file input field value
-            const inputField = document.querySelector(`input[name="${key}"]`) as HTMLInputElement;
-            if (inputField) {
-                inputField.value = '';
-                updatedGallery[key] = inputField.dataset.previousValue || '';
+                // Reset the file input field value for image_cars only
+                const inputField = document.querySelector(`input[name="${key}"]`) as HTMLInputElement;
+                if (inputField) {
+                    inputField.value = '';
+                    updatedImageCars[key] = inputField.dataset.previousValue || '';
+                }
             }
 
             return {
@@ -143,6 +149,7 @@ const CarFormContent: React.FC = () => {
             };
         });
     };
+
 
     const carId = '64b16552ab5e5b22d7d249c1';
     useEffect(() => {
@@ -221,14 +228,14 @@ const CarFormContent: React.FC = () => {
             <CarFormGallery
                 carData={carData}
                 handleGalleryChange={handleGalleryChange}
-                handleDelete={handleDelete}
+                handleDelete={(key: string) => handleDelete(key, 'image_cars')}
             />
 
             <h2 className="text-2xl font-bold mb-2">Image Cars:</h2>
             <CarFormImageCars
                 carData={carData}
                 handleImageCarsChange={handleImageCarsChange}
-                handleDelete={handleDelete}
+                handleDelete={(key: string) => handleDelete(key, 'image_cars')}
             />
 
             <CarFormDetails carData={carData} handleInputChange={handleInputChange} />
