@@ -155,13 +155,13 @@ export default function CarForm({ car }: CarFormProps): JSX.Element {
                             // <Description car={car} formData={formData} handleChange={handleChange} />
                         }
                         {
-                            // <Details car={car} formData={formData} handleChange={handleChange} />
+                             <Details car={car} formData={formData} handleChange={handleChange} />
                         }
                     </div>
                     <div className=''>
                         <div className='space-y-[40px]'>
                             {
-                                //<FrontPageImage car={car} formData={formData} handleChange={handleChange} />
+                                <FrontPageImage car={car} formData={formData} handleChange={handleChange} />
                             }
                             {
                                 //<CoverImage car={car} formData={formData} handleChange={handleChange} />
