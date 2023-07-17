@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation'
+import List from "./dashboard/modules/carlist";
 
 export default function LoginForm() {
     const [username, setUsername] = useState('');
@@ -13,22 +13,18 @@ export default function LoginForm() {
         const result = await signIn("credentials", {
             username: username,
             password: password,
-            redirect: true,
-            callbackUrl: "/admin/dashboard"
+            redirect: false,
         })
     };
 
 
-    if (session?.user) {
-        redirect('/admin/dashboard')
-    }
 
 
     return (
         <>
             {session?.user ? (
                 <>
-                    <h1>Alredy logged in</h1>
+                    <List />
                 </>
             ) : (
                 <>
