@@ -1,25 +1,30 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation'
-
+import { redirect } from 'next/navigation';
 
 export default function LoginForm() {
+    const { data: session } = useSession();
+
+    useEffect(() => {
+        if (session?.user) {
+            // Redirect the user if already logged in
+            redirect("/admin")
+        }
+    }, [session]);
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { data: session } = useSession()
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const result = await signIn("credentials", {
+        const result = await signIn('credentials', {
             username: username,
             password: password,
             redirect: true,
-            callbackUrl: "/admin"
-        })
+            callbackUrl: '/admin',
+        });
     };
-
-
 
 
     return (
