@@ -3,6 +3,7 @@ import Image from "next/image";
 import { usePathname } from 'next/navigation';
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 interface Car {
     _id: string; // Adjust the type based on your actual car data structure
@@ -54,7 +55,7 @@ export default function Menu() {
         }
     }, [pathname, carData, isLoading]);
 
-
+    const { data: session } = useSession()
     return (
         <>
             <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''} ${isCarsPage ? 'bg-gray-100' : ''} left-0 w-screen `}>
@@ -91,6 +92,29 @@ export default function Menu() {
                             </button>
                             <div className={`border rounded-[8px] px-[14px] py-[10px] ${isListPage || isFaqPage || isAboutPage ? 'text-[#33B888] border-[#33B888]' : 'text-white'}`}>
                                 <a>EN</a>
+                            </div>
+                            <div className="ml-[20px]">
+                                {session?.user ? (
+                                    <>
+                                        <button
+                                            type="submit"
+                                            className="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            onClick={() => signOut()}
+                                        >
+                                            Sign Out
+                                        </button>
+
+                                    </>
+                                ) : (
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        onClick={() => signIn()}
+                                    >
+                                        Sign In
+                                    </button>
+                                )
+                                }
                             </div>
                         </div>
 

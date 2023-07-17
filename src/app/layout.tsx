@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import Menu from './Menu'
 import Footer from './footer'
 import MenuMobile from './MenuMobile'
+import { NextAuthProvider } from './Modules/NextAuthProvider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -62,24 +63,28 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  session
 }: {
   children: React.ReactNode
+  session: any
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${sohogothicpro.variable}`}>
       <body>
-        <div className='hidden md:block'>
-          <Menu />
-        </div>
-        <div className='md:hidden'>
-          <MenuMobile />
-        </div>
-        <div className='min-h-screen'>
-          {children}
-        </div>
-        <div className='bg-[#0C1B26] pb-[50px]'>
-          <Footer />
-        </div>
+        <NextAuthProvider>
+          <div className='hidden md:block'>
+            <Menu />
+          </div>
+          <div className='md:hidden'>
+            <MenuMobile />
+          </div>
+          <div className='min-h-screen'>
+            {children}
+          </div>
+          <div className='bg-[#0C1B26] pb-[50px]'>
+            <Footer />
+          </div>
+        </NextAuthProvider>
       </body>
     </html>
   )

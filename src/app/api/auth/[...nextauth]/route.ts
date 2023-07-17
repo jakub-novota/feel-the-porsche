@@ -1,6 +1,8 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import connectMongoDb from "@/app/libs/mongodb";
+import UserModel from "@/app/models/userSchema";
 import NextAuth from "next-auth"
+import bcrypt from "bcrypt";
 
 const handler = NextAuth({
     providers: [
@@ -16,23 +18,47 @@ const handler = NextAuth({
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
-
                 const { username, password } = credentials as any
-                const res = await fetch("", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "aplication/json"
-                    },
+                await connectMongoDb();
+                // Find the user by the username
+                const user = await UserModel.findOne({ username });
+                // Continue processing the response data
+                // If the user doesn't exist, return a 404 error
+                if (!user) {
+                    return (console.error("No user found"));
+                }
 
-                    body: JSON.stringify({
-                        username,
-                        password
-                    })
-                })
+                // Check if the passwords match
+                // Hashed password from your user object
+                const hashedPassword = user.password;
+
+                // Check if the supplied password, when hashed, is the same as the stored hashed password
+                const isMatch = await bcrypt.compare(password, hashedPassword);
+                if (!isMatch) {
+                    return (console.log("Incorrect password"));
+                }
+
+                if (user) {
+                    // Any object returned will be saved in `user` property of the JWT
+                    return user
+                } else {
+                    // Return an object that will pass error information through to the client-side.
+                    return null
+                }
+
 
             }
         })
-    ]
+    ],
+
+    session: {
+        strategy: "jwt"
+    },
+
+
+
+
+
 })
 
 export { handler as GET, handler as POST }
