@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import API_BASE_URL from '@/app/config';
+import { v4 as uuidv4 } from 'uuid'; // Add this line to your imports
 
 interface GalleryImagesProps {
     car: Car;
@@ -58,8 +59,11 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
         setUploadError(prev => ({ ...prev, [imageKey]: null }));
 
         try {
+            const fileType = file.name.split('.').pop(); // Get the file extension
+            const uniqueFileName = `${uuidv4()}.${fileType}`; // Append file extension to the UUID
+
             const uploadData = new FormData();
-            uploadData.append('photo', file);
+            uploadData.append('photo', file, uniqueFileName); // Use the unique file name with the file type
 
             const response = await fetch(`${API_BASE_URL}/photos/upload`, {
                 method: 'POST',
@@ -86,6 +90,8 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
             setUploadError(prev => ({ ...prev, [imageKey]: `Error uploading image: ${error}` }));
         }
     };
+
+
 
     const handleImageDelete = async (imageKey: string) => {
         const imageUrl = formData.gallery?.[imageKey as keyof typeof formData.gallery];
@@ -202,7 +208,7 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
 
     return (
         <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Cover Images</h3>
+            <h3 className="text-lg font-semibold mb-2">Gallery Images</h3>
             <div className="grid grid-cols-4 gap-4 mt-4">
                 {Array.from(Array(4).keys()).map(index => {
                     const imageKey = (index + 1).toString();

@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import API_BASE_URL from '@/app/config';
+import { v4 as uuidv4 } from 'uuid'; // Add this line to your imports
 
 interface CoverImageProps {
     car: Car;
@@ -58,8 +59,11 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
         setUploadError(prev => ({ ...prev, [imageKey]: null }));
 
         try {
+            const fileType = file.name.split('.').pop(); // Get the file extension
+            const uniqueFileName = `${uuidv4()}.${fileType}`; // Append file extension to the UUID
+
             const uploadData = new FormData();
-            uploadData.append('photo', file);
+            uploadData.append('photo', file, uniqueFileName); // Use the unique file name with the file type
 
             const response = await fetch(`${API_BASE_URL}/photos/upload`, {
                 method: 'POST',
@@ -86,6 +90,7 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
             setUploadError(prev => ({ ...prev, [imageKey]: `Error uploading image: ${error}` }));
         }
     };
+
 
     const handleImageDelete = async (imageKey: string) => {
         const imageUrl = formData.image_cars?.[imageKey as keyof typeof formData.image_cars];
@@ -120,7 +125,6 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
         }
     };
 
-
     useEffect(() => {
         const fetchPreviewImages = async () => {
             const imageKeys = Object.keys(formData.image_cars);
@@ -133,6 +137,8 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                         if (response.ok) {
                             previewImagesData[imageKey] = URL.createObjectURL(await response.blob());
                         } else {
+                            // Log the image key and the URL of the missing image
+                            console.log(`Image with key ${imageKey} and URL ${imageUrl} exists in formData but not on the API.`);
                             previewImagesData[imageKey] = null;
                         }
                     } else {
@@ -148,6 +154,8 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
 
         fetchPreviewImages();
     }, [formData.image_cars, uploadStatus]); // added uploadStatus as a dependency
+
+
 
 
     const renderImage = (imageKey: string) => {

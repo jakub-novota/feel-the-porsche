@@ -172,9 +172,6 @@ export default function CarForm({ car }: CarFormProps): JSX.Element {
                             {
                                 <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
                             }
-                            {
-                                <Test car={car} formData={formData} handleChange={handleChange} />
-                            }
                         </div>
                         <div className='flex'>
                             <div className='w-full flex justify-start'>
