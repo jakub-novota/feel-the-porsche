@@ -17,6 +17,7 @@ export default function Menu() {
     const [isDetailsPage, setIsDetailsPage] = useState(false);
     const isAboutPage = pathname === '/about-us';
     const isHomePage = pathname === '/';
+    const isAdminPage = pathname === '/admin/:path*';
 
     const [carData, setCarData] = useState<Car[]>([]); // Provide explicit type for carData
     const [isLoading, setIsLoading] = useState(true); // State to track loading state

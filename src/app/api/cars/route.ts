@@ -32,10 +32,6 @@ export async function POST(params: any) {
     return NextResponse.json({ message: "Car Created" }, { status: 201 })
 }
 
-
-
-
-
 export async function GET(params: any) {
     await connectMongoDb();
     const cars = await CarModel.find()

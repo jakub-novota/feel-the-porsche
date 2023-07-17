@@ -37,7 +37,6 @@ const handler = NextAuth({
                 if (!isMatch) {
                     return (console.log("Incorrect password"));
                 }
-
                 if (user) {
                     // Any object returned will be saved in `user` property of the JWT
                     return user
