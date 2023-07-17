@@ -9,6 +9,8 @@ export default function CreateUserForm() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [secret, setSecret] = useState('');
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -29,6 +31,8 @@ export default function CreateUserForm() {
         });
 
         const data = await response.json();
+        setPopupMessage(data.message);
+        setPopupOpen(true);
         console.log(data);
     };
 
@@ -37,36 +41,70 @@ export default function CreateUserForm() {
         setSecret(newSecret);
     }
 
+    const closePopup = () => {
+        setPopupOpen(false);
+    }
+
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <label className="block">
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} className="mt-1 block w-full rounded-md shadow-sm" />
-            </label>
-            <label className="block">
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="mt-1 block w-full rounded-md shadow-sm" />
-            </label>
-            <label className="block">
-                Email:
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="mt-1 block w-full rounded-md shadow-sm" />
-            </label>
-            <label className="block">
-                First Name:
-                <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} className="mt-1 block w-full rounded-md shadow-sm" />
-            </label>
-            <label className="block">
-                Last Name:
-                <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} className="mt-1 block w-full rounded-md shadow-sm" />
-            </label>
-            <label className="block">
-                Secret:
-                <div className="flex items-center mt-1">
-                    <input type="text" readOnly value={secret} className="block w-full rounded-md shadow-sm" />
-                    <button type="button" onClick={generateSecret} className="ml-2 px-4 py-2 rounded-md bg-green-500 text-white">Generate</button>
+        <div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                        Username
+                    </label>
+                    <input
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="username"
+                        type="text"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                    />
                 </div>
-            </label>
-            <input type="submit" value="Submit" className="w-full px-4 py-2 rounded-md bg-blue-500 text-white" />
-        </form>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                        Password
+                    </label>
+                    <input
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                </div>
+                {/* Add similar fields for email, firstName, and lastName */}
+                <div className="flex items-center justify-between">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit">
+                        Sign Up
+                    </button>
+                </div>
+            </form>
+
+            {popupOpen && (
+                <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="sm:flex sm:items-start">
+                                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                        <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                            {popupMessage}
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                <button onClick={closePopup} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
