@@ -18,6 +18,7 @@ export default function PeformanceAndSpecs({ formData, handleChange }: Peformanc
                     <div className="relative">
                         <input
                             type="number"
+                            step={".01"}
                             id="acceleration"
                             name="acceleration"
                             onChange={handleChange}
@@ -35,6 +36,7 @@ export default function PeformanceAndSpecs({ formData, handleChange }: Peformanc
 
                         <input
                             type="number"
+                            step={".01"}
                             id="cylinder_capacity"
                             name="cylinder_capacity"
                             onChange={handleChange}
