@@ -125,10 +125,24 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
         }
     };
 
+    const deleteImageFromState = (imageKey: string) => {
+        const updatedImageCars = { ...formData.image_cars };
+        delete updatedImageCars[imageKey as keyof typeof updatedImageCars];
+        handleChange({
+            target: {
+                name: 'image_cars',
+                value: updatedImageCars,
+            },
+        } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+    }
+
+
     useEffect(() => {
         const fetchPreviewImages = async () => {
             const imageKeys = Object.keys(formData.image_cars);
             const previewImagesData: Record<string, string | null> = {};
+            const updatedImageCars = { ...formData.image_cars };
+
             for (const imageKey of imageKeys) {
                 const imageUrl = formData.image_cars[imageKey as keyof typeof formData.image_cars];
                 try {
@@ -137,8 +151,8 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                         if (response.ok) {
                             previewImagesData[imageKey] = URL.createObjectURL(await response.blob());
                         } else {
-                            // Log the image key and the URL of the missing image
                             console.log(`Image with key ${imageKey} and URL ${imageUrl} exists in formData but not on the API.`);
+                            deleteImageFromState(imageKey); // delete from formData
                             previewImagesData[imageKey] = null;
                         }
                     } else {
@@ -154,6 +168,7 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
 
         fetchPreviewImages();
     }, [formData.image_cars, uploadStatus]); // added uploadStatus as a dependency
+
 
 
 

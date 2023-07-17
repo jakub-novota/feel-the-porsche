@@ -176,7 +176,7 @@ export default function CarForm({ car }: CarFormProps): JSX.Element {
                         <div className='flex'>
                             <div className='w-full flex justify-start'>
                                 <button
-                                    type="submit"
+                                    type="reset"
                                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
                                 >
                                     Discard

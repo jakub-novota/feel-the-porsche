@@ -126,11 +126,24 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
         }
     };
 
+    const deleteImageFromState = (imageKey: string) => {
+        const updatedImageCars = { ...formData.gallery };
+        delete updatedImageCars[imageKey as keyof typeof updatedImageCars];
+        handleChange({
+            target: {
+                name: 'gallery',
+                value: updatedImageCars,
+            },
+        } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
+    }
+
 
     useEffect(() => {
         const fetchPreviewImages = async () => {
             const imageKeys = Object.keys(formData.gallery);
             const previewImagesData: Record<string, string | null> = {};
+            const updatedImageCars = { ...formData.gallery };
+
             for (const imageKey of imageKeys) {
                 const imageUrl = formData.gallery[imageKey as keyof typeof formData.gallery];
                 try {
@@ -139,6 +152,8 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
                         if (response.ok) {
                             previewImagesData[imageKey] = URL.createObjectURL(await response.blob());
                         } else {
+                            console.log(`Image with key ${imageKey} and URL ${imageUrl} exists in formData but not on the API.`);
+                            deleteImageFromState(imageKey); // delete from formData
                             previewImagesData[imageKey] = null;
                         }
                     } else {
@@ -154,6 +169,7 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
 
         fetchPreviewImages();
     }, [formData.gallery, uploadStatus]); // added uploadStatus as a dependency
+
 
 
     const renderImage = (imageKey: string) => {

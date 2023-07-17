@@ -62,6 +62,8 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
         }
     };
 
+    //... (same as your previous code)
+
     const handleImageDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault(); // Prevent form submission
         setUploadStatus('uploading');
@@ -83,7 +85,13 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
                     },
                 } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
             } else {
-                setUploadStatus('error');
+                setUploadStatus('deleted'); // Set status to 'deleted' even if the response is not ok
+                handleChange({
+                    target: {
+                        name: 'image',
+                        value: '',
+                    },
+                } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
                 setUploadError('No Image was found. Please upload an image.');
             }
         } catch (error) {
@@ -104,6 +112,12 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
                         const url = URL.createObjectURL(blob);
                         setPreviewImage(url);
                     } else {
+                        handleChange({ // delete from formData
+                            target: {
+                                name: 'image',
+                                value: '',
+                            },
+                        } as unknown as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
                         setPreviewImage(null);
                     }
                 } catch (error) {
@@ -114,6 +128,7 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
         };
         fetchPreviewImage();
     }, [formData.image, car.image]);
+
 
     return (
         <div className="mb-4">
