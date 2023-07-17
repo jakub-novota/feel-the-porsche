@@ -152,10 +152,10 @@ export default function CarForm({ car }: CarFormProps): JSX.Element {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className='space-y-[40px]'>
                         {
-                            // <Description car={car} formData={formData} handleChange={handleChange} />
+                            <Description car={car} formData={formData} handleChange={handleChange} />
                         }
                         {
-                             <Details car={car} formData={formData} handleChange={handleChange} />
+                            <Details car={car} formData={formData} handleChange={handleChange} />
                         }
                     </div>
                     <div className=''>
@@ -164,13 +164,13 @@ export default function CarForm({ car }: CarFormProps): JSX.Element {
                                 <FrontPageImage car={car} formData={formData} handleChange={handleChange} />
                             }
                             {
-                                //<CoverImage car={car} formData={formData} handleChange={handleChange} />
+                                <CoverImage car={car} formData={formData} handleChange={handleChange} />
                             }
                             {
-                                // <GalleryImages car={car} formData={formData} handleChange={handleChange} />
+                                <GalleryImages car={car} formData={formData} handleChange={handleChange} />
                             }
                             {
-                                // <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
+                                <PeformanceAndSpecs car={car} formData={formData} handleChange={handleChange} />
                             }
                             {
                                 <Test car={car} formData={formData} handleChange={handleChange} />

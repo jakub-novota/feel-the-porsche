@@ -166,7 +166,44 @@ export default function CarForm(): JSX.Element {
                 isGalleryValid
             )
         );
+        console.log(
+            "Name:",
+            isNameValid,
+            "Description:",
+            isDescriptionValid,
+            "Model:",
+            isModelValid,
+            "Body:",
+            isBodyValid,
+            "Fuel:",
+            isFuelValid,
+            "Transmission:",
+            isTransmissionValid,
+            "Drive:",
+            isDriveValid,
+            "Capacity:",
+            isCapacityValid,
+            "Mileage:",
+            isMileageValid,
+            "Year:",
+            isYearValid,
+            "Acceleration:",
+            isAccelerationValid,
+            "Cylinder Capacity:",
+            isCylinderCapacityValid,
+            "Power (PS):",
+            isPowerPSValid,
+            "Power (HP):",
+            isPowerHPValid,
+            "Max Speed:",
+            isMaxSpeedValid,
+            "Image Cars:",
+            isImageCarsValid,
+            "Gallery:",
+            isGalleryValid
+        );
     }, [formData]);
+
 
 
 
