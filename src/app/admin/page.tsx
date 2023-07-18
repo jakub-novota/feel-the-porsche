@@ -44,8 +44,13 @@ export default function LoginForm() {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/profile" className="text-blue-500 hover:text-blue-600">
+                        <Link href="/admin/profile" className="text-blue-500 hover:text-blue-600">
                             Profile
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/admin/data" className="text-blue-500 hover:text-blue-600">
+                            Data
                         </Link>
                     </li>
                 </ul>

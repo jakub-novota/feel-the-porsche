@@ -205,7 +205,7 @@ export default function List(): JSX.Element {
                   <div className="flex justify-end space-x-2">
                     <Link
                       href={`/admin/dashboard/${car._id}`}
-                      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center"
+                      className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 flex items-center"
                     >
                       Edit
                     </Link>
