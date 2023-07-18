@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="">
+      <div className="" >
         <VideoPlayer />
       </div>
       <div className="hidden lg:block">
@@ -26,13 +26,13 @@ export default function Home() {
       <div className="md:hidden">
         <ServicesMobile />
       </div>
-      <div className="hidden md:block">
+      <div className="hidden md:block" id="service">
         <Services />
       </div>
-      <div className="mt-[52px] md:mt-[103px] ">
+      <div className="mt-[52px] md:mt-[103px] " id="faq">
         <FAQ />
       </div>
-      <div className="mt-[97px] ">
+      <div className="mt-[97px] " id="contact">
         <ContactUs />
       </div>
     </>
