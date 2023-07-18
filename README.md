@@ -28,8 +28,9 @@ First, run this commands:
 ```bash
 npm run install:all
 # after
+npm run build
+# after
 npm run start
-# or
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
