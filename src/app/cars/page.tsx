@@ -3,7 +3,7 @@ import CarsFilter from "./Modules/CarsFilter";
 
 export default function Cars() {
     return (
-        <div className="bg-[#F2F6F8] h-full">
+        <div className="h-full">
             <CarsFilter />
         </div>
     );
