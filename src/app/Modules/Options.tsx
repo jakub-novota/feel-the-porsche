@@ -260,11 +260,17 @@ export default function Options() {
 
                         <div className="hidden md:flex relative md:ml-[10px] lg:px-[30px]">
                             {selectedCarModel !== "default" ? (
-                                <Link href={`/cars/${selectedCarModel}?location=${selectedLocation}&pickupdate=${pickupDate}&pickuptime=${pickupDateTime}&dropofdate=${dropOffDate}&dropoftime=${dropOffDateTime}`}>
+                                pickupDate < dropOffDate ? (
+                                    <Link href={`/cars/${selectedCarModel}?location=${selectedLocation}&pickupdate=${pickupDate}&pickuptime=${pickupDateTime}&dropofdate=${dropOffDate}&dropoftime=${dropOffDateTime}`}>
+                                        <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
+                                            <Image width={19} height={19} src="./svg/search.svg" alt="search" />
+                                        </button>
+                                    </Link>
+                                ) : (
                                     <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
                                         <Image width={19} height={19} src="./svg/search.svg" alt="search" />
                                     </button>
-                                </Link>
+                                )
                             ) : (
                                 <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
                                     <Image width={19} height={19} src="./svg/search.svg" alt="search" />
