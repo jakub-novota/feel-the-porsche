@@ -20,16 +20,16 @@ export default function Footer() {
                         <Link href="/about-us" className="hover:underline">
                             About us
                         </Link>
-                        <Link href="/services" className="hover:underline">
+                        <Link href="/#service" className="hover:underline">
                             Services
                         </Link>
                         <Link href="/cars" className="hover:underline">
                             Cars
                         </Link>
-                        <Link href="/faq" className="hover:underline">
+                        <Link href="/#faq" className="hover:underline">
                             FAQ
                         </Link>
-                        <Link href="/contact" className="hover:underline">
+                        <Link href="/#contact" className="hover:underline">
                             Contact us
                         </Link>
                     </div>

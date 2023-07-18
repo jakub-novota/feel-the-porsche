@@ -165,12 +165,12 @@ export default function MenuMobile() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/services" onClick={toggleOverlay}>
+                                    <Link href="/#service" onClick={toggleOverlay}>
                                         Services
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/faq" onClick={toggleOverlay}>
+                                    <Link href="/#faq" onClick={toggleOverlay}>
                                         FAQ
                                     </Link>
                                 </li>
