@@ -14,6 +14,7 @@ type PriceOfferProps = {
 };
 
 
+
 export default function PriceOffer({ carModel, location, pickUp, dropOff }: PriceOfferProps) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -24,8 +25,8 @@ export default function PriceOffer({ carModel, location, pickUp, dropOff }: Pric
     const [isMessageEmpty, setIsMessageEmpty] = useState(true);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSent, setIsSent] = useState(false);
-    const [pickUpDate, setPickUpDate] = useState("");
-    const [pickOffDate, setPickOffDate] = useState("");
+    const [pickUpDate, setPickUpDate] = useState(pickUp || "");
+    const [dropOffDate, setdropOffDate] = useState(dropOff || "");
     const [occasion, setOccasion] = useState("");
 
 
@@ -121,9 +122,9 @@ export default function PriceOffer({ carModel, location, pickUp, dropOff }: Pric
         setIsSent(false); // Set isSent to false when any field is changed
     };
 
-    const handlePickOffDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPickOffDate(e.target.value);
-        setIsSubmitted(false); // Reset the isSubmitted state when pickOffDate is changed
+    const handledropOffDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setdropOffDate(e.target.value);
+        setIsSubmitted(false); // Reset the isSubmitted state when dropOffDate is changed
         setIsSent(false); // Set isSent to false when any field is changed
     };
 
@@ -146,12 +147,12 @@ export default function PriceOffer({ carModel, location, pickUp, dropOff }: Pric
         if (name === "") {
             setisNameEmpty(true);
         }
-        if (!isChecked || !isValidEmail || isMessageEmpty || isNameEmpty || pickUpDate === "" || pickOffDate === "") {
+        if (!isChecked || !isValidEmail || isMessageEmpty || isNameEmpty || pickUpDate === "" || dropOffDate === "") {
             // Handle validation errors, e.g., set border color to red
             return;
         }
 
-        const formValues = [name, email, message, isChecked, pickUpDate, pickOffDate, occasion];
+        const formValues = [name, email, message, isChecked, pickUpDate, dropOffDate, occasion];
         sendData();
         setIsSent(true);
     };
@@ -187,7 +188,7 @@ export default function PriceOffer({ carModel, location, pickUp, dropOff }: Pric
                                         onChange={handleEmailChange}
 
                                     />
-                                    <p className="text-[12px] leading-[15px] tracking-[-0.05em] mt-[15px] text-[#707070]">Date of pick up and pick off</p>
+                                    <p className="text-[12px] leading-[15px] tracking-[-0.05em] mt-[15px] text-[#707070]">Date of pick up and drop off</p>
                                     <div className="flex mt-[10px]  rounded-[8px] border-[#C5C5C5] border-[1px] space-x-[1px] bg-white">
                                         <input
                                             type="date"
@@ -201,8 +202,8 @@ export default function PriceOffer({ carModel, location, pickUp, dropOff }: Pric
                                             type="date"
                                             id="pick_off_date"
                                             className={`z-40 rounded-r-[8px]  bg-customInput  placeholder-[#D6D6D6] text-[#BABABA]  text-[16px] leading-[16px] tracking-[-0.05]  block p-[15px] w-1/2 focus:outline-none  focus:border-[#756C63] focus:ring-1 focus:ring-[#756C63]  ${!isValidEmail && isSubmitted ? 'border border-red-500 ' : ''}`}
-                                            value={pickOffDate}
-                                            onChange={handlePickOffDateChange}
+                                            value={dropOffDate}
+                                            onChange={handledropOffDateChange}
 
                                         />
                                     </div>

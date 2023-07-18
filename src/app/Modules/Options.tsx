@@ -22,6 +22,12 @@ export default function Options() {
     const formRef = useRef<HTMLDivElement>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [carData, setCarData] = useState<Car[]>([]);
+    const [pickupDateTime, setPickupDateTime] = useState(new Date());
+    const [dropOffDateTime, setDropOffDateTime] = useState(new Date());
+    const [errorMessage, setErrorMessage] = useState('');
+
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -84,14 +90,29 @@ export default function Options() {
     };
 
 
+
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Selected Car ID:", selectedCarModel);
-        console.log("Selected Location:", selectedLocation);
-        console.log("Selected Pick up Date:", pickupDate);
-        console.log("Selected Pick up Time:", pickupTime);
-        console.log("Selected Drop off Date:", dropOffDate);
-        console.log("Selected Drop off Time:", dropOffTime);
+
+        // Check for logical errors in pick-up and drop-off dates
+        const pickUpDateTime = new Date(`${pickupDate}T${pickupTime}`);
+        const dropOffDateTime = new Date(`${dropOffDate}T${dropOffTime}`);
+
+        if (pickUpDateTime >= dropOffDateTime) {
+            console.log('Pick-up date and time should be before drop-off date and time.')
+            setErrorMessage('Pick-up date and time should be before drop-off date and time.');
+            return;
+        }
+
+        // Clear any previous error message
+        setErrorMessage('');
+
+        //console.log("Selected Car ID:", selectedCarModel);
+        //console.log("Selected Location:", selectedLocation);
+        //console.log("Selected Pick up Date:", pickupDate);
+        //console.log("Selected Pick up Time:", pickupTime);
+        //console.log("Selected Drop off Date:", dropOffDate);
+        //console.log("Selected Drop off Time:", dropOffTime);
     };
 
 
@@ -110,13 +131,13 @@ export default function Options() {
                             <select
                                 value={selectedCarModel}
                                 onChange={handleCarModelChange}
-                                className="bg-inherit w-full md:w-auto md:max-w-[80px] mt-[5px] md:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                className={`bg-inherit w-full md:w-auto md:max-w-[80px] mt-[5px] md:mt-[7px] rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6] `}
                             >
                                 <option value="default" disabled hidden>
                                     Car model
                                 </option>
                                 {carData.map((carModel) => (
-                                    <option key={carModel._id} value={carModel._id}>
+                                    <option key={carModel._id} value={carModel._id} >
                                         {carModel.name}
                                     </option>
                                 ))}
@@ -158,7 +179,7 @@ export default function Options() {
                                         <div className="flex mt-[5px] space-x-[20px]">
                                             <input
                                                 type="date"
-                                                className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                                className={`bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] ${errorMessage ? 'placeholder-red-500' : 'text-[#D6D6D6]'}`}
                                                 defaultValue="2023-09-22"
                                             />
                                             <input
@@ -206,7 +227,8 @@ export default function Options() {
                                     type="date"
                                     value={pickupDate}
                                     onChange={handlePickupDateChange}
-                                    className="bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                    className={`bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] ${errorMessage ? 'text-red-400' : 'text-[#D6D6D6]'
+                                        }`}
                                 />
                                 <input
                                     type="time"
@@ -224,7 +246,8 @@ export default function Options() {
                                     type="date"
                                     value={dropOffDate}
                                     onChange={handleDropOffDateChange}
-                                    className="bg-inherit date-input rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] text-[#D6D6D6]"
+                                    className={`bg-inherit rounded appearance-none focus:outline-none text-[18px] leading-[22px] tracking-[-0.05em] ${errorMessage ? 'text-red-400' : 'text-[#D6D6D6]'
+                                        }`}
                                 />
                                 <input
                                     type="time"
@@ -235,12 +258,18 @@ export default function Options() {
                             </div>
                         </div>
 
-                        <div
-                            className="hidden md:flex relative md:ml-[10px] lg:px-[30px]"
-                        >
-                            <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
-                                <Image width={19} height={19} src="./svg/search.svg" alt="search" />
-                            </button>
+                        <div className="hidden md:flex relative md:ml-[10px] lg:px-[30px]">
+                            {selectedCarModel !== "default" ? (
+                                <Link href={`/cars/${selectedCarModel}?location=${selectedLocation}&pickupdate=${pickupDate}&pickuptime=${pickupDateTime}&dropofdate=${dropOffDate}&dropoftime=${dropOffDateTime}`}>
+                                    <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
+                                        <Image width={19} height={19} src="./svg/search.svg" alt="search" />
+                                    </button>
+                                </Link>
+                            ) : (
+                                <button className="w-[62px] h-[62px] rounded-full bg-[#4E5860] flex justify-center items-center">
+                                    <Image width={19} height={19} src="./svg/search.svg" alt="search" />
+                                </button>
+                            )}
                         </div>
                     </form>
                 </div>
