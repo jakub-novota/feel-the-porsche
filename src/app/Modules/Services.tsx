@@ -20,7 +20,7 @@ const Box: React.FC<BoxProps> = ({ imageSrc, title, text }) => {
 
 const BoxesOnImage: React.FC = () => {
     return (
-        <div className="container relative">
+        <div className="container relative" >
             <div className="z-40 absolute">
                 <div className='flex flex-col items-center pt-[100px]'>
                     <p className="font-sohogothicpro font-medium text-[15px] leading-[22px] tracking-[-0.02em] uppercase text-[#33B888]">services</p>

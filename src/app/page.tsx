@@ -29,10 +29,10 @@ export default function Home() {
       <div className="hidden md:block" id="service">
         <Services />
       </div>
-      <div className="mt-[52px] md:mt-[103px] " id="faq">
+      <div className="pt-[52px] md:pt-[103px] " id="faq">
         <FAQ />
       </div>
-      <div className="mt-[97px] " id="contact">
+      <div className="pt-[97px] " id="contact">
         <ContactUs />
       </div>
     </>
