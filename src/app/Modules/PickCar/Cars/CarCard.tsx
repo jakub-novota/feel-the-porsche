@@ -10,7 +10,7 @@ interface CarCardProps {
 }
 
 const CarCard: React.FC<CarCardProps> = ({ car }) => {
-    const carId = car.id; // Assuming each car object has an 'id' property
+    const carId = car._id; // Assuming each car object has an 'id' property
 
     return (
         <motion.div
@@ -64,7 +64,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
                     </p>
                 </div>
                 <div>
-                    <p className="text-[#9C9C9C] text-[12px] font-light  tracking-[-0.6px]">Year</p>
+                    <p className="text-[#9C9C9C] text-s[12px] font-light  tracking-[-0.6px]">Year</p>
                     <p className="text-[18px] font-sohogothicpro font-bold  tracking-[-0.36px]  sm:tracking-[-0.4px] sm:text-[20px] text-black">
                         {car.year}
                     </p>
