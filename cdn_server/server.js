@@ -46,6 +46,9 @@ app.use(logRequest);
 
 app.post('/photos/upload', upload.single('photo'), (req, res) => {
     if (!req.file) {
+        const timestamp = new Date().toISOString();
+        const logEntry = `${timestamp} - "Upload was not succefull"`;
+        logStream.write(logEntry + '\n');
         res.status(400).json({ success: false, message: 'No photo provided.' });
         return;
     }
