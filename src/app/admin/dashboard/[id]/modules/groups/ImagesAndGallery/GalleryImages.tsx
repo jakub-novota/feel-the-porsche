@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState, useCallback } from 'react';  // Include useCallback here
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import API_BASE_URL from '@/app/config';
@@ -126,7 +126,8 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
         }
     };
 
-    const deleteImageFromState = (imageKey: string) => {
+    // Inside your component...
+    const deleteImageFromState = useCallback((imageKey: string) => {
         const updatedImageCars = { ...formData.gallery };
         delete updatedImageCars[imageKey as keyof typeof updatedImageCars];
         handleChange({
@@ -135,7 +136,7 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
                 value: updatedImageCars,
             },
         } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
-    }
+    }, [formData.gallery, handleChange]);  // Specify the dependencies here
 
 
     useEffect(() => {
@@ -168,7 +169,7 @@ export default function GalleryImages({ car, formData, handleChange }: GalleryIm
         };
 
         fetchPreviewImages();
-    }, [formData.gallery, uploadStatus]); // added uploadStatus as a dependency
+    }, [formData, deleteImageFromState, formData.gallery, uploadStatus]);
 
 
 

@@ -10,11 +10,11 @@ const App: React.FC = () => {
     const [editPostId, setEditPostId] = useState("");
     const params = useParams()
 
-
     useEffect(() => {
         // Simulating the retrieval of post data for editing
         fetchPostData(params.name);
-    }, []);
+    }, [params.name]);
+
 
     const fetchPostData = async (postID: string) => {
         try {

@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState, useCallback } from 'react';
 import { Car } from '@/app/cars/Modules/CarInterface';
 import Image from 'next/image';
 import API_BASE_URL from '@/app/config';
@@ -125,7 +125,7 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
         }
     };
 
-    const deleteImageFromState = (imageKey: string) => {
+    const deleteImageFromState = useCallback((imageKey: string) => {
         const updatedImageCars = { ...formData.image_cars };
         delete updatedImageCars[imageKey as keyof typeof updatedImageCars];
         handleChange({
@@ -134,7 +134,8 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
                 value: updatedImageCars,
             },
         } as ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>);
-    }
+    }, [formData.image_cars, handleChange]);
+
 
 
     useEffect(() => {
@@ -167,7 +168,7 @@ export default function CoverImage({ car, formData, handleChange }: CoverImagePr
         };
 
         fetchPreviewImages();
-    }, [formData.image_cars, uploadStatus]); // added uploadStatus as a dependency
+    }, [formData, formData.image_cars, uploadStatus, deleteImageFromState]); // updated here
 
 
 

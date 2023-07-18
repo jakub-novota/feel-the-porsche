@@ -127,7 +127,7 @@ export default function FrontPageImage({ formData, handleChange, car }: FrontPag
             }
         };
         fetchPreviewImage();
-    }, [formData.image, car.image]);
+    }, [formData.image, car.image, handleChange]); // include handleChange
 
 
     return (
