@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import List from './dashboard/modules/carlist';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function LoginForm() {
     const { data: session } = useSession();
@@ -11,11 +12,15 @@ export default function LoginForm() {
     const handleToggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
+    const navVariants = {
+        open: { x: 0 },
+        closed: { x: '-100%' }
+    };
 
     return (
         <div className="flex h-screen">
-            <div className={`w-[10vw] p-4 flex flex-col ${isNavOpen ? '' : 'hidden'}`}>
-                <div className='space-x-[20px] flex justify-center'>
+            <div className={`w-[10vw] p-4 flex flex-col duration-500  ${isNavOpen ? '' : 'hidden'}`}>
+                <div className='space-x-[20px] flex justify-center '>
                     <Link
                         href={"/"}
                         className="w-1/3 border rounded-[8px] flex justify-center items-center py-[10px] px-[10px]"
@@ -45,19 +50,19 @@ export default function LoginForm() {
                     </li>
                 </ul>
             </div>
-            <div className="w-full p-4 bg-gray-100">
+            <div className="w-full p-4 ">
                 <button
-                    className="w-10 h-10 rounded-full bg-blue-500 text-white flex justify-center items-center focus:outline-none"
+                    className="w-10 h-10 rounded-full  border text-white flex justify-center items-center focus:outline-none"
                     onClick={handleToggleNav}
                 >
                     {isNavOpen ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-14v-2h14v2zm2-8v6h-2v-6h2zm0 12v6h-2v-6h2zm2-10v14h-2v-14h2zm-22 0h14v2h-14v-2zm0 4h14v2h-14v-2zm0 4h14v2h-14v-2zm0 4h14v2h-14v-2z" /></svg>
+                        <svg clip-rule="evenodd" className='w-[25px] h-[25px]' fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z" /></svg>
                     ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 6h14v2h-14v-2zm0 4h14v2h-14v-2zm0 4h14v2h-14v-2zm0 4h14v2h-14v-2z" /></svg>
+                        <svg clip-rule="evenodd" className='w-[25px] h-[25px]' fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m22 16.75c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero" /></svg>
                     )}
                 </button>
                 <List />
             </div>
-        </div>
+        </div >
     );
 }
