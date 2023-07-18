@@ -8,7 +8,7 @@
     "dev:node": "cd cdn_server && nodemon server.js",
     "dev": "concurrently \"npm run dev:next\" \"npm run dev:node\"",
     "build": "next build",
-    "start": "next start",
+    "start": " concurrently \"next start\" \"npm run dev:node\"",
     "lint": "next lint"
   },
   "dependencies": {
