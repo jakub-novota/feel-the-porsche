@@ -151,67 +151,68 @@ export default function List(): JSX.Element {
   };
 
   return (
+
+
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4 text-center">All Cars</h1>
-      <div className="flex justify-start mb-4">
+      <div className="mb-4">
         <input
           type="text"
           value={searchValue}
           onChange={handleSearchChange}
           placeholder="Search by name"
-          className="border border-gray-400 px-4 py-2 rounded"
+          className=" border border-gray-400 px-4 py-2 rounded"
         />
       </div>
-      <div className="flex justify-center">
-        <table className="w-screen">
+      <div className="overflow-x-auto">
+        <table className="w-full bg-white">
           <thead>
             <tr>
-              <th className="py-2 text-start">
-                <p
+              <th className="py-2 text-left">
+                <button
                   onClick={() => handleSortByField('createdAt')}
                   className="bg-transparent text-start"
                 >
                   Created At{' '}
-                  {sortField === 'createdAt' &&
-                    (sortOrder === 'asc' ? '▲' : '▼')}
-                </p>
+                  {sortField === 'createdAt' && (sortOrder === 'asc' ? '▲' : '▼')}
+                </button>
               </th>
-              <th className="py-2 text-start">
-                <p
+              <th className="py-2 text-left">
+                <button
                   onClick={() => handleSortByField('name')}
                   className="bg-transparent"
                 >
                   Name
-                </p>
+                </button>
               </th>
-              <th className="py-2 text-start">
-                <p
+              <th className="py-2 text-left">
+                <button
                   onClick={() => handleSortByField('year')}
                   className="bg-transparent"
                 >
                   Year
-                </p>
+                </button>
               </th>
-              <th className="py-2 text-end">Edit / Delete</th>
+              <th className="py-2 text-right pr-2 sm:pr-4">Edit / Delete</th>
             </tr>
           </thead>
           <tbody>
             {sortedData.map((car) => (
-              <tr key={car._id} className="mx-auto">
+              <tr key={car._id}>
                 <td className="py-2">{formatTime(car.createdAt)}</td>
                 <td className="py-2">{car.name}</td>
                 <td className="py-2">{car.year}</td>
-                <td className="py-2 text-end">
+                <td className="py-2 text-right">
                   <div className="flex justify-end space-x-2">
                     <Link
                       href={`/admin/dashboard/${car._id}`}
-                      className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 flex items-center"
+                      className="bg-indigo-500 text-white px-2 sm:px-4 py-1 sm:py-2 rounded hover:bg-indigo-600 flex items-center"
                     >
                       Edit
                     </Link>
                     <button
                       onClick={() => handleDelete(car)}
-                      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2 flex items-center"
+                      className="bg-red-500 text-white px-2 sm:px-4 py-1 sm:py-2 rounded hover:bg-red-600 ml-2 flex items-center"
                     >
                       Delete
                     </button>
@@ -223,14 +224,19 @@ export default function List(): JSX.Element {
         </table>
       </div>
       <div className="flex justify-center mt-4">
-        <Link href="/admin/dashboard/new" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+        <Link
+          href="/admin/dashboard/new"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
           Create New Car
         </Link>
       </div>
       {showConfirmation && carToDelete && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-4 rounded">
-            <p>Are you sure you want to delete the car &quot;{carToDelete.name}&quot;?</p>
+            <p>
+              Are you sure you want to delete the car &quot;{carToDelete.name}&quot;?
+            </p>
             <div className="flex justify-end mt-4">
               <button
                 onClick={handleCancelDelete}
@@ -249,5 +255,7 @@ export default function List(): JSX.Element {
         </div>
       )}
     </div>
+
+
   );
 }
