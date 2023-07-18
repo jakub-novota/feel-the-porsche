@@ -83,7 +83,7 @@ export default function MenuMobile() {
         <>
             <nav
                 className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''
-                    } left-0 w-screen ${isCarsPage ? 'bg-[#F2F6F8]' : ''}`}
+                    } left-0 w-screen ${isCarsPage ? '' : ''}`}
             >
                 <div className="w-screen mt-[10px] h-[74px]">
                     <div className="pl-[23px] pr-[31px] flex">
@@ -98,15 +98,17 @@ export default function MenuMobile() {
                             />
                         </Link>
                         <div className="flex justify-end items-center w-full">
-                            <button
-                                type="button"
-                                className="flex items-center w-[147px] h-[38px] bg-[#30B887] rounded-[8px] justify-center"
-                            >
-                                <CallIcon />
-                                <p className="text-[14px] font-sohogothicpro uppercase font-medium tracking-[0.28px] text-white">
-                                    Contact us
-                                </p>
-                            </button>
+                            <Link href={"/#contact"}>
+                                <button
+                                    type="button"
+                                    className="flex items-center w-[147px] h-[38px] bg-[#30B887] rounded-[8px] justify-center"
+                                >
+                                    <CallIcon />
+                                    <p className="text-[14px] font-sohogothicpro uppercase font-medium tracking-[0.28px] text-white">
+                                        Contact us
+                                    </p>
+                                </button>
+                            </Link>
                             <motion.button
                                 className="ml-[5%]"
                                 onClick={toggleOverlay}
@@ -132,7 +134,7 @@ export default function MenuMobile() {
                     >
                         <div className="absolute inset-0 bg-black opacity-[0.75] "></div>
                         <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center ">
-                            <Link href="/" className="absolute top-0 left-0 ml-[23px] mt-[10px] h-[64px] w-[59px]">
+                            <Link href="/" className="absolute top-0 left-0 ml-[23px] mt-[10px] h-[66px] w-[61px]">
                                 <Image
                                     priority
                                     fill
