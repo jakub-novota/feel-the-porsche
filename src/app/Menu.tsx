@@ -14,11 +14,14 @@ interface Car {
 
 export default function Menu() {
     const pathname = usePathname();
+    const { t, i18n } = useTranslation();
+    const storedLanguage = getCookie('language');
     const [clickedLanguage, setClickedLanguage] = useState<string | null>(null);
     const [isDetailsPage, setIsDetailsPage] = useState(false);
     const [carData, setCarData] = useState<Car[]>([]); // Provide explicit type for carData
     const [isLoading, setIsLoading] = useState(true); // State to track loading state
-    const { t, i18n } = useTranslation();
+    const [lng, setLng] = useState<string>();
+
 
     //PATHS
     const isListPage = pathname === '/cars';
@@ -30,15 +33,25 @@ export default function Menu() {
     const isAdminPage = pathname.startsWith('/admin');
 
 
+
+
     const handleClick = (language: string) => {
-        setCookie('language', language);
+        setLng(language)
+        setCookie("language", language)
         i18nInstance.changeLanguage(language); // Use i18nInstance instead of i18n
     };
 
+
     useEffect(() => {
-        const storedLanguage = getCookie('language');
-        if (typeof storedLanguage === 'string' && i18nInstance.language !== storedLanguage) {
-            i18nInstance.changeLanguage(storedLanguage);
+        const t = storedLanguage?.toString()
+        if (t === "sk") {
+            i18nInstance.changeLanguage("sk");
+        }
+        if (typeof storedLanguage === 'string') {
+            if (storedLanguage == "sk") {
+                i18nInstance.changeLanguage("sk");
+            }
+            setLng(storedLanguage)
         }
     }, []);
 
@@ -79,9 +92,12 @@ export default function Menu() {
     }, [pathname, carData, isLoading]);
 
     const { data: session } = useSession()
+
+
+
     return (
         <>
-            <nav className={`z-50 ${isDetailsPage ? 'absolute top-0' : ''} ${isHomePage ? 'absolute top-0' : ''} ${isCarsPage ? 'bg-gray-100' : ''} left-0 w-screen `}>
+            <nav className={`z-50 static ${isDetailsPage ? 'absolute top-0' : 'static'} ${isHomePage ? 'absolute top-0' : 'static'} ${isCarsPage ? 'bg-gray-100' : ''} left-0 w-screen `}>
                 <div className="w-screen  pt-[18px] bg-transparent ">
                     <div className="flex items-center justify-between sm:ml-[20px] sm:mr-[20px] lg:ml-[135px] lg:mr-[135px]">
                         <div className="flex items-center">
@@ -115,35 +131,33 @@ export default function Menu() {
                                     </p>
                                 </button>
                             </Link>
-                            {/*ß
+                            {
                                 <div className='relative'>
-
-                                <div
-                                    className={`border w-[50px] rounded-[8px] px-[14px] py-[10px] ${clickedLanguage === 'en' ? 'text-white bg-[#33B888]' : 'text-[#33B888] border-[#33B888]'
-                                        }`}
-                                    onMouseEnter={() => setClickedLanguage('en')}
-                                    onMouseLeave={() => setClickedLanguage(null)}
-                                    onClick={() => handleClick('en')} // use 'en' instead of 'EN'
-                                >
-                                    <a>EN</a>
-                                </div>
-                                {clickedLanguage && (
-                                    <div className='absolute left-0'
-                                        onMouseEnter={() => setClickedLanguage('sk')}
+                                    <div
+                                        className={`border w-[50px] rounded-[8px] px-[14px] py-[10px] ${clickedLanguage === 'en' ? 'text-white bg-[#33B888]' : 'text-[#33B888] border-[#33B888]'
+                                            }`}
+                                        onMouseEnter={() => setClickedLanguage('en')}
                                         onMouseLeave={() => setClickedLanguage(null)}
                                     >
-                                        <div className='pt-[10px] '>
-                                            <div
-                                                className={` border w-[50px] rounded-[8px] px-[14px] py-[10px] ${clickedLanguage === 'sk' ? 'text-white bg-[#33B888]' : 'text-[#33B888] border-[#33B888]'}`}
-                                                onClick={() => handleClick('sk')} // use 'sk' instead of 'SK'
-                                            >
-                                                <a>SK</a>
+                                        <p>{lng === 'en' ? 'EN' : lng === 'sk' ? 'SK' : null}</p>
+                                    </div>
+                                    {clickedLanguage && (
+                                        <div className=' absolute left-0 bg-red-400'
+                                            onMouseEnter={() => setClickedLanguage('sk')}
+                                            onMouseLeave={() => setClickedLanguage(null)}
+                                        >
+                                            <div className='pt-[10px] '>
+                                                <div
+                                                    className={`border w-[50px] rounded-[8px] px-[14px] py-[10px] ${clickedLanguage === 'sk' ? 'text-white bg-[#33B888]' : 'text-[#33B888] border-[#33B888]'}`}
+                                                    onClick={() => handleClick(lng === 'sk' ? 'en' : "sk")}
+                                                >
+                                                    <p>{lng === 'sk' ? 'EN' : lng === 'en' ? 'SK' : null}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-                            */}
+                                    )}
+                                </div>
+                            }
                             <div className="ml-[20px]">
                                 {session?.user ? (
                                     <>

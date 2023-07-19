@@ -6,9 +6,9 @@
     "install:all": "npm install && cd cdn_server && npm install",
     "dev:next": "next dev",
     "dev:node": "cd cdn_server && nodemon server.js",
-    "dev": "concurrently \"npm run dev:next\" \"npm run dev:node\"",
+    "dev": "next dev",
     "build": "next build",
-    "start": " concurrently \"next start\" \"npm run dev:node\"",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "eslint-config-next": "13.4.6",
     "framer-motion": "^10.12.16",
     "i18next": "^23.2.11",
+    "i18next-browser-languagedetector": "^7.1.0",
     "jsonwebtoken": "^9.0.1",
     "mailersend": "^2.2.0",
     "mongodb": "^5.6.0",
