@@ -1,9 +1,12 @@
 "use client"
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import { usePathname } from 'next/navigation';
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { setCookie, getCookie } from 'cookies-next';
+import { useTranslation } from 'react-i18next';
+import i18nInstance from '@/app/i18n'; // Rename the imported object
 
 interface Car {
     _id: string; // Adjust the type based on your actual car data structure
@@ -11,17 +14,33 @@ interface Car {
 
 export default function Menu() {
     const pathname = usePathname();
+    const [clickedLanguage, setClickedLanguage] = useState<string | null>(null);
+    const [isDetailsPage, setIsDetailsPage] = useState(false);
+    const [carData, setCarData] = useState<Car[]>([]); // Provide explicit type for carData
+    const [isLoading, setIsLoading] = useState(true); // State to track loading state
+    const { t, i18n } = useTranslation();
+
+    //PATHS
     const isListPage = pathname === '/cars';
     const isCarsPage = pathname === '/cars/';
     const isCarsDetailPage = pathname.startsWith('/cars/');
     const isFaqPage = pathname === '/cars';
-    const [isDetailsPage, setIsDetailsPage] = useState(false);
     const isAboutPage = pathname === '/about-us';
     const isHomePage = pathname === '/';
     const isAdminPage = pathname.startsWith('/admin');
 
-    const [carData, setCarData] = useState<Car[]>([]); // Provide explicit type for carData
-    const [isLoading, setIsLoading] = useState(true); // State to track loading state
+
+    const handleClick = (language: string) => {
+        setCookie('language', language);
+        i18nInstance.changeLanguage(language); // Use i18nInstance instead of i18n
+    };
+
+    useEffect(() => {
+        const storedLanguage = getCookie('language');
+        if (typeof storedLanguage === 'string' && i18nInstance.language !== storedLanguage) {
+            i18nInstance.changeLanguage(storedLanguage);
+        }
+    }, []);
 
     useEffect(() => {
         if (pathname.startsWith('/cars/')) {
@@ -43,6 +62,8 @@ export default function Menu() {
             fetchData();
         }
     }, [pathname]);
+
+
 
     useEffect(() => {
         if (!isLoading) {
@@ -94,9 +115,35 @@ export default function Menu() {
                                     </p>
                                 </button>
                             </Link>
-                            <div className={`border rounded-[8px] px-[14px] py-[10px] ${isHomePage || isCarsPage || isCarsDetailPage ? 'text-white ' : 'text-[#33B888] border-[#33B888]'}`}>
-                                <a>EN</a>
+                            {/*ß
+                                <div className='relative'>
+
+                                <div
+                                    className={`border w-[50px] rounded-[8px] px-[14px] py-[10px] ${clickedLanguage === 'en' ? 'text-white bg-[#33B888]' : 'text-[#33B888] border-[#33B888]'
+                                        }`}
+                                    onMouseEnter={() => setClickedLanguage('en')}
+                                    onMouseLeave={() => setClickedLanguage(null)}
+                                    onClick={() => handleClick('en')} // use 'en' instead of 'EN'
+                                >
+                                    <a>EN</a>
+                                </div>
+                                {clickedLanguage && (
+                                    <div className='absolute left-0'
+                                        onMouseEnter={() => setClickedLanguage('sk')}
+                                        onMouseLeave={() => setClickedLanguage(null)}
+                                    >
+                                        <div className='pt-[10px] '>
+                                            <div
+                                                className={` border w-[50px] rounded-[8px] px-[14px] py-[10px] ${clickedLanguage === 'sk' ? 'text-white bg-[#33B888]' : 'text-[#33B888] border-[#33B888]'}`}
+                                                onClick={() => handleClick('sk')} // use 'sk' instead of 'SK'
+                                            >
+                                                <a>SK</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
+                            */}
                             <div className="ml-[20px]">
                                 {session?.user ? (
                                     <>
